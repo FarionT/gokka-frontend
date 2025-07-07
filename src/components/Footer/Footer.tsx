@@ -1,6 +1,6 @@
 import './Footer.scss';
 
-// Import Logo
+// Import Images
 import Tiktok from '../../assets/Logo/Tiktok.svg';
 import Instagram from '../../assets/Logo/Instagram.svg';
 import Shopee from '../../assets/Logo/Shopee.svg';

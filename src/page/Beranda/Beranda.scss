@@ -1,0 +1,20 @@
+.beranda {
+  background-color: #332d1e;
+  color: #FFF1A8;
+}
+
+.gradient-gold {
+  background-image: linear-gradient(to right, #A16706, #E3B61B, #F9F3A5, #E3B61B, #A16706);
+  color: transparent;
+  background-clip: text;
+
+  &-line {
+    &::before{
+      content: ""; /* Essential for pseudo-elements */
+      width: 80px; /* Width of the line */
+      height: 3px; /* Thickness of the line */
+      background-image: linear-gradient(to right, #A16706, #E3B61B, #F9F3A5, #E3B61B, #A16706);; /* Color of the line, matching one of the gradient colors */
+      margin: auto 20px auto 0; /* Center the line and add space below it */
+    }
+  }
+}

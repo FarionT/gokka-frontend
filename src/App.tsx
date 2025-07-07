@@ -3,14 +3,13 @@ import {
   Footer, 
   Navbar 
 } from './components'
+import MainRoutes from './routes/mainRoutes'
 
 function App() {
   return (
     <>
       <Navbar />
-      <div className='h-11'>
-        Ini test konten
-      </div>
+      <MainRoutes />
       <Footer/>
     </>
   )

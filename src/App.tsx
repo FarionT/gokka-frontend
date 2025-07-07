@@ -1,9 +1,16 @@
 // import './App.css'
-import { Footer } from './components'
+import { 
+  Footer, 
+  Navbar 
+} from './components'
 
 function App() {
   return (
     <>
+      <Navbar />
+      <div className='h-11'>
+        Ini test konten
+      </div>
       <Footer/>
     </>
   )

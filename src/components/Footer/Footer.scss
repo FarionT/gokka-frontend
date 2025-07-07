@@ -1,4 +1,11 @@
 .my-gold-element {
   background-color: #261e0c;
   color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+
+/* --- Gradient Border Styling --- */
+  border-top: 4px solid transparent; /* Define a solid border first, then apply image */
+  border-image: linear-gradient(to right, #A16706, #E3B61B, #F9F3A5, #E3B61B, #A16706); /* The gradient */
+  border-image-slice: 1; /* Ensures the entire gradient is used */
+/* --- End Gradient Border Styling --- */
 }

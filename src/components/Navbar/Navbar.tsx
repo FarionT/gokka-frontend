@@ -66,7 +66,7 @@ const Navbar: React.FC = () => {
                 <a href="#" className="rounded-md px-3 py-2 text-sm font-medium" aria-current="page">
                   Beranda
                 </a>
-                <a href="#" className="rounded-md px-3 py-2 text-sm font-medium hover:text-white">
+                <a href="/produk" className="rounded-md px-3 py-2 text-sm font-medium hover:text-white">
                   Produk
                 </a>
                 <a href="#" className="rounded-md px-3 py-2 text-sm font-medium hover:text-white">
@@ -75,7 +75,7 @@ const Navbar: React.FC = () => {
                 <a href="#" className="rounded-md px-3 py-2 text-sm font-medium hover:text-white">
                   Testimoni
                 </a>
-                <a href="#" className="rounded-md px-3 py-2 text-sm font-medium hover:text-white">
+                <a href="/resep" className="rounded-md px-3 py-2 text-sm font-medium hover:text-white">
                   Resep
                 </a>
                 <a href="#" className="rounded-md px-3 py-2 text-sm font-medium hover:text-white">

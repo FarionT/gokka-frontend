@@ -10,6 +10,7 @@ import KualitasPremium from '../../assets/Logo/KualitasPremium.svg';
 import TahanLama from '../../assets/Logo/TahanLama.svg';
 import TerjaminHalal from '../../assets/Logo/TerjaminHalal.svg';
 import VariatifRasa from '../../assets/Logo/VariatifRasa.svg';
+import Rame from '../../assets/Image/Rame.svg';
 
 // Importing ui kit
 import { Button } from '../../ui-kit';
@@ -36,6 +37,7 @@ const Beranda = () => {
 
   return (
     <div className="beranda">
+      {/* beranda tentang kami */}
       <div className='beranda-tentang max-w-[1600px] mx-auto px-16'>
         <div className='w-fit flex text-xl font-semibold gradient-gold gradient-gold-line'>TENTANG KAMI</div>
         <div className="flex flex-col items-center text-center text-3xl md:text-5xl/15 py-15">
@@ -61,7 +63,16 @@ const Beranda = () => {
             </div>
           </div>
         </div>
+        <div className='flex flex-col py-16 items-center'>
+          <img src={Rame} className='w-full max-w-xl'/>
+          <div className='flex flex-col items-center text-3xl md:text-5xl/15 py-7 font-semibold'>
+            <span>Ayo Temukan</span>
+            <span className='gradient-gold'>Duniamu!</span>
+          </div>
+          <Button className='w-fit font-bold'>Jelajahi</Button>
+        </div>
       </div>
+      {/* beranda pembelian  */}
       <div className='beranda-pembelian flex flex-col py-20'>
         <div className='w-fit flex text-xl font-semibold gradient-gold gradient-gold-line'>PEMBELIAN</div>
         <div className="flex flex-col items-center text-center text-3xl md:text-5xl/15 pt-7">

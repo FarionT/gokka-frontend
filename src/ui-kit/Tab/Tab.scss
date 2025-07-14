@@ -1,0 +1,36 @@
+.tab {
+  &-title {
+    &-text {
+      cursor: pointer;
+      padding: 5px 15px;
+      width: 90px;
+      font-weight: 700;
+      background-color: #898989;
+      color: white;
+      border-radius: 70px;
+      text-align: center;
+      position: relative;
+    }
+
+    &-center {
+      justify-content: center;
+    }
+  }
+
+  &-active {
+    background-color: #BFA443;
+    color: #FFF1A8;
+    border-bottom: 1px solid #BFA443;
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -8px; // creates the gap
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70%;
+      height: 3px;
+      background-color: #BFA443;
+      border-radius: 2px;
+    }
+  }
+}

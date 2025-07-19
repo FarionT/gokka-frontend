@@ -78,7 +78,7 @@ const Navbar: React.FC = () => {
                 <a href="/resep" className="rounded-md px-3 py-2 text-sm font-medium hover:text-white">
                   Resep
                 </a>
-                <a href="#" className="rounded-md px-3 py-2 text-sm font-medium hover:text-white">
+                <a href="/faq" className="rounded-md px-3 py-2 text-sm font-medium hover:text-white">
                   FAQ
                 </a>
                 <a href="#" className="rounded-md px-3 py-2 text-sm font-medium hover:text-white">

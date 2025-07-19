@@ -12,6 +12,9 @@ import SegarUnik from '../../assets/Logo/SegarUnik.svg';
 import RempahKacang from '../../assets/Logo/RempahKacang.svg';
 import KopiTeh from '../../assets/Logo/KopiTeh.svg';
 
+// import gambar
+import Butterscoth from '../../assets/Image/ProdukKatalog/Butterscotch.svg';
+
 const category = [
   {
     name: 'All',
@@ -49,70 +52,80 @@ const produk = [
     name: 'Mangga',
     color: '#fcba03',
     type: 'cair',
-    category: 'buah'
+    category: 'buah',
+    image: Butterscoth
   },
   {
     id: 2,
     name: 'Apel',
     color: '#000000',
     type: 'cair',
-    category: 'buah'
+    category: 'buah',
+    image: Butterscoth
   },
   {
     id: 3,
     name: 'Oreo',
     color: '#000000',
     type: 'cair',
-    category: 'dessert'
+    category: 'dessert',
+    image: Butterscoth
   },
   {
     id: 4,
     name: 'Melati',
     color: '#ffffff',
     type: 'cair',
-    category: 'floral'
+    category: 'floral',
+    image: Butterscoth
   },
   {
     id: 5,
     name: 'Mawar',
     color: '#000000',
     type: 'cair',
-    category: 'floral'
+    category: 'floral',
+    image: Butterscoth
   },
   {
     id: 6,
     name: 'Lemon Jasmine',
     color: '#000000',
     type: 'cair',
-    category: 'segar_unik'
+    category: 'segar_unik',
+    image: Butterscoth
   },
   {
     id: 7,
     name: 'Lemon Jasmine',
     color: '#000000',
     type: 'cair',
-    category: 'segar_unik'
+    category: 'segar_unik',
+    image: Butterscoth
   },
   {
     id: 8,
     name: 'Lemon Jasmine',
     color: '#000000',
     type: 'cair',
-    category: 'segar_unik'
+    category: 'segar_unik',
+    image: Butterscoth
   },
   {
     id: 9,
     name: 'Almond',
     color: '#000000',
     type: 'cair',
-    category: 'rempah_kacang'
+    category: 'rempah_kacang',
+    image: Butterscoth
   },
   {
     id: 10,
     name: 'Kopi',
     color: '#000000',
     type: 'cair',
-    category: 'kopi'
+    category: 'kopi',
+    image: Butterscoth
   },
 ]
 
@@ -155,7 +168,7 @@ const Produk = () => {
 
   useEffect(() => {
     const currentProduct = produk.find(item => item.id === selectedProductId);
-    setSelectedProduct(currentProduct ?? {})
+    setSelectedProduct(currentProduct ?? { name: '', image: '', color: '' })
   }, [selectedProductId])
 
   const openModal = (): void => setIsModalOpen(true);
@@ -168,13 +181,13 @@ const Produk = () => {
           <TabsKatalog position='center' activeTab={categoryActiveTabIndex} onChange={setCategoryActiveTabIndex}>
             {category.map((item, index) => (
               <TabKatalog title={item.icon} key={index}>
-                <div className='flex flex-wrap gap-8 max-w-[1600px] mx-auto p-6'>
+                <div className='flex flex-wrap gap-8 max-w-[1600px] mx-auto p-6 justify-center'>
                   {products.map((product, index) => (
                     <ProdukKatalog
                       key={index}
                       name={product.name}
                       color={product.color}
-                      image={Floral}
+                      image={product.image}
                       onClick={() => { openModal(); setSelectedProductId(product.id) }}
                     />
                   ))}
@@ -187,13 +200,13 @@ const Produk = () => {
           <TabsKatalog position='center' activeTab={categoryActiveTabIndex} onChange={setCategoryActiveTabIndex}>
             {category.map((item, index) => (
               <TabKatalog title={item.icon} key={index}>
-                <div className='flex flex-wrap gap-8 max-w-[1600px] mx-auto p-6'>
+                <div className='flex flex-wrap gap-8 max-w-[1600px] mx-auto p-6 justify-center'>
                   {products.map((product, index) => (
                     <ProdukKatalog
                       key={index}
                       name={product.name}
                       color={product.color}
-                      image={Floral}
+                      image={product.image}
                       onClick={() => { openModal(); setSelectedProductId(product.id) }}
                     />
                   ))}

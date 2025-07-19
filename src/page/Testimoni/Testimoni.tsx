@@ -6,7 +6,7 @@ import { testimoniData } from './TestimoniData';
 
 // import logo
 import Bintang from '../../assets/Logo/Bintang.svg';
-import { Button } from '../../ui-kit';
+// import { Button } from '../../ui-kit';
 
 const Testimoni = () => {
   return (

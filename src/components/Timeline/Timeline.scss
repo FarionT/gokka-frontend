@@ -1,0 +1,31 @@
+.timeline {
+  width: 80%;
+  margin: auto;
+  &-item {
+    &-mark {
+      width: 24px;
+      height: 24px;
+      background-color: #BFA443;
+      z-index: 1;
+    }
+    &-line {
+      background-color: #FFF1A8;
+      z-index: 0;
+      height: 105%;
+      margin-bottom: -5px;
+    }
+
+    &:nth-last-child(1) {
+      .timeline-item-line {
+        display: none;
+      }
+    }
+  }
+
+  .gradient-gold {
+    background-image: linear-gradient(to right, #A16706, #E3B61B, #F9F3A5, #E3B61B, #A16706);
+    color: transparent;
+    background-clip: text;
+    white-space: nowrap;
+  }
+}

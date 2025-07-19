@@ -63,7 +63,7 @@ const Navbar: React.FC = () => {
             {/* Desktop navigation links */}
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4 text-center">
-                <a href="#" className="rounded-md px-3 py-2 text-sm font-medium" aria-current="page">
+                <a href="/" className="rounded-md px-3 py-2 text-sm font-medium" aria-current="page">
                   Beranda
                 </a>
                 <a href="/produk" className="rounded-md px-3 py-2 text-sm font-medium hover:text-white">
@@ -78,7 +78,7 @@ const Navbar: React.FC = () => {
                 <a href="/resep" className="rounded-md px-3 py-2 text-sm font-medium hover:text-white">
                   Resep
                 </a>
-                <a href="#" className="rounded-md px-3 py-2 text-sm font-medium hover:text-white">
+                <a href="/faq" className="rounded-md px-3 py-2 text-sm font-medium hover:text-white">
                   FAQ
                 </a>
                 <a href="#" className="rounded-md px-3 py-2 text-sm font-medium hover:text-white">

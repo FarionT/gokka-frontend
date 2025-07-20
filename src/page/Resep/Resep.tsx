@@ -1,21 +1,40 @@
 import './Resep.scss';
 
-const Resep = () => {
-	// const carouselItems: CarouselItem[] = [
-  //   { id: 1, content: <div className="p-6 bg-blue-500 text-white text-center rounded-lg shadow-md">Item 1: Blue</div> },
-  //   { id: 2, content: <div className="p-6 bg-green-500 text-white text-center rounded-lg shadow-md">Item 2: Green</div> },
-  //   { id: 3, content: <div className="p-6 bg-red-500 text-white text-center rounded-lg shadow-md">Item 3: Red</div> },
-  //   { id: 4, content: <div className="p-6 bg-yellow-500 text-white text-center rounded-lg shadow-md">Item 4: Yellow</div> },
-  //   { id: 5, content: <div className="p-6 bg-purple-500 text-white text-center rounded-lg shadow-md">Item 5: Purple</div> },
-  //   { id: 6, content: <div className="p-6 bg-indigo-500 text-white text-center rounded-lg shadow-md">Item 6: Indigo</div> },
-  //   { id: 7, content: <div className="p-6 bg-pink-500 text-white text-center rounded-lg shadow-md">Item 7: Pink</div> },
-  //   { id: 8, content: <div className="p-6 bg-teal-500 text-white text-center rounded-lg shadow-md">Item 8: Teal</div> },
-  // ];
+// import image
+import WingRight from '../../assets/Image/WingRight.svg';
 
+// import logo 
+import Jam from '../../assets/Logo/Jam.svg';
+import { Button } from '../../ui-kit';
+
+// import data
+import { resepData } from './ResepData';
+import { useNavigate } from 'react-router';
+
+const Resep = () => {
+  const navigate = useNavigate();
 
 	return (
-		<div>
-      
+		<div className='resep'>
+      <div className='text-center font-light text-white'>Resep Kami</div>
+      <div className='gradient-gold w-fit mx-auto font-bold text-4xl py-2'>Varian Resep</div>
+      <div className='text-center text-white pb-4'>Berikut adalah resep-resep minuman yang bisa kamu buat dengan Gokka.</div>
+      {resepData.map((item, index) => (
+        <div className='resep-item flex flex-col py-10' key={index}>
+          <div className='flex gradient-gold gradient-gold-line font-bold text-xl pb-8'>{item.name}</div>
+          <div className='resep-item-circle flex justify-center items-center mx-auto'>
+            <img src={WingRight} className='resep-item-wing-left' />
+            <img src={WingRight} className='resep-item-wing-right' />
+            <img src={item.image} />
+          </div>
+          <div className='text-white text-center pt-4 pb-2 text-xs md:text-base'>{item.slogan}</div>
+          <div className='flex justify-center gap-2 text-xs md:text-base items-center'>
+            <img src={Jam} />
+            <div className='text-white'>{item.time}</div>
+          </div>
+          <Button className='font-bold mx-auto w-fit mt-4 m' onClick={() => navigate(`/resep/${item.id}`)}>Pelajari</Button>
+        </div>
+      ))}
 		</div>
 	)
 }

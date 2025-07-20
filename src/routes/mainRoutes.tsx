@@ -4,6 +4,7 @@ import {
   FAQ, 
   Produk, 
   Resep, 
+  ResepDetail, 
   TentangKami, 
   Testimoni
 } from '../page';
@@ -15,6 +16,7 @@ const MainRoutes = () => {
       <Route element={<FAQ />} path='/faq' />
       <Route element={<Produk />} path='/produk' />
       <Route element={<Resep />} path='/resep' />
+      <Route element={<ResepDetail />} path='/resep/:id' />
       <Route element={<TentangKami />} path='/tentang-kami' />
       <Route element={<Testimoni />} path='/testimoni' />
       <Route element={<Beranda />} path='*' />

@@ -56,9 +56,9 @@ const Navbar: React.FC = () => {
         <div className="mx-auto max-w-[1600px] sm:px-6 lg:px-8">
           <div className="relative flex h-16 md:h-[80px] items-center justify-between">
             {/* Logo section - always on the left */}
-            <div className="flex shrink-0 items-center">
+            <a className="flex shrink-0 items-center" href='/'>
               <img className="h-8 w-auto" src={Gokka} alt="Your Company" />
-            </div>
+            </a>
 
             {/* Desktop navigation links */}
             <div className="hidden sm:ml-6 sm:block">
@@ -69,7 +69,7 @@ const Navbar: React.FC = () => {
                 <a href="/produk" className="rounded-md px-3 py-2 text-sm font-medium hover:text-white">
                   Produk
                 </a>
-                <a href="#" className="rounded-md px-3 py-2 text-sm font-medium hover:text-white">
+                <a href="/tentang-kami" className="rounded-md px-3 py-2 text-sm font-medium hover:text-white">
                   Tentang Kami
                 </a>
                 <a href="/testimoni" className="rounded-md px-3 py-2 text-sm font-medium hover:text-white">
@@ -217,7 +217,7 @@ const Navbar: React.FC = () => {
             <a href="/produk" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
               Produk
             </a>
-            <a href="#" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
+            <a href="/tentang-kami" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
               Tentang Kami
             </a>
             <a href="/testimoni" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">

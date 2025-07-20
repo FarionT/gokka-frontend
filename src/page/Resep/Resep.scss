@@ -1,0 +1,52 @@
+.resep {
+  // background-color: #332D1E;
+  max-width: 1472px;
+  margin: auto;
+  padding: 32px;
+  &-item {
+    &-wing {
+      &-left {
+        transform: scaleX(-1);
+        position: absolute;
+        left: -30%;
+      }
+      &-right {
+        position: absolute;
+        right: -30%;
+      }
+    }
+
+    &-circle {
+      position: relative;
+      width: 240px;
+      height: 240px;
+      background-color: #BFA443;
+      border-radius: 50%;
+    }
+  }
+
+  .gradient-gold {
+    background-image: linear-gradient(to right, #A16706, #E3B61B, #F9F3A5, #E3B61B, #A16706);
+    color: transparent;
+    background-clip: text;
+    white-space: nowrap;
+  
+    &-line {
+      justify-content: center;
+      &::before{
+        content: ""; /* Essential for pseudo-elements */
+        width: 100%; /* Width of the line */
+        height: 3px; /* Thickness of the line */
+        background-image: linear-gradient(to right, #A16706, #E3B61B, #F9F3A5, #E3B61B, #A16706);; /* Color of the line, matching one of the gradient colors */
+        margin: auto 10px auto 0; /* Center the line and add space below it */
+      }
+      &::after{
+        content: ""; /* Essential for pseudo-elements */
+        width: 100%; /* Width of the line */
+        height: 3px; /* Thickness of the line */
+        background-image: linear-gradient(to right, #A16706, #E3B61B, #F9F3A5, #E3B61B, #A16706);; /* Color of the line, matching one of the gradient colors */
+        margin: auto 0 auto 10px; /* Center the line and add space below it */
+      }
+    }
+  }
+}

@@ -5,6 +5,7 @@ import {
   Produk, 
   Resep, 
   ResepDetail, 
+  ResepStep, 
   TentangKami, 
   Testimoni
 } from '../page';
@@ -17,6 +18,7 @@ const MainRoutes = () => {
       <Route element={<Produk />} path='/produk' />
       <Route element={<Resep />} path='/resep' />
       <Route element={<ResepDetail />} path='/resep/:id' />
+      <Route element={<ResepStep />} path='/resep/:id/step' />
       <Route element={<TentangKami />} path='/tentang-kami' />
       <Route element={<Testimoni />} path='/testimoni' />
       <Route element={<Beranda />} path='*' />

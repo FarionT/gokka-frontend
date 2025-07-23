@@ -11,6 +11,7 @@ import TahanLama from '../../assets/Logo/TahanLama.svg';
 import TerjaminHalal from '../../assets/Logo/TerjaminHalal.svg';
 import VariatifRasa from '../../assets/Logo/VariatifRasa.svg';
 import Rame from '../../assets/Image/Rame.svg';
+import Model from '../../assets/Image/Model.png';
 
 // Importing ui kit
 import { Button } from '../../ui-kit';
@@ -37,6 +38,15 @@ const Beranda = () => {
 
   return (
     <div className="beranda">
+      {/* banner  */}
+      <div className='beranda-banner'>
+        <img src={Model} className='beranda-banner-image' />
+        <div className='flex flex-col items-center gap-2 beranda-banner-text'>
+          <div className='gradient-gold font-bold text-4xl text-shadow-xs/10'>Jelajahi Rasa, Penuh Warna!</div>
+          <div className='font-semibold text-white'>Kami memiliki 54 varian rasa</div>
+          <Button className='font-bold w-fit'>Jelajahi</Button>
+        </div>
+      </div>
       {/* beranda tentang kami */}
       <div className='beranda-tentang max-w-[1600px] mx-auto px-16'>
         <div className='w-fit flex text-xl font-semibold gradient-gold gradient-gold-line'>TENTANG KAMI</div>

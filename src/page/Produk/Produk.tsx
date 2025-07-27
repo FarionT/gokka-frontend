@@ -1,39 +1,225 @@
-import { useState } from 'react';
 import './Produk.scss';
-import { Modal } from '../../ui-kit';
+import { Modal, Tab, TabKatalog, Tabs, TabsKatalog } from '../../ui-kit';
+import { ProdukKatalog } from '../../components';
+import { useEffect, useState } from 'react';
+
+// import logo
+import All from '../../assets/Logo/All.svg';
+import Buah from '../../assets/Logo/Buah.svg';
+import Dessert from '../../assets/Logo/Dessert.svg';
+import Floral from '../../assets/Logo/Floral.svg';
+import SegarUnik from '../../assets/Logo/SegarUnik.svg';
+import RempahKacang from '../../assets/Logo/RempahKacang.svg';
+import KopiTeh from '../../assets/Logo/KopiTeh.svg';
+
+// import gambar
+import Butterscoth from '../../assets/Image/ProdukKatalog/Butterscotch.svg';
+
+const category = [
+  {
+    name: 'All',
+    icon: All
+  },
+  {
+    name: 'Buah',
+    icon: Buah
+  },
+  {
+    name: 'Dessert',
+    icon: Dessert
+  },
+  {
+    name: 'Floral',
+    icon: Floral
+  },
+  {
+    name: 'Segar & Unik',
+    icon: SegarUnik
+  },
+  {
+    name: 'Rempah & Kacang',
+    icon: RempahKacang
+  },
+  {
+    name: 'Kopi & Teh',
+    icon: KopiTeh
+  },
+]
+
+const produk = [
+  {
+    id: 1,
+    name: 'Mangga',
+    color: '#fcba03',
+    type: 'cair',
+    category: 'buah',
+    image: Butterscoth
+  },
+  {
+    id: 2,
+    name: 'Apel',
+    color: '#000000',
+    type: 'cair',
+    category: 'buah',
+    image: Butterscoth
+  },
+  {
+    id: 3,
+    name: 'Oreo',
+    color: '#000000',
+    type: 'cair',
+    category: 'dessert',
+    image: Butterscoth
+  },
+  {
+    id: 4,
+    name: 'Melati',
+    color: '#ffffff',
+    type: 'cair',
+    category: 'floral',
+    image: Butterscoth
+  },
+  {
+    id: 5,
+    name: 'Mawar',
+    color: '#000000',
+    type: 'cair',
+    category: 'floral',
+    image: Butterscoth
+  },
+  {
+    id: 6,
+    name: 'Lemon Jasmine',
+    color: '#000000',
+    type: 'cair',
+    category: 'segar_unik',
+    image: Butterscoth
+  },
+  {
+    id: 7,
+    name: 'Lemon Jasmine',
+    color: '#000000',
+    type: 'cair',
+    category: 'segar_unik',
+    image: Butterscoth
+  },
+  {
+    id: 8,
+    name: 'Lemon Jasmine',
+    color: '#000000',
+    type: 'cair',
+    category: 'segar_unik',
+    image: Butterscoth
+  },
+  {
+    id: 9,
+    name: 'Almond',
+    color: '#000000',
+    type: 'cair',
+    category: 'rempah_kacang',
+    image: Butterscoth
+  },
+  {
+    id: 10,
+    name: 'Kopi',
+    color: '#000000',
+    type: 'cair',
+    category: 'kopi',
+    image: Butterscoth
+  },
+]
 
 const Produk = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [products, setProducts] = useState(produk);
+  const [selectedProduct, setSelectedProduct] = useState({})
+  const [selectedProductId, setSelectedProductId] = useState(0)
+  const [typeActiveTabIndex, setTypeActiveTabIndex] = useState(0);
+  const [categoryActiveTabIndex, setCategoryActiveTabIndex] = useState(0);
   
-  // Function to open the modal
+  const typeIndex = ['cair', 'bubuk']
+  
+  const categoryIndex = [
+    'all',
+    'buah',
+    'dessert',
+    'floral',
+    'segar_unik',
+    'rempah_kacang',
+    'kopi_teh'
+  ]
+  
+  const handleTypeTabChange = (index: number) => {
+    setTypeActiveTabIndex(index);
+  };
+
+  useEffect(() => {
+    setCategoryActiveTabIndex(0)
+    setProducts(produk.filter(item => item.type === typeIndex[0]))
+  }, [typeActiveTabIndex])
+  
+  useEffect(() => {
+    if (categoryActiveTabIndex === 0) {
+      setProducts(produk)
+    } else {
+      setProducts(produk.filter(item => item.category === categoryIndex[categoryActiveTabIndex]))
+    }
+  }, [categoryActiveTabIndex])
+
+  useEffect(() => {
+    const currentProduct = produk.find(item => item.id === selectedProductId);
+    setSelectedProduct(currentProduct ?? { name: '', image: '', color: '' })
+  }, [selectedProductId])
+
   const openModal = (): void => setIsModalOpen(true);
-  // Function to close the modal
   const closeModal = (): void => setIsModalOpen(false);
 
   return (
-    <div>
-      <div onClick={openModal}>Test</div>
+    <div className='produk'>
+      <Tabs position='center' activeTab={typeActiveTabIndex} onChange={handleTypeTabChange}>
+        <Tab title='Cair'>
+          <TabsKatalog position='center' activeTab={categoryActiveTabIndex} onChange={setCategoryActiveTabIndex}>
+            {category.map((item, index) => (
+              <TabKatalog title={item.icon} key={index}>
+                <div className='flex flex-wrap gap-8 max-w-[1600px] mx-auto p-6 justify-center'>
+                  {products.map((product, index) => (
+                    <ProdukKatalog
+                      key={index}
+                      name={product.name}
+                      color={product.color}
+                      image={product.image}
+                      onClick={() => { openModal(); setSelectedProductId(product.id) }}
+                    />
+                  ))}
+                </div>
+              </TabKatalog>
+            ))}
+          </TabsKatalog>
+        </Tab>
+        <Tab title='Bubuk'>
+          <TabsKatalog position='center' activeTab={categoryActiveTabIndex} onChange={setCategoryActiveTabIndex}>
+            {category.map((item, index) => (
+              <TabKatalog title={item.icon} key={index}>
+                <div className='flex flex-wrap gap-8 max-w-[1600px] mx-auto p-6 justify-center'>
+                  {products.map((product, index) => (
+                    <ProdukKatalog
+                      key={index}
+                      name={product.name}
+                      color={product.color}
+                      image={product.image}
+                      onClick={() => { openModal(); setSelectedProductId(product.id) }}
+                    />
+                  ))}
+                </div>
+              </TabKatalog>
+            ))}
+          </TabsKatalog>
+        </Tab>
+      </Tabs>
       <Modal isOpen={isModalOpen} onClose={closeModal}>
-        {/* Content for the modal - can be any React node */}
-        <div className="p-6 sm:p-8 md:p-10 text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">Welcome to the Modal!</h2>
-          <p className="text-base sm:text-lg text-gray-700 mb-6">
-            This is a responsive modal built with React and Tailwind CSS.
-            It closes when you click outside or press the ESC key.
-          </p>
-          <img
-            src="https://placehold.co/400x200/ADD8E6/000000?text=Placeholder+Image"
-            alt="Placeholder"
-            className="w-full h-auto rounded-lg mb-6 shadow-sm"
-            onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => { e.currentTarget.onerror = null; e.currentTarget.src="https://placehold.co/400x200/ADD8E6/000000?text=Image+Load+Error"; }}
-          />
-          <button
-            onClick={closeModal}
-            className="px-5 py-2 bg-red-500 text-white font-semibold rounded-md shadow-sm hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75 transition duration-300 ease-in-out"
-          >
-            Close Modal
-          </button>
-        </div>
+        <div>{selectedProduct ? selectedProduct.name : ''}</div>
+        <div>{selectedProduct ? selectedProduct.color : ''}</div>
+        <div>{selectedProduct ? selectedProduct.name : ''}</div>
       </Modal>
     </div>
   )

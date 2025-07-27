@@ -1,0 +1,54 @@
+.tentang {
+  background-color: #332D1E;
+
+  &-filosofi {
+    &-item {
+      &-content {
+        border-bottom: 3px solid transparent;
+        border-image: linear-gradient(to right, #A16706, #E3B61B, #F9F3A5, #E3B61B, #A16706) 1;
+      }
+    }
+  }
+
+  &-fakta {
+    width: 100vw;
+    background-color: #251D01;
+  }
+
+  .gradient-gold {
+    background-image: linear-gradient(to right, #A16706, #E3B61B, #F9F3A5, #E3B61B, #A16706);
+    color: transparent;
+    background-clip: text;
+    white-space: nowrap;
+  
+    &-line {
+      // justify-content: center;
+      &-left {
+        &::before{
+          content: ""; /* Essential for pseudo-elements */
+          width: 100px; /* Width of the line */
+          height: 3px; /* Thickness of the line */
+          background-image: linear-gradient(to right, #A16706, #E3B61B, #F9F3A5, #E3B61B, #A16706);; /* Color of the line, matching one of the gradient colors */
+          margin: auto 10px auto 0; /* Center the line and add space below it */
+        }
+      }
+
+      &-both {
+        &::before{
+          content: ""; /* Essential for pseudo-elements */
+          width: 100%; /* Width of the line */
+          height: 3px; /* Thickness of the line */
+          background-image: linear-gradient(to right, #A16706, #E3B61B, #F9F3A5, #E3B61B, #A16706);; /* Color of the line, matching one of the gradient colors */
+          margin: auto 30px auto 0; /* Center the line and add space below it */
+        }
+        &::after{
+          content: ""; /* Essential for pseudo-elements */
+          width: 100%; /* Width of the line */
+          height: 3px; /* Thickness of the line */
+          background-image: linear-gradient(to right, #A16706, #E3B61B, #F9F3A5, #E3B61B, #A16706);; /* Color of the line, matching one of the gradient colors */
+          margin: auto 0 auto 30px; /* Center the line and add space below it */
+        }
+      }
+    }
+  }
+}

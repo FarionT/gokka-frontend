@@ -47,6 +47,15 @@ const Beranda = () => {
           <Button className='font-bold w-fit'>Jelajahi</Button>
         </div>
       </div>
+      {/* produk kami  */}
+      <div>
+        <div>PRODUK KAMI</div>
+        <div>Produk Best Seller</div>
+        <div>SIRUP CAIR</div>
+        {/* <Swiper>
+          <SwiperSlide></SwiperSlide>
+        </Swiper> */}
+      </div>
       {/* beranda tentang kami */}
       <div className='beranda-tentang max-w-[1600px] mx-auto px-16'>
         <div className='w-fit flex text-xl font-semibold gradient-gold gradient-gold-line'>TENTANG KAMI</div>

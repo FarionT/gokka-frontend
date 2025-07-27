@@ -1,0 +1,25 @@
+.komentar {
+  max-width: 1472px;
+  margin: auto;
+  padding: 24px 0;
+  border-bottom: 1px solid transparent; /* Set a transparent border width */
+  border-image: linear-gradient(to right, #A16706, #E3B61B, #F9F3A5, #E3B61B, #A16706) 1;
+  &-profile {
+    &-name {
+      color: #FFF1A8;
+    }
+  }
+
+  &-content{
+    &-time {
+      color: #BFA443;
+    }
+  }
+
+  &-info {
+    &-text{
+      color: #FFF1A8;
+      opacity: 40%;
+    }
+  }
+}

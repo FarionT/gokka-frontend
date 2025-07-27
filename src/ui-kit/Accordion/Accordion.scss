@@ -1,0 +1,49 @@
+.accordion {
+  max-width: 1472px;
+  margin: auto;
+  color: #FFFBE5;
+  &-item {
+    padding-bottom: 48px;
+  }
+
+  &-title {
+    display: flex;
+    gap: 24px;
+    justify-content: space-between;
+    font-weight: 600;
+    font-size: 16px;
+    &-text {
+      width: 100%;
+      padding-bottom: 4px;
+      border-bottom: 2px solid #BFA443;
+    }
+    &-icon {
+      transition: 0.25s ease-in-out;
+      transform-origin: center;
+    }
+  }
+
+  &-content {
+    transition: 0.25s ease-in-out;
+    transform-origin: center;
+    overflow: hidden;
+    max-height: 0;
+    font-size: 14px;
+    &-open {
+      padding: 24px 0;
+      transition: 0.25s ease-in-out;
+      transform-origin: center;
+      max-height: 1000px;
+    }
+  }
+
+  &-active {
+    .accordion {
+      &-title {
+        &-icon {
+          transform: rotate(90deg);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+.tab-katalog {
+  &-container {
+    width: 90%;
+    overflow: auto;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &-title {
+    width: fit-content;
+    gap: 5vw;
+    // max-width: 800px;
+    overflow: auto;
+    &-text {
+      width: 70px;
+      height: 70px;
+      cursor: pointer;
+      font-weight: 700;
+      background-color: #898989;
+      color: white;
+      text-align: center;
+      border-radius: 20px;
+      flex-shrink: 0;
+    }
+    &-center {
+      justify-content: space-between;
+    }
+  }
+
+
+  &-active {
+    background-color: #BFA443;
+    color: #FFF1A8;
+  }
+}

@@ -63,7 +63,7 @@ const Navbar: React.FC = () => {
             {/* Desktop navigation links */}
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4 text-center">
-                <a href="#" className="rounded-md px-3 py-2 text-sm font-medium" aria-current="page">
+                <a href="/" className="rounded-md px-3 py-2 text-sm font-medium" aria-current="page">
                   Beranda
                 </a>
                 <a href="/produk" className="rounded-md px-3 py-2 text-sm font-medium hover:text-white">
@@ -72,13 +72,13 @@ const Navbar: React.FC = () => {
                 <a href="#" className="rounded-md px-3 py-2 text-sm font-medium hover:text-white">
                   Tentang Kami
                 </a>
-                <a href="#" className="rounded-md px-3 py-2 text-sm font-medium hover:text-white">
+                <a href="/testimoni" className="rounded-md px-3 py-2 text-sm font-medium hover:text-white">
                   Testimoni
                 </a>
                 <a href="/resep" className="rounded-md px-3 py-2 text-sm font-medium hover:text-white">
                   Resep
                 </a>
-                <a href="#" className="rounded-md px-3 py-2 text-sm font-medium hover:text-white">
+                <a href="/faq" className="rounded-md px-3 py-2 text-sm font-medium hover:text-white">
                   FAQ
                 </a>
                 <a href="#" className="rounded-md px-3 py-2 text-sm font-medium hover:text-white">
@@ -214,19 +214,19 @@ const Navbar: React.FC = () => {
             <a href="#" className="block rounded-md px-3 py-2 text-base font-medium text-white" aria-current="page">
               Beranda
             </a>
-            <a href="#" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
+            <a href="/produk" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
               Produk
             </a>
             <a href="#" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
               Tentang Kami
             </a>
-            <a href="#" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
+            <a href="/testimoni" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
               Testimoni
             </a>
             <a href="#" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
               Resep
             </a>
-            <a href="#" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
+            <a href="/faq" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
               FAQ
             </a>
             <a href="#" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">

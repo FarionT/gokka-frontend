@@ -3,6 +3,7 @@ import './Navbar.scss';
 
 // Import Images
 import Gokka from '../../assets/Logo/Gokka.svg';
+import Search from '../../assets/Logo/Search.svg';
 
 const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -52,7 +53,7 @@ const Navbar: React.FC = () => {
 
   return (
     <>
-      <nav className="navbar bg-gray-800 font-inter px-8"> {/* Added font-inter class */}
+      <nav className="navbar bg-gray-800 font-inter px-8">
         <div className="mx-auto max-w-[1600px] sm:px-6 lg:px-8">
           <div className="relative flex h-16 md:h-[80px] items-center justify-between">
             {/* Logo section - always on the left */}
@@ -60,35 +61,37 @@ const Navbar: React.FC = () => {
               <img className="h-8 w-auto" src={Gokka} alt="Your Company" />
             </div>
 
-            {/* Desktop navigation links */}
-            <div className="hidden sm:ml-6 sm:block">
+            {/* Desktop navigation links - NOW HIDDEN BELOW LG BREAKPOINT */}
+            {/* Changed from sm:ml-6 sm:block to lg:ml-6 lg:block */}
+            <div className="hidden lg:ml-6 lg:block"> {/* <--- MODIFIED */}
               <div className="flex space-x-4 text-center">
-                <a href="/" className="rounded-md px-3 py-2 text-sm font-medium" aria-current="page">
+                <a href="/" className="rounded-md px-3 py-2 text-sm font-medium text-white" aria-current="page">
                   Beranda
                 </a>
-                <a href="/produk" className="rounded-md px-3 py-2 text-sm font-medium hover:text-white">
+                <a href="/produk" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:text-white">
                   Produk
                 </a>
-                <a href="#" className="rounded-md px-3 py-2 text-sm font-medium hover:text-white">
+                <a href="#" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:text-white">
                   Tentang Kami
                 </a>
-                <a href="/testimoni" className="rounded-md px-3 py-2 text-sm font-medium hover:text-white">
+                <a href="/testimoni" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:text-white">
                   Testimoni
                 </a>
-                <a href="/resep" className="rounded-md px-3 py-2 text-sm font-medium hover:text-white">
+                <a href="/resep" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:text-white">
                   Resep
                 </a>
-                <a href="/faq" className="rounded-md px-3 py-2 text-sm font-medium hover:text-white">
+                <a href="/faq" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:text-white">
                   FAQ
                 </a>
-                <a href="#" className="rounded-md px-3 py-2 text-sm font-medium hover:text-white">
+                <a href="#" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:text-white">
                   Akun
                 </a>
               </div>
             </div>
 
-            {/* Mobile menu button (Hamburger) - moved to the right on mobile */}
-            <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:hidden">
+            {/* Mobile menu button (Hamburger) - NOW SHOWN BELOW LG BREAKPOINT */}
+            {/* Changed from sm:hidden to lg:hidden */}
+            <div className="absolute inset-y-0 right-0 flex items-center pr-2 lg:hidden"> {/* <--- MODIFIED */}
               <button
                 type="button"
                 ref={mobileMenuButtonRef}
@@ -126,9 +129,11 @@ const Navbar: React.FC = () => {
               </button>
             </div>
 
-            {/* Desktop notification and user menu - hidden on mobile */}
-            <div className="hidden sm:static sm:inset-auto sm:ml-6 sm:pr-0 sm:flex sm:items-center">
-              <button
+            {/* Desktop notification and user menu - NOW HIDDEN BELOW LG BREAKPOINT */}
+            {/* Changed from sm:static sm:inset-auto sm:ml-6 sm:pr-0 sm:flex sm:items-center 
+                to lg:static lg:inset-auto lg:ml-6 lg:pr-0 lg:flex lg:items-center */}
+            <div className="hidden lg:static lg:inset-auto lg:ml-6 lg:pr-0 lg:flex lg:items-center"> {/* <--- MODIFIED */}
+              {/* <button
                 type="button"
                 className="relative rounded-full p-1 text-gray-400 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden"
               >
@@ -141,11 +146,11 @@ const Navbar: React.FC = () => {
                     d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
                   />
                 </svg>
-              </button>
-
+              </button> */}
+              <img src={Search} className='h-6' /> 
               {/* Profile dropdown */}
               <div className="relative ml-3" ref={userMenuRef}>
-                <div>
+                {/* <div>
                   <button
                     type="button"
                     ref={userMenuButtonRef}
@@ -163,10 +168,10 @@ const Navbar: React.FC = () => {
                       alt=""
                     />
                   </button>
-                </div>
+                </div> */}
 
                 {/* Dropdown menu, show/hide based on menu state. */}
-                {isUserMenuOpen && (
+                {/* {isUserMenuOpen && (
                   <div
                     className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 focus:outline-hidden"
                     role="menu"
@@ -184,16 +189,17 @@ const Navbar: React.FC = () => {
                       Sign out
                     </a>
                   </div>
-                )}
+                )} */}
               </div>
             </div>
           </div>
         </div>
 
-        {/* Mobile menu sidebar */}
+        {/* Mobile menu sidebar - NOW HIDDEN FROM LG BREAKPOINT AND UP */}
+        {/* Changed from sm:hidden to lg:hidden */}
         <div
-          className={`navbar fixed inset-y-0 right-0 z-20 w-64 bg-gray-800 transform transition-transform ease-in-out duration-300 sm:hidden
-            ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
+          className={`navbar fixed inset-y-0 right-0 z-20 w-64 bg-gray-800 transform transition-transform ease-in-out duration-300 lg:hidden
+            ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`} 
           id="mobile-menu"
           ref={mobileMenuRef}
         >
@@ -235,11 +241,11 @@ const Navbar: React.FC = () => {
           </div>
         </div>
 
-        {/* Overlay for darkening content when sidebar is open */}
+        {/* Overlay for darkening content when sidebar is open - NOW HIDDEN FROM LG BREAKPOINT AND UP */}
         {isMobileMenuOpen && (
           <div
-            className="fixed inset-0 bg-black opacity-50 z-10 transition-opacity duration-300 sm:hidden" // Changed opacity to 25%
-            onClick={() => setIsMobileMenuOpen(false)} // Close sidebar on overlay click
+            className="fixed inset-0 bg-black opacity-50 z-10 transition-opacity duration-300 lg:hidden" // <--- MODIFIED
+            onClick={() => setIsMobileMenuOpen(false)}
           ></div>
         )}
       </nav>

@@ -4,7 +4,9 @@ import './TabKatalog.scss';
 // Add onChange to TTab to pass the new active tab index to the parent
 type TTabKatalog = {
   className?: string,
-  children: ReactElement<{ title: string }, string>[];
+  children: ReactElement<{
+    name: ReactNode; title: string 
+}, string>[];
   position?: string;
   activeTab?: number;
   onChange?: (index: number) => void; // Callback to notify the parent of tab changes
@@ -13,10 +15,11 @@ type TTabKatalog = {
 type TTabKatalogTitle = {
   children: ReactNode;
   title: string;
+  name: string;
 }
 
 export const TabKatalog = ({
-  children
+  children,
 }: TTabKatalogTitle) => {
   return <div>{children}</div>
 }
@@ -49,15 +52,18 @@ export const TabsKatalog = ({
 
   return (
     <div className={`${className ?? ''} tab-katalog`}>
-      <div className="tab-katalog-container mx-auto">
-        <div className={`flex tab-katalog-title tab-katalog-title-${position} mx-auto`}>
+      <div className="tab-katalog-container mx-auto justify-center">
+        <div className={`flex tab-katalog-title tab-katalog-title-${position} mx-auto gap-8`}>
           {children.map((item, index) => (
-            <div 
-              className={`tab-katalog-title-text flex ${currentActiveTab === index ? 'tab-katalog-active' : ''}`} 
-              key={index} 
-              onClick={() => { changeTab(index) }}
-            >
-              <img src={item.props.title} className="w-12 h-12 m-auto" />
+            <div className={`flex tab-katalog-item gap-3 flex-col ${currentActiveTab === index ? 'tab-katalog-active' : ''}`}>
+              <div 
+                className={`tab-katalog-item-image flex `} 
+                key={index} 
+                onClick={() => { changeTab(index) }}
+              >
+                <img src={item.props.title} className="w-12 h-12 m-auto" />
+              </div>
+              <div className="tab-katalog-item-text text-center">{item.props.name}</div>
             </div>
           ))}
         </div>

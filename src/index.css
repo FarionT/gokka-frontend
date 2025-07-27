@@ -3,6 +3,32 @@
 :root {
   font-family: 'Poppins';
   font-weight: 300;
+  background-color: #332d1e;
+}
+
+.swiper-pagination {
+  position: relative !important; /* Override Swiper's default absolute positioning */
+  bottom: auto !important; /* Remove default bottom positioning */
+  top: auto !important; /* Remove default top positioning */
+  left: auto !important; /* Remove default left positioning */
+  right: auto !important; /* Remove default right positioning */
+
+  margin-top: 20px; /* Adjust this value to control spacing below slides */
+  text-align: center; /* Center the pagination dots */
+  width: 100% !important;
+}
+
+.swiper-pagination-bullet {
+  background-color: #9C9C9C !important; /* Default dot color */
+  opacity: 1; /* Ensure full visibility */
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #FFF1A8 !important; /* Active dot color */
+}
+
+.swiper-button-prev, .swiper-button-next {
+  color: #FFFBE5 !important;
 }
 /* :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;

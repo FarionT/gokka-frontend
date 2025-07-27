@@ -1,0 +1,46 @@
+.produk-beranda {
+  background-color: --color-hex;
+  width: 100%;
+  cursor: pointer;
+  &-text-bg {
+    background-image: linear-gradient(to right, #6e4805, #bb9250);;
+  }
+
+  &-title {
+    color: #FFF1A8;
+  }
+
+  .gradient-gold {
+    background-image: linear-gradient(to right,#E3B61B, #F9F3A5, #E3B61B) !important;
+    color: transparent;
+    background-clip: text;
+
+    &-line {
+      &::before{
+        content: ""; /* Essential for pseudo-elements */
+        background-color: black;
+        width: 15px; /* Width of the line */
+        height: 2px; /* Thickness of the line */
+        background-image: linear-gradient(to right, #A16706, #c49f1a);; /* Color of the line, matching one of the gradient colors */
+        margin: auto 3px  auto 0; /* Center the line and add space below it */
+      }
+
+      &::after{
+        content: ""; /* Essential for pseudo-elements */
+        width: 250px; /* Width of the line */
+        height: 2px; /* Thickness of the line */
+        background-image: linear-gradient(to right, #A16706, #E3B61B, #F9F3A5, #E3B61B, #A16706);; /* Color of the line, matching one of the gradient colors */
+        margin: auto 0 auto 3px; /* Center the line and add space below it */
+      }
+    }
+  }
+
+  .pattern {
+    mix-blend-mode: multiply;
+    // opacity: 0.9;
+  }
+
+  &-beli {
+    background-color: #BFA443;
+  }
+}

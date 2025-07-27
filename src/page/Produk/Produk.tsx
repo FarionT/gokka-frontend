@@ -82,9 +82,9 @@ const Produk = () => {
             onChange={setCategoryActiveTabIndex}
           >
             {category.map((item, index) => (
-              <TabKatalog title={item.icon} key={index}>
+              <TabKatalog title={item.icon} name={item.name} key={index}>
                 <div className="flex flex-wrap gap-8 max-w-[1600px] mx-auto p-6 justify-center">
-                  {products.map((product, index) => (
+                  {products.length > 0 ? products.map((product, index) => (
                     <ProdukKatalog
                       key={index}
                       name={product.name}
@@ -95,7 +95,7 @@ const Produk = () => {
                         setSelectedProductId(product.id);
                       }}
                     />
-                  ))}
+                  )) : <div className="font-bold text-3xl text-white">Tidak ada data</div>}
                 </div>
               </TabKatalog>
             ))}
@@ -108,9 +108,9 @@ const Produk = () => {
             onChange={setCategoryActiveTabIndex}
           >
             {category.map((item, index) => (
-              <TabKatalog title={item.icon} key={index}>
+              <TabKatalog title={item.icon} name={item.name} key={index}>
                 <div className="flex flex-wrap gap-8 max-w-[1600px] mx-auto p-6 justify-center">
-                  {products.map((product, index) => (
+                  {products.length > 0 ? products.map((product, index) => (
                     <ProdukKatalog
                       key={index}
                       name={product.name}
@@ -121,7 +121,7 @@ const Produk = () => {
                         setSelectedProductId(product.id);
                       }}
                     />
-                  ))}
+                  )) : <div className="font-bold text-3xl text-white">Tidak ada data</div>}
                 </div>
               </TabKatalog>
             ))}

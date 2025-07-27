@@ -45,6 +45,7 @@ export const produk = [
   {
     id: 1,
     name: "Mangga",
+    // color: "#fcba03",
     color: "#fcba03",
     type: "cair",
     category: "buah",

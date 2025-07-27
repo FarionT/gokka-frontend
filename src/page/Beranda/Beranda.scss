@@ -1,5 +1,7 @@
 .beranda {
-  background-color: #332d1e;
+  max-width: 1200px;
+  margin: 32px auto;
+  // background-color: #332d1e;
   color: #FFF1A8;
   &-banner {
     position: relative;
@@ -17,6 +19,7 @@
     background-image: linear-gradient(to right, #A16706, #E3B61B, #F9F3A5, #E3B61B, #A16706);
     color: transparent;
     background-clip: text;
+    white-space: nowrap;
   
     &-line {
       &::before{
@@ -25,6 +28,23 @@
         height: 3px; /* Thickness of the line */
         background-image: linear-gradient(to right, #A16706, #E3B61B, #F9F3A5, #E3B61B, #A16706);; /* Color of the line, matching one of the gradient colors */
         margin: auto 20px auto 0; /* Center the line and add space below it */
+      }
+    }
+
+    &-both {
+      &::before{
+        content: ""; /* Essential for pseudo-elements */
+        width: 100%; /* Width of the line */
+        height: 3px; /* Thickness of the line */
+        background-image: linear-gradient(to right, #A16706, #E3B61B, #F9F3A5, #E3B61B, #A16706);; /* Color of the line, matching one of the gradient colors */
+        margin: auto 30px auto 0; /* Center the line and add space below it */
+      }
+      &::after{
+        content: ""; /* Essential for pseudo-elements */
+        width: 100%; /* Width of the line */
+        height: 3px; /* Thickness of the line */
+        background-image: linear-gradient(to right, #A16706, #E3B61B, #F9F3A5, #E3B61B, #A16706);; /* Color of the line, matching one of the gradient colors */
+        margin: auto 0 auto 30px; /* Center the line and add space below it */
       }
     }
   }

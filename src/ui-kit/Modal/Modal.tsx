@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import type { FC, ReactNode } from "react";
 
 declare module "react" {
@@ -40,8 +40,11 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, children }) => {
 
     // Add event listeners when the modal is open
     if (isOpen) {
+      document.body.style.overflow = "hidden";
       document.addEventListener("mousedown", handleClickOutside);
       // document.addEventListener("keydown", handleEscapeKey);
+    } else {
+      document.body.style.overflow = "";
     }
 
     // Clean up event listeners when the component unmounts or modal closes

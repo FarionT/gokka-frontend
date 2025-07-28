@@ -1,0 +1,176 @@
+/* Container for the whole slider to manage layout and global close button */
+.product-slider-container {
+  position: relative;
+  width: 100%;
+  max-width: 1600px; /* Adjust as needed */
+  margin: 0 auto;
+  min-height: 80vh; /* Ensure enough height for content */
+  display: flex;
+  align-items: center; /* Center slider vertically in its container */
+  justify-content: center;
+  overflow: hidden; /* To hide parts of slides outside main view */
+  background-color: #333; /* Dark background similar to image */
+  
+  .mySwiper {
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px; /* Give space for pagination and bottom aligned items */
+    /* If you want the side items to only show *one*, you might need to limit the Swiper's own overflow */
+    overflow: visible !important; /* Allow slides to extend beyond Swiper container */
+  }
+  
+  .swiper-slide {
+    background-position: center;
+    background-size: cover; /* Adjust if your background pattern needs to repeat */
+    display: flex; /* Make slide a flex container */
+    flex-direction: column; /* Stack items vertically */
+    justify-content: center; /* Default for active slide */
+    align-items: center; /* Center horizontally */
+    opacity: 0.5; /* Inactive slides are semi-transparent */
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    /* Set a fixed aspect ratio or height if all product images are similar */
+    height: 400px; /* Example height for the slide container */
+    position: relative;
+  }
+  
+  .swiper-slide.swiper-slide-active {
+    opacity: 1; /* Active slide is fully opaque */
+    transform: scale(1.1); /* Make active slide slightly larger */
+    z-index: 10; /* Bring active slide to front */
+    justify-content: center; /* Active slide content centered vertically */
+  }
+  
+  /* Styles for INACTIVE slides */
+  .product-slide.inactive-slide {
+    opacity: 0.6; /* Slightly more opaque for better visibility */
+    transform: scale(0.7); /* Make inactive slides noticeably smaller */
+    justify-content: flex-end; /* ALIGN CONTENT TO THE BOTTOM */
+    padding-bottom: 20px; /* Add some space from the bottom edge of the slide */
+  }
+  
+  
+  /* Styling for the main product image and details */
+  .main-product-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    z-index: 2; /* Ensure text is above backgrounds */
+  }
+  
+  .main-product-image {
+    max-width: 100%;
+    max-height: 300px; /* Adjust size of main image */
+    object-fit: contain;
+    margin-top: 10px;
+    filter: drop-shadow(0px 10px 10px rgba(0,0,0,0.5)); /* Adds a shadow to the bottle */
+  }
+  
+  .preview-product-image {
+    max-width: 80%; /* Smaller for previews */
+    max-height: 200px; /* Smaller for previews */
+    object-fit: contain;
+    filter: drop-shadow(0px 5px 5px rgba(0,0,0,0.3));
+    /* No specific positioning here, parent flex container handles it */
+  }
+  
+  
+  /* Water splash effect (if it's an image) */
+  .water-splash {
+    position: absolute;
+    bottom: 0; /* Align splash to the bottom of the slide */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 80%; /* Adjust height to fit the splash */
+    background-image: url('path/to/water_splash.png'); /* Replace with your splash image */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center bottom; /* Position splash image at the bottom */
+    z-index: 1; /* Behind the bottle */
+  }
+  
+  
+  /* Navigation Arrows */
+  .swiper-button-prev,
+  .swiper-button-next {
+    color: white !important; /* Force white color */
+    font-size: 30px !important; /* Adjust size */
+    width: 40px !important;
+    height: 40px !important;
+    background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent background */
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+    z-index: 20; /* Ensure they are above slides */
+  }
+  
+  .swiper-button-prev:hover,
+  .swiper-button-next:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+  
+  /* Custom arrow icons */
+  .swiper-button-prev:after {
+      content: '❮';
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+  }
+  .swiper-button-next:after {
+      content: '❯';
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+  }
+  
+  /* Global close button (top right) */
+  .global-close-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Responsive adjustments for smaller screens */
+  @media (max-width: 767px) {
+    .product-slide {
+      height: 300px;
+    }
+    .main-product-image {
+      max-height: 200px;
+    }
+    .preview-product-image {
+      max-height: 150px;
+    }
+    .swiper-button-prev,
+    .swiper-button-next {
+      font-size: 24px !important;
+      width: 30px !important;
+      height: 30px !important;
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import "./Produk.scss";
 import { Button, Modal, Tab, TabKatalog, Tabs, TabsKatalog } from "../../ui-kit";
-import { ProdukKatalog } from "../../components";
+import { ProdukKatalog, ProdukSwiper } from "../../components";
 import { useEffect, useState } from "react";
 import { category, produk } from "./ListData";
 
@@ -82,9 +82,9 @@ const Produk = () => {
             onChange={setCategoryActiveTabIndex}
           >
             {category.map((item, index) => (
-              <TabKatalog title={item.icon} name={item.name} key={index}>
+              <TabKatalog title={item.icon} key={index}>
                 <div className="flex flex-wrap gap-8 max-w-[1600px] mx-auto p-6 justify-center">
-                  {products.length > 0 ? products.map((product, index) => (
+                  {products.map((product, index) => (
                     <ProdukKatalog
                       key={index}
                       name={product.name}
@@ -95,7 +95,7 @@ const Produk = () => {
                         setSelectedProductId(product.id);
                       }}
                     />
-                  )) : <div className="font-bold text-3xl text-white">Tidak ada data</div>}
+                  ))}
                 </div>
               </TabKatalog>
             ))}
@@ -108,9 +108,9 @@ const Produk = () => {
             onChange={setCategoryActiveTabIndex}
           >
             {category.map((item, index) => (
-              <TabKatalog title={item.icon} name={item.name} key={index}>
+              <TabKatalog title={item.icon} key={index}>
                 <div className="flex flex-wrap gap-8 max-w-[1600px] mx-auto p-6 justify-center">
-                  {products.length > 0 ? products.map((product, index) => (
+                  {products.map((product, index) => (
                     <ProdukKatalog
                       key={index}
                       name={product.name}
@@ -121,7 +121,7 @@ const Produk = () => {
                         setSelectedProductId(product.id);
                       }}
                     />
-                  )) : <div className="font-bold text-3xl text-white">Tidak ada data</div>}
+                  ))}
                 </div>
               </TabKatalog>
             ))}
@@ -131,14 +131,15 @@ const Produk = () => {
       <Modal isOpen={isModalOpen} onClose={closeModal}>
         <div className="produk-modal rounded-xl text-white">
           <div>
-            <Swiper 
+            {/* <Swiper 
               spaceBetween={50}
               slidesPerView={3}
               onSlideChange={() => console.log('slide change')}
               onSwiper={(swiper) => console.log(swiper)}
             >
               <SwiperSlide><img src={produk[0].image} /></SwiperSlide>
-            </Swiper>
+            </Swiper> */}
+            <ProdukSwiper />
           </div>
           <div className="produk-modal-text p-8 flex flex-col">
             <div className="gradient-gold gradient-gold-line flex font-bold text-4xl">Deskripsi</div>

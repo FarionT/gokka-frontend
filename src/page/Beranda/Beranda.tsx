@@ -64,8 +64,7 @@ const Beranda = () => {
             modules={[Pagination, Navigation]}
             navigation
             spaceBetween={50}
-            slidesPerView={3}
-            onSlideChange={() => console.log()}
+            slidesPerView={1}
             pagination={{ clickable: true }}
             className='xl:mx-auto mx-6'
             breakpoints={{ 

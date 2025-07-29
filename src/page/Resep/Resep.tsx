@@ -9,11 +9,8 @@ import { Button } from '../../ui-kit';
 
 // import data
 import { resepData } from './ResepData';
-import { useNavigate } from 'react-router';
 
 const Resep = () => {
-  const navigate = useNavigate();
-
 	return (
 		<div className='resep'>
       <div className='text-center font-light text-white'>Resep Kami</div>
@@ -32,7 +29,9 @@ const Resep = () => {
             <img src={Jam} />
             <div className='text-white'>{item.time}</div>
           </div>
-          <Button className='font-bold mx-auto w-fit mt-4 m' onClick={() => navigate(`/resep/${item.id}`)}>Pelajari</Button>
+          <a href={`/resep/${item.id}`} className='mx-auto'>
+            <Button className='font-bold mx-auto w-fit mt-4 m'>Pelajari</Button>
+          </a>
         </div>
       ))}
 		</div>

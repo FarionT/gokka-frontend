@@ -1,6 +1,8 @@
 .resep-step {
-  &-item {
-    
+  max-width: 1200px;
+  margin: auto;
+  &-text{
+    color: #FFFBE5;
   }
 
   .gradient-gold {
@@ -26,5 +28,18 @@
         margin: auto 0 auto 10px; /* Center the line and add space below it */
       }
     }
+  }
+
+  .swiper-pagination-bullet {
+    background-color: #898989 !important; /* Default dot color */
+    opacity: 1; /* Ensure full visibility */
+  }
+
+  .swiper-pagination-bullet-active {
+    background-color: #FFF1A8 !important; /* Active dot color */
+  }
+
+  .swiper-button-prev, .swiper-button-next {
+    color: #FFFBE5 !important;
   }
 }

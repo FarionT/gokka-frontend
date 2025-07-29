@@ -6,15 +6,25 @@
       display: none;
     }
   }
-
   &-title {
-    width: fit-content;
-    gap: 5vw;
-    // max-width: 800px;
+    width: 90%;
     overflow: auto;
-    &-text {
-      width: 70px;
-      height: 70px;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  &-item {
+    // max-width: 800px;
+    width: 80px;
+    overflow: auto;
+    flex-shrink: 0;
+    overflow: auto;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    &-image {
+      width: 80px;
+      height: 80px;
       cursor: pointer;
       font-weight: 700;
       background-color: #898989;
@@ -23,14 +33,18 @@
       border-radius: 20px;
       flex-shrink: 0;
     }
-    &-center {
-      justify-content: space-between;
+    &-text{
+      color: white
     }
   }
 
 
   &-active {
-    background-color: #BFA443;
-    color: #FFF1A8;
+    .tab-katalog-item-image{
+      background-color: #BFA443;
+    }
+    .tab-katalog-item-text {
+      color: #FFF1A8;
+    }
   }
 }

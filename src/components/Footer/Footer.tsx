@@ -13,8 +13,8 @@ import Email from '../../assets/Logo/Email.svg';
 
 const Footer = () => {
   return (
-    <div className='footer my-gold-element text-sm xl:text-base'>
-      <div className="px-8 py-10 md:px-16 md:py-12 max-w-[1600px] mx-auto">
+    <div className='footer text-sm xl:text-base relative bottom-0'>
+      <div className="py-10 md:py-12 max-w-[1200px] mx-6 xl:mx-auto">
         <img src={Gokka} />
         <div className='flex flex-col md:flex-row md:gap-11 justify-between'>
           <div className="max-w-lg">

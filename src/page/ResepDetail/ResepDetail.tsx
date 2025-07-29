@@ -11,6 +11,7 @@ import WingRight from '../../assets/Image/WingRight.svg';
 
 // import logo 
 import Jam from '../../assets/Logo/Jam.svg';
+import { Button } from "../../ui-kit";
 
 
 const ResepDetail = () => {
@@ -38,7 +39,7 @@ const ResepDetail = () => {
   return (
     <div className="resep-detail p-8">
       <div className="text-white text-center text-xs md:text-base pb-2">Resep Kami</div>
-      <div className="gradient-gold w-fit mx-auto font-bold text-4xl pb-16">{recipe.name}</div>
+      <div className="gradient-gold mx-auto font-bold text-4xl pb-16 text-center text-nowrap">{recipe.name}</div>
       <div className='resep-detail-item flex flex-col py-10'>
         <div className='resep-detail-item-circle flex justify-center items-center mx-auto'>
           <img src={WingRight} className='resep-detail-item-wing-left w-72' />
@@ -46,12 +47,17 @@ const ResepDetail = () => {
           <img src={recipe.image ? recipe.image : Jam} className="w-64" />
         </div>
       </div>
-      <div className="text-white">
-        <div>Bahan:</div>
-        {recipe.ingredients.map((item, index) => (
-          <div key={index}>{item}</div>
-        ))}
+      <div className="text-white flex flex-col gap-4 pt-12 pb-8">
+        <div className="text-center font-bold text-3xl pb-2">Bahan yang kamu butuhkan:</div>
+        <div className="text-sm mx-auto">
+          {recipe.ingredients.map((item, index) => (
+            <div key={index}>{item}</div>
+          ))}
+        </div>
       </div>
+      <a className="flex py-8" href={`/resep/${params.id}/step`}>
+        <Button className="font-bold w-fit mx-auto">Lihat Resep</Button>
+      </a>
     </div>
   )
 }

@@ -5,7 +5,7 @@ import './TabKatalog.scss';
 type TTabKatalog = {
   className?: string,
   children: ReactElement<{
-    name: ReactNode; title: string 
+    name?: ReactNode; title: string 
 }, string>[];
   position?: string;
   activeTab?: number;
@@ -15,7 +15,7 @@ type TTabKatalog = {
 type TTabKatalogTitle = {
   children: ReactNode;
   title: string;
-  name: string;
+  name?: string;
 }
 
 export const TabKatalog = ({
@@ -52,13 +52,12 @@ export const TabsKatalog = ({
 
   return (
     <div className={`${className ?? ''} tab-katalog`}>
-      <div className="tab-katalog-container mx-auto justify-center">
+      {/* <div className="tab-katalog-container mx-auto justify-center"> */}
         <div className={`flex tab-katalog-title tab-katalog-title-${position} mx-auto gap-8`}>
           {children.map((item, index) => (
-            <div className={`flex tab-katalog-item gap-3 flex-col ${currentActiveTab === index ? 'tab-katalog-active' : ''}`}>
+            <div className={`flex tab-katalog-item gap-3 flex-col ${currentActiveTab === index ? 'tab-katalog-active' : ''}`} key={index}>
               <div 
                 className={`tab-katalog-item-image flex `} 
-                key={index} 
                 onClick={() => { changeTab(index) }}
               >
                 <img src={item.props.title} className="w-12 h-12 m-auto" />
@@ -67,7 +66,7 @@ export const TabsKatalog = ({
             </div>
           ))}
         </div>
-      </div>
+      {/* </div> */}
       <div className="tab-katalog-content py-8">{children[currentActiveTab]}</div>
     </div>
   )

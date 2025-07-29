@@ -19,8 +19,16 @@
   &-modal {
     background-color: #332d1e;
     &-text {
-      max-height: 300px;
+      height: 75vh;
+      // max-height: 500px;
       overflow: auto;
+      &::-webkit-scrollbar {
+        display: none;
+      }
     } 
+    .pattern {
+      mix-blend-mode: multiply;
+      // opacity: 0.9;
+    }
   }
 }

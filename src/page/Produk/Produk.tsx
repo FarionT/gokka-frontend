@@ -1,6 +1,6 @@
 import "./Produk.scss";
 import { Button, Modal, Tab, TabKatalog, Tabs, TabsKatalog } from "../../ui-kit";
-import { ProdukKatalog, ProdukSwiper } from "../../components";
+import { ProdukKatalog } from "../../components";
 import { useEffect, useState } from "react";
 import { category, produk } from "./ListData";
 
@@ -14,15 +14,17 @@ import Tokopedia from '../../assets/Logo/Tokopedia.svg';
 import NoHalal from "../../assets/Logo/NoHalal.svg";
 import NoPIRT from "../../assets/Logo/NoPIRT.svg";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { EffectCoverflow, Navigation, Pagination } from "swiper/modules";
+import KatalogBackground from '../../assets/Image/ProdukKatalog/KatalogBackground.jpg';
 
 const Produk = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [products, setProducts] = useState(produk);
-  const [selectedProduct, setSelectedProduct] = useState({
-    name: "",
-    color: "",
-    image: "",
-  });
+  // const [selectedProduct, setSelectedProduct] = useState({
+  //   name: "",
+  //   color: "",
+  //   image: "",
+  // });
   const [selectedProductId, setSelectedProductId] = useState(0);
   const [typeActiveTabIndex, setTypeActiveTabIndex] = useState(0);
   const [categoryActiveTabIndex, setCategoryActiveTabIndex] = useState(0);
@@ -60,16 +62,16 @@ const Produk = () => {
     }
   }, [categoryActiveTabIndex]);
 
-  useEffect(() => {
-    const currentProduct = produk.find((item) => item.id === selectedProductId);
-    setSelectedProduct(currentProduct ?? { name: "", image: "", color: "" });
-  }, [selectedProductId]);
+  // useEffect(() => {
+  //   const currentProduct = produk.find((item) => item.id === selectedProductId);
+  //   // setSelectedProduct(currentProduct ?? { name: "", image: "", color: "" });
+  // }, [selectedProductId]);
 
   const openModal = (): void => setIsModalOpen(true);
   const closeModal = (): void => setIsModalOpen(false);
 
   return (
-    <div className="produk">
+    <div className="produk p-8">
       <Tabs
         position="center"
         activeTab={typeActiveTabIndex}
@@ -83,7 +85,7 @@ const Produk = () => {
           >
             {category.map((item, index) => (
               <TabKatalog title={item.icon} key={index}>
-                <div className="flex flex-wrap gap-8 max-w-[1600px] mx-auto p-6 justify-center">
+                <div className="flex flex-wrap gap-8 max-w-[1200px] mx-auto p-6 justify-center">
                   {products.map((product, index) => (
                     <ProdukKatalog
                       key={index}
@@ -92,7 +94,7 @@ const Produk = () => {
                       image={product.image}
                       onClick={() => {
                         openModal();
-                        setSelectedProductId(product.id);
+                        setSelectedProductId(product.id - 1);
                       }}
                     />
                   ))}
@@ -109,7 +111,7 @@ const Produk = () => {
           >
             {category.map((item, index) => (
               <TabKatalog title={item.icon} key={index}>
-                <div className="flex flex-wrap gap-8 max-w-[1600px] mx-auto p-6 justify-center">
+                <div className="flex flex-wrap gap-8 max-w-[1200px] mx-auto p-6 justify-center">
                   {products.map((product, index) => (
                     <ProdukKatalog
                       key={index}
@@ -118,7 +120,7 @@ const Produk = () => {
                       image={product.image}
                       onClick={() => {
                         openModal();
-                        setSelectedProductId(product.id);
+                        setSelectedProductId(product.id - 1);
                       }}
                     />
                   ))}
@@ -129,19 +131,71 @@ const Produk = () => {
         </Tab>
       </Tabs>
       <Modal isOpen={isModalOpen} onClose={closeModal}>
-        <div className="produk-modal rounded-xl text-white">
-          <div>
-            {/* <Swiper 
-              spaceBetween={50}
-              slidesPerView={3}
-              onSlideChange={() => console.log('slide change')}
-              onSwiper={(swiper) => console.log(swiper)}
-            >
-              <SwiperSlide><img src={produk[0].image} /></SwiperSlide>
-            </Swiper> */}
-            <ProdukSwiper />
+        <div className="produk-modal rounded-xl text-white flex flex-col md:flex-row ">
+          <div 
+            style={{ backgroundColor: produk[selectedProductId].color }}
+            className="md:w-1/2 w-full flex flex-col relative rounded-tl-xl rounded-bl-xl py-8"
+          >
+            <img className='absolute w-full h-full top-0 rounded-tr-xl rounded-br-xl pattern rotate-180' src={KatalogBackground} />
+            <div className="text-white flex items-end gap-4 justify-center relative z-2">
+              <span className="font-bold text-3xl">{categoryActiveTabIndex === 0 ? 'Bubuk' : 'Cair'}</span>{' '}
+              <span className="font-bold text-xl">{produk[selectedProductId].name}</span>
+            </div>
+            <div className="my-auto">
+              <Swiper 
+                effect={'coverflow'}
+                grabCursor={true}
+                // centeredSlides={true}
+                slidesPerView={1}
+                loop={true}
+                coverflowEffect={{
+                  rotate: 0,
+                  stretch: 0,
+                  depth: 90, 
+                  modifier: 1, 
+                  slideShadows: false, 
+                  scale: 0.75,
+                }}
+                onSlideChange={(swiper) => {
+                  console.log(swiper.realIndex)
+                  // console.log(swiper.activeIndex)
+                }}
+                pagination={{ clickable: true }} // Enable clickable pagination bullets
+                navigation={true} // Enable navigation arrows
+                modules={[EffectCoverflow, Pagination, Navigation]}
+              >
+                <SwiperSlide>
+                  <div 
+                    className="flex flex-col items-center p-4"
+                  >
+                    <img src={produk[selectedProductId].image} loading="lazy" />
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div 
+                    className="flex flex-col items-center p-4"
+                  >
+                    <img src={produk[selectedProductId].image} loading="lazy" />
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div 
+                    className="flex flex-col items-center p-4"
+                  >
+                    <img src={produk[selectedProductId].image} loading="lazy" />
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div 
+                    className="flex flex-col items-center p-4"
+                  >
+                    <img src={produk[selectedProductId].image} loading="lazy" />
+                  </div>
+                </SwiperSlide>
+              </Swiper>
+            </div>
           </div>
-          <div className="produk-modal-text p-8 flex flex-col">
+          <div className="produk-modal-text p-8 flex flex-col md:h-full">
             <div className="gradient-gold gradient-gold-line flex font-bold text-4xl">Deskripsi</div>
             <div>
               Produk ini merupakan pilihan praktis yang siap disajikan serta dapat

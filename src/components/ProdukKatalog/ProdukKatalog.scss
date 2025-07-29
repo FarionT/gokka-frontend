@@ -1,4 +1,5 @@
 .produk-katalog {
+  width: 250px;
   background-color: --color-hex;
   cursor: pointer;
   &-text-bg {
@@ -28,5 +29,10 @@
         margin: auto 0 auto 3px; /* Center the line and add space below it */
       }
     }
+  }
+
+  .pattern {
+    mix-blend-mode: multiply;
+    // opacity: 0.9;
   }
 }

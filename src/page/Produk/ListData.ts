@@ -44,6 +44,14 @@ export const category = [
 export const produk = [
   {
     id: 1,
+    name: "Apel",
+    color: "#000000",
+    type: "cair",
+    category: "buah",
+    image: Butterscoth,
+  },
+  {
+    id: 2,
     name: "Mangga",
     // color: "#fcba03",
     color: "#fcba03",
@@ -52,17 +60,9 @@ export const produk = [
     image: Butterscoth,
   },
   {
-    id: 2,
-    name: "Apel",
-    color: "#000000",
-    type: "cair",
-    category: "buah",
-    image: Butterscoth,
-  },
-  {
     id: 3,
     name: "Oreo",
-    color: "#000000",
+    color: "#abccaa",
     type: "cair",
     category: "dessert",
     image: Butterscoth,

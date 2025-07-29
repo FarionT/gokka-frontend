@@ -1,6 +1,8 @@
 import { useEffect, useRef } from "react";
 import type { FC, ReactNode } from "react";
 
+import "./Modal.scss";
+
 declare module "react" {
   interface CSSProperties {
     "--tw-shadow"?: string;
@@ -58,14 +60,12 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, children }) => {
   if (!isOpen) return null;
 
   return (
-    <>
+    <div>
       <div className="fixed inset-0 z-30 bg-black opacity-50 w-full h-full"></div>
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4bg-opacity-50 font-sans">
+      <div className="modal fixed inset-0 z-50 flex items-center justify-center mx-auto">
         <div
           ref={modalRef} // Attach ref to the modal content container
-          className="relative bg-white rounded-xl shadow-2xl max-w-lg w-full mx-auto transform transition-all duration-300 ease-out
-                    sm:max-w-xl md:max-w-2xl lg:max-w-3xl
-                    scale-95 opacity-0 animate-scale-in" // Initial state for animation
+          className="relative bg-white rounded-xl shadow-2xl w-full mx-auto transform transition-all duration-300 ease-out h-96 opacity-0 animate-scale-in" // Initial state for animation
           // Add animation keyframes for scale-in
           style={{
             animation: "scale-in 0.3s forwards",
@@ -91,7 +91,7 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, children }) => {
           }
         `}</style>
       </div>
-    </>
+    </div>
   );
 };
 

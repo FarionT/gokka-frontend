@@ -54,7 +54,7 @@ const Navbar: React.FC = () => {
   return (
     <>
       <nav className="navbar bg-gray-800 font-inter px-8">
-        <div className="mx-auto max-w-[1600px] sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[1200px]">
           <div className="relative flex h-16 md:h-[80px] items-center justify-between">
             {/* Logo section - always on the left */}
             <div className="flex shrink-0 items-center">

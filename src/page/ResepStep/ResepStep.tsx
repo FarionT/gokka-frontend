@@ -1,5 +1,5 @@
 // import react
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 
 // import data
@@ -9,6 +9,9 @@ import './ResepStep.scss';
 import { Button } from "../../ui-kit";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
+
+import Right from '../../assets/Logo/Right.svg';
+import Left from '../../assets/Logo/Left.svg';
 
 const ResepStep = () => {
   const params = useParams();
@@ -34,6 +37,9 @@ const ResepStep = () => {
     }
   }, []);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const swiperRef = useRef<any>(null);
+
   return (
     <div className="resep-step">
       <div className="grid grid-cols-1 lg:grid-cols-2">
@@ -41,7 +47,13 @@ const ResepStep = () => {
           <Swiper
             modules={[Navigation, Pagination]}
             pagination
-            navigation
+            // navigation={{
+            //   prevEl: navigationPrevRef.current,
+            //   nextEl: navigationNextRef.current,
+            // }}
+            onBeforeInit={(swiper) => {
+              swiperRef.current = swiper;
+            }}
             onSlideChange={(swiper) => {
               setActiveSlide(swiper.activeIndex)
             }}
@@ -73,6 +85,14 @@ const ResepStep = () => {
             </a>
           </div>
         ) : (<div></div>)}
+        <div className="flex justify-between px-10 py-8">
+          <div onClick={() => swiperRef.current?.slidePrev()} className={`cursor-pointer ${activeSlide === 0 ? 'opacity-50' : ''}`} >
+            <img src={Left} /> 
+          </div>
+          <div onClick={() => swiperRef.current?.slideNext()} className={`cursor-pointer ${activeSlide === recipe.steps.length - 1 ? 'opacity-50' : ''}`} >
+            <img src={Right} /> 
+          </div>
+        </div>
       </div>
     </div>
   )

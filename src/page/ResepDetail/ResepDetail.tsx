@@ -37,10 +37,10 @@ const ResepDetail = () => {
   }, []);
 
   return (
-    <div className="resep-detail p-8">
-      <div className="text-white text-center text-xs md:text-base pb-2">Resep Kami</div>
+    <div className="resep-detail">
+      <div className="text-white text-center text-sm md:text-base pb-2 pt-8">Resep Kami</div>
       <div className="gradient-gold mx-auto font-bold text-4xl pb-16 text-center text-nowrap">{recipe.name}</div>
-      <div className='resep-detail-item flex flex-col py-10'>
+      <div className='resep-detail-item flex flex-col py-10 overflow-hidden'>
         <div className='resep-detail-item-circle flex justify-center items-center mx-auto'>
           <img src={WingRight} className='resep-detail-item-wing-left w-72' />
           <img src={WingRight} className='resep-detail-item-wing-right w-72' />

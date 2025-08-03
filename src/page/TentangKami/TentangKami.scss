@@ -1,6 +1,6 @@
 .tentang {
-  background-color: #332D1E;
-
+  max-width: 1200px;
+  margin: auto;
   &-filosofi {
     &-item {
       &-content {
@@ -11,7 +11,6 @@
   }
 
   &-fakta {
-    width: 100vw;
     background-color: #251D01;
   }
 

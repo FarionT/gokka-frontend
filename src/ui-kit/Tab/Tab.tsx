@@ -60,7 +60,7 @@ export const Tabs = ({
           </div>
         ))}
       </div>
-      <div className="tab-content p-6">{children[currentActiveTab]}</div>
+      <div className="tab-content py-6">{children[currentActiveTab]}</div>
     </div>
   )
 }

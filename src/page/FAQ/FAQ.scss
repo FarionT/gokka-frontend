@@ -1,13 +1,11 @@
 .faq {
   padding: 32px;
-  max-width: 1536px;
+  max-width: 1200px;
   margin: auto;
   .gradient-gold {
     background-image: linear-gradient(to right, #A16706, #E3B61B, #F9F3A5, #E3B61B, #A16706);
     color: transparent;
-    background-clip: text;
-    white-space: nowrap;
-  
+    background-clip: text;  
     &-line {
       justify-content: center;
       &::before{

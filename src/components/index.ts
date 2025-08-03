@@ -5,6 +5,7 @@ import { Navbar } from "./Navbar";
 import { ProdukBeranda } from "./ProdukBeranda";
 import { ProdukKatalog } from "./ProdukKatalog";
 import { ProdukSwiper } from "./ProdukSwiper";
+import { TestimoniBeranda } from "./TestimoniBeranda";
 import { Timeline } from "./Timeline";
 
 export {
@@ -15,5 +16,6 @@ export {
     ProdukBeranda,
     ProdukKatalog,
     ProdukSwiper,
+    TestimoniBeranda,
     Timeline
 }

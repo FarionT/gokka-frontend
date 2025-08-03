@@ -12,13 +12,13 @@ import { resepData } from './ResepData';
 
 const Resep = () => {
 	return (
-		<div className='resep'>
-      <div className='text-center font-light text-white'>Resep Kami</div>
-      <div className='gradient-gold w-fit mx-auto font-bold text-4xl py-2'>Varian Resep</div>
-      <div className='text-center text-white pb-4'>Berikut adalah resep-resep minuman yang bisa kamu buat dengan Gokka.</div>
+		<div className='resep py-8'>
+      <div className='text-center font-light text-white px-8'>Resep Kami</div>
+      <div className='gradient-gold w-fit mx-auto font-bold text-4xl py-2 px-8'>Varian Resep</div>
+      <div className='text-center text-white pb-4 px-8'>Berikut adalah resep-resep minuman yang bisa kamu buat dengan Gokka.</div>
       {resepData.map((item, index) => (
-        <div className='resep-item flex flex-col py-10' key={index}>
-          <div className='flex gradient-gold gradient-gold-line font-bold text-xl pb-8'>{item.name}</div>
+        <div className='resep-item flex flex-col py-10 overflow-hidden' key={index}>
+          <div className='flex gradient-gold gradient-gold-line font-bold text-xl pb-8  px-8'>{item.name}</div>
           <div className='resep-item-circle flex justify-center items-center mx-auto'>
             <img src={WingRight} className='resep-item-wing-left' />
             <img src={WingRight} className='resep-item-wing-right' />

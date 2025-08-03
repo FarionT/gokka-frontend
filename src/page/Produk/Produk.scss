@@ -9,7 +9,7 @@
       &::before{
         content: ""; /* Essential for pseudo-elements */
         width: 100px; /* Width of the line */
-        height: 3px; /* Thickness of the line */
+        height: 2px; /* Thickness of the line */
         background-image: linear-gradient(to right, #A16706, #E3B61B, #F9F3A5, #E3B61B, #A16706);; /* Color of the line, matching one of the gradient colors */
         margin: auto 20px auto 0; /* Center the line and add space below it */
       }
@@ -19,7 +19,7 @@
   &-modal {
     background-color: #332d1e;
     &-text {
-      height: 75vh;
+      // height: 50%;
       // max-height: 500px;
       overflow: auto;
       &::-webkit-scrollbar {
@@ -32,17 +32,17 @@
     }
   }
 
-  .swiper-pagination {
-    position: relative !important; /* Override Swiper's default absolute positioning */
-    bottom: auto !important; /* Remove default bottom positioning */
-    top: auto !important; /* Remove default top positioning */
-    left: auto !important; /* Remove default left positioning */
-    right: auto !important; /* Remove default right positioning */
+  // .swiper-pagination {
+  //   position: relative !important; /* Override Swiper's default absolute positioning */
+  //   bottom: auto !important; /* Remove default bottom positioning */
+  //   top: auto !important; /* Remove default top positioning */
+  //   left: auto !important; /* Remove default left positioning */
+  //   right: auto !important; /* Remove default right positioning */
 
-    margin-top: 20px; /* Adjust this value to control spacing below slides */
-    text-align: center; /* Center the pagination dots */
-    width: 100% !important;
-  }
+  //   margin-top: 20px; /* Adjust this value to control spacing below slides */
+  //   text-align: center; /* Center the pagination dots */
+  //   width: 100% !important;
+  // }
 
   .swiper-pagination-bullet {
     background-color: #9C9C9C !important; /* Default dot color */

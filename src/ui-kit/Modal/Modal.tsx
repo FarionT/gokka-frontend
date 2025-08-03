@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import type { FC, ReactNode } from "react";
 
 import "./Modal.scss";
+import Close from '../../assets/Logo/Close.svg';
 
 declare module "react" {
   interface CSSProperties {
@@ -62,10 +63,10 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, children }) => {
   return (
     <div>
       <div className="fixed inset-0 z-30 bg-black opacity-50 w-full h-full"></div>
-      <div className="modal fixed inset-0 z-50 flex items-center justify-center mx-auto">
+      <div className="modal fixed inset-0 z-50 flex m-auto">
         <div
           ref={modalRef} // Attach ref to the modal content container
-          className="relative bg-white rounded-xl shadow-2xl w-full mx-auto transform transition-all duration-300 ease-out h-96 opacity-0 animate-scale-in" // Initial state for animation
+          className="relative rounded-xl shadow-2xl w-full transform transition-all duration-300 ease-out opacity-0 animate-scale-in" // Initial state for animation
           // Add animation keyframes for scale-in
           style={{
             animation: "scale-in 0.3s forwards",
@@ -73,6 +74,9 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, children }) => {
             "--tw-shadow-color": "rgb(0 0 0 / 0.05)",
           }}
         >
+          <div onClick={onClose} className="absolute top-2 right-2 bg-[#332D1E] z-99 p-2 rounded-full cursor-pointer">
+            <img src={Close} />
+          </div>
           {/* Render the children passed to the Modal component */}
           {children}
         </div>

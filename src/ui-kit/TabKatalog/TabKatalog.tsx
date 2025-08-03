@@ -52,21 +52,21 @@ export const TabsKatalog = ({
 
   return (
     <div className={`${className ?? ''} tab-katalog`}>
-      {/* <div className="tab-katalog-container mx-auto justify-center"> */}
+      <div className="tab-katalog-container flex justify-center mx-auto">
         <div className={`flex tab-katalog-title tab-katalog-title-${position} mx-auto gap-8`}>
           {children.map((item, index) => (
             <div className={`flex tab-katalog-item gap-3 flex-col ${currentActiveTab === index ? 'tab-katalog-active' : ''}`} key={index}>
               <div 
-                className={`tab-katalog-item-image flex `} 
+                className={`tab-katalog-item-image w-[70px] md:w-[80px] h-[70px] md:h-[80px] flex `} 
                 onClick={() => { changeTab(index) }}
               >
-                <img src={item.props.title} className="w-12 h-12 m-auto" />
+                <img src={item.props.title} className="w-10 md:w-12 h-10 md:h-12 m-auto" />
               </div>
-              <div className="tab-katalog-item-text text-center">{item.props.name}</div>
+              <div className="tab-katalog-item-text font-semibold text-center max-w-[80px]">{item.props.name}</div>
             </div>
           ))}
         </div>
-      {/* </div> */}
+      </div>
       <div className="tab-katalog-content py-8">{children[currentActiveTab]}</div>
     </div>
   )

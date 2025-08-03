@@ -10,7 +10,7 @@ import Bintang from '../../assets/Logo/Bintang.svg';
 
 const Testimoni = () => {
   return (
-    <div className='testimoni'>
+    <div className='testimoni py-8 px-8 xl:px-0'>
       <div className='gradient-gold text-center text-4xl md:text-7xl font-bold'>Review Produk</div>
       <div className='flex items-center justify-center gap-4 pt-4'>
         <div className='text-white text-2xl md:text-4xl font-bold'>4.8 dari 5</div>

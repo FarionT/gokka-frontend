@@ -1,4 +1,11 @@
 .navbar {
-    background-color: #261e0c;
-    color: #FFF1A8;
+  background-color: #261e0c;
+  color: #FFF1A8;
+  &-active {
+    color: #FFF1A8
+  }
+
+  .sidebar-active {
+    background-color: #c9b236;
+  }
 }

@@ -1,10 +1,11 @@
 .beranda {
   max-width: 1200px;
-  margin: 32px auto;
+  margin: 0 auto 32px;
   // background-color: #332d1e;
   color: #FFF1A8;
   &-banner {
     position: relative;
+    background-color: #a58428;
     &-text {
       width: fit-content;
       position: absolute;
@@ -12,6 +13,9 @@
       transform: translate(-50%, -50%);
       margin: 0 auto;
       left: 50%;
+    }
+    .pattern {
+      mix-blend-mode: multiply;
     }
   }
 
@@ -45,6 +49,30 @@
         height: 3px; /* Thickness of the line */
         background-image: linear-gradient(to right, #A16706, #E3B61B, #F9F3A5, #E3B61B, #A16706);; /* Color of the line, matching one of the gradient colors */
         margin: auto 0 auto 30px; /* Center the line and add space below it */
+      }
+    }
+  }
+
+  &-resep {
+    &-item {
+      &-wing {
+        &-left {
+          transform: scaleX(-1);
+          position: absolute;
+          left: -30%;
+        }
+        &-right {
+          position: absolute;
+          right: -30%;
+        }
+      }
+
+      &-circle {
+        position: relative;
+        width: 240px;
+        height: 240px;
+        background-color: #BFA443;
+        border-radius: 50%;
       }
     }
   }

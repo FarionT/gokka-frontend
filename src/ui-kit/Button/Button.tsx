@@ -16,7 +16,7 @@ const Button: React.FC<TButton> = ({
   onClick
 }) => {
   return (
-    <button className={`${className ?? ''} button`} onClick={onClick}>
+    <button className={`${className ?? ''} button whitespace-nowrap`} onClick={onClick}>
       {children}
     </button>
   )

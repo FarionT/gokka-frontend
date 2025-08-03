@@ -10,6 +10,23 @@
       border-radius: 70px;
       text-align: center;
       position: relative;
+      &:hover {
+        transition: 0.25s ease-in-out;
+        background-color: #BFA443;
+        color: #FFF1A8;
+        &::after {
+          transition: 0.25s ease-in-out;
+          content: '';
+          position: absolute;
+          bottom: -8px; // creates the gap
+          left: 50%;
+          transform: translateX(-50%);
+          width: 70%;
+          height: 3px;
+          background-color: #BFA443;
+          border-radius: 2px;
+        }
+      }
     }
 
     &-center {
@@ -17,10 +34,10 @@
     }
   }
 
+
   &-active {
     background-color: #BFA443;
     color: #FFF1A8;
-    border-bottom: 1px solid #BFA443;
     &::after {
       content: '';
       position: absolute;

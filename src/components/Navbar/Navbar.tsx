@@ -4,15 +4,18 @@ import './Navbar.scss';
 // Import Images
 import Gokka from '../../assets/Logo/Gokka.svg';
 import Search from '../../assets/Logo/Search.svg';
+import { useLocation } from 'react-router';
 
 const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   // const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
 
+  const location = useLocation();
   const userMenuRef = useRef<HTMLDivElement>(null);
   const userMenuButtonRef = useRef<HTMLButtonElement>(null);
   const mobileMenuButtonRef = useRef<HTMLButtonElement>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const currentPath = location.pathname;
 
   // Close user menu when clicking outside
   useEffect(() => {
@@ -65,27 +68,27 @@ const Navbar: React.FC = () => {
             {/* Changed from sm:ml-6 sm:block to lg:ml-6 lg:block */}
             <div className="hidden lg:ml-6 lg:block"> {/* <--- MODIFIED */}
               <div className="flex space-x-4 text-center">
-                <a href="/" className="rounded-md px-3 py-2 text-sm font-medium text-white" aria-current="page">
+                <a href="/" className={`rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:text-white ${currentPath === '/' ? 'navbar-active' : ''}`} aria-current="page">
                   Beranda
                 </a>
-                <a href="/produk" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:text-white">
+                <a href="/produk" className={`rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:text-white ${currentPath === '/produk' ? 'navbar-active' : ''}`}>
                   Produk
                 </a>
-                <a href="/tentang-kami" className="rounded-md px-3 py-2 text-sm font-medium hover:text-white">
+                <a href="/tentang-kami" className={`rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:text-white ${currentPath === '/tentang-kami' ? 'navbar-active' : ''}`}>
                   Tentang Kami
                 </a>
-                <a href="/testimoni" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:text-white">
+                <a href="/testimoni" className={`rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:text-white ${currentPath === '/testimoni' ? 'navbar-active' : ''}`}>
                   Testimoni
                 </a>
-                <a href="/resep" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:text-white">
+                <a href="/resep" className={`rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:text-white ${currentPath.includes('/resep') ? 'navbar-active' : ''}`}>
                   Resep
                 </a>
-                <a href="/faq" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:text-white">
+                <a href="/faq" className={`rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:text-white ${currentPath === '/faq' ? 'navbar-active' : ''}`}>
                   FAQ
                 </a>
-                <a href="#" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:text-white">
+                {/* <a href="#" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:text-white">
                   Akun
-                </a>
+                </a> */}
               </div>
             </div>
 
@@ -95,7 +98,7 @@ const Navbar: React.FC = () => {
               <button
                 type="button"
                 ref={mobileMenuButtonRef}
-                className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-2 focus:ring-white focus:outline-hidden focus:ring-inset"
+                className="relative inline-flex items-center justify-center rounded-md p-2 text-[#FFF1A8] text-bold hover:bg-[#c9b236] hover:text-white focus:ring-2 focus:ring-white focus:outline-hidden focus:ring-inset cursor-pointer"
                 aria-controls="mobile-menu"
                 aria-expanded={isMobileMenuOpen}
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -207,7 +210,7 @@ const Navbar: React.FC = () => {
             {/* Close button for sidebar */}
             <button
               type="button"
-              className="text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white"
+              className="hover:text-white focus:outline-none focus:ring-2 p-2 rounded-md cursor-pointer focus:ring-white text-[#FFF1A8] text-bold hover:bg-[#c9b236]"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               <span className="sr-only">Close menu</span>
@@ -217,27 +220,27 @@ const Navbar: React.FC = () => {
             </button>
           </div>
           <div className="space-y-1 px-2 pt-2 pb-3">
-            <a href="#" className="block rounded-md px-3 py-2 text-base font-medium text-white" aria-current="page">
+            <a href="/" className={`block rounded-md px-3 py-2 text-base font-medium text-[#FFF1A8] text-bold hover:bg-[#c9b236] ${currentPath === '/' ? 'sidebar-active' : ''}`} aria-current="page">
               Beranda
             </a>
-            <a href="/produk" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
+            <a href="/produk" className={`block rounded-md px-3 py-2 text-base font-medium text-[#FFF1A8] text-bold hover:bg-[#c9b236] ${currentPath === '/produk' ? 'sidebar-active' : ''}`}>
               Produk
             </a>
-            <a href="/tentang-kami" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
+            <a href="/tentang-kami" className={`block rounded-md px-3 py-2 text-base font-medium text-[#FFF1A8] text-bold hover:bg-[#c9b236] ${currentPath === '/tentang-kami' ? 'sidebar-active' : ''}`}>
               Tentang Kami
             </a>
-            <a href="/testimoni" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
+            <a href="/testimoni" className={`block rounded-md px-3 py-2 text-base font-medium text-[#FFF1A8] text-bold hover:bg-[#c9b236] ${currentPath === '/testimoni' ? 'sidebar-active' : ''}`}>
               Testimoni
             </a>
-            <a href="#" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
+            <a href="/resep" className={`block rounded-md px-3 py-2 text-base font-medium text-[#FFF1A8] text-bold hover:bg-[#c9b236] ${currentPath === '/resep' ? 'sidebar-active' : ''}`}>
               Resep
             </a>
-            <a href="/faq" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
+            <a href="/faq" className={`block rounded-md px-3 py-2 text-base font-medium text-[#FFF1A8] text-bold hover:bg-[#c9b236] ${currentPath === '/faq' ? 'sidebar-active' : ''}`}>
               FAQ
             </a>
-            <a href="#" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
+            {/* <a href="#" className="block rounded-md px-3 py-2 text-base font-medium text-[#FFF1A8] text-bold hover:bg-[#c9b236] hover:text-white">
               Akun
-            </a>
+            </a> */}
           </div>
         </div>
 

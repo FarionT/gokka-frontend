@@ -69,10 +69,14 @@ const Beranda = () => {
           className='xl:mx-auto mx-6 h-full'
         >
           <SwiperSlide className='overflow-hidden'>
-            <img src={Model} className='beranda-banner-image aspect-square object-cover h-full  w-full mx-auto' />
+            <div className='relative w-full h-full'>
+              <img src={Model} className='relative beranda-banner-image aspect-square object-cover object-top h-full w-full mx-auto' />
+            </div>
           </SwiperSlide>
           <SwiperSlide className='overflow-hidden aspect-square'>
-            <img src={ModelTwo} className='beranda-banner-image object-cover h-full w-full mx-auto' />
+            <div className='relative w-full h-full'>
+              <img src={ModelTwo} className='relative beranda-banner-image aspect-square object-cover object-top h-full w-full mx-auto' />
+            </div>
           </SwiperSlide>
         </Swiper>
         <img src={KatalogBackground} className='absolute top-0 w-full h-full pattern rotate-180 object-cover' />

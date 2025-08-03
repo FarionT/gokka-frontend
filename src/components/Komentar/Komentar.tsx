@@ -28,7 +28,7 @@ const Komentar = ({
   const commentYear = commentTime.getFullYear();
   const commentHour = commentTime.getHours();
   const commentMinute = commentTime.getMinutes();
-  const rate = rating;
+  // const rate = rating;
 
   const finalTime = `${commentDate}/${commentMonth}/${commentYear} | ${commentHour}:${commentMinute}`
 
@@ -50,6 +50,7 @@ const Komentar = ({
           </div>
           <div className='text-white font-medium'>{product}</div>
           <div className='text-white'>{comment}</div>
+          {rating ? <></> : <></>}
         </div>
       </div>
       <div className='flex flex-col justify-center items-center gap-1 right-0' onClick={onClick}>

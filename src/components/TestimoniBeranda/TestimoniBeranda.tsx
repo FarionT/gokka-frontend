@@ -36,6 +36,7 @@ const TestimoniBeranda = ({
         <div className='font-normal' >{user}</div>
         <div className='font-normal'>"{review}"</div>
       </div>
+      {star ? <></> : <></>}
       {/* <img src={Bintang} /> */}
     </div>
   )

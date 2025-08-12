@@ -282,11 +282,15 @@ const Produk = () => {
                 <div className='text-xs md:text-lg'>Blibli</div>
               </a>
               <a className='flex flex-col items-center justify-between gap-1' href='#'>
-                <img src={Lazada} className='h-9 md:h-15' />
+                <div className='h-9 md:h-15 flex items-center justify-center p-1 gap-0' >
+                  <img src={Lazada} className="h-full w-full" />
+                </div>
                 <div className='text-xs md:text-lg'>Lazada</div>
               </a>
               <a className='flex flex-col items-center justify-between gap-1' href='#'>
-                <img src={Tokopedia} className='h-9 md:h-15' />
+                <div className='h-9 md:h-15 flex items-center justify-center p-1 gap-0' >
+                  <img src={Tokopedia} className="h-full w-full" />
+                </div>
                 <div className='text-xs md:text-lg'>Tokopedia</div>
               </a>
             </div>

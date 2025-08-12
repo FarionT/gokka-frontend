@@ -27,6 +27,14 @@ const ProdukBeranda = ({
         <div className='font-bold text-4xl'>{name}</div>
         <div className='font-semibold text-xl'>+Nyegerin</div>
       </div>
+      <div className='absolute z-5 flex bg-[#332d1e] p-2 rounded-2xl bottom-8 left-5 gap-2'>
+        <div className='bg-yellow-800 -ml-5 -mt-5 h-fit'>-20%</div>
+        <div>
+          <div className='text-white'>Great deals</div>
+          <div className='line-through decoration-red-800 decoration-2 text-[#73726e] font-semibold text-[10px]'>Rp. 44.000,00</div>
+          <div className='font-semibold text-sm'>Rp. 35.200,00</div>
+        </div>
+      </div>
       <img src={image} className='mx-auto w-96 relative z-2' />
       <img className='absolute w-full h-full z-1 top-0 rounded-2xl pattern' src={KatalogBackground} />
       <a href='https://linktr.ee/gokkaindonesia' target='__blank' className='flex flex-col absolute justify-center bottom-8 right-4 w-20 h-20 items-center rounded-full z-2 produk-beranda-beli'>

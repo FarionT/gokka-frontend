@@ -35,18 +35,21 @@
       text-align: center;
       border-radius: 20px;
       flex-shrink: 0;
-      &:hover {
+    }
+    &:hover {
+      .tab-katalog-item-image {
         background-color: #BFA443;
+        transition: 0.25s ease-in-out;
+      }
+
+      .tab-katalog-item-text {
+        color: #FFF1A8;
         transition: 0.25s ease-in-out;
       }
     }
     &-text{
       color: white;
       text-wrap: wrap;
-      &:hover {
-        color: #FFF1A8;
-        transition: 0.25s ease-in-out;
-      }
     }
 
   }

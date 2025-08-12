@@ -63,6 +63,62 @@ import TiramisuCair from "../../assets/Image/ProdukKatalog/Cair/Tiramisu.png";
 import VanillaCair from "../../assets/Image/ProdukKatalog/Cair/Vanilla.png";
 import YogurtCair from "../../assets/Image/ProdukKatalog/Cair/Yogurt.png";
 
+// import cair 630ml
+import AlmondCair630 from "../../assets/Image/ProdukKatalog/Cair630/Almond.png";
+import AlpukatCair630 from "../../assets/Image/ProdukKatalog/Cair630/Alpukat.png";
+import AnggurCair630 from "../../assets/Image/ProdukKatalog/Cair630/Anggur.png";
+import ApelCair630 from "../../assets/Image/ProdukKatalog/Cair630/Apel.png";
+import AsamJawaCair630 from "../../assets/Image/ProdukKatalog/Cair630/Asam Jawa.png";
+import BlackcurrantCair630 from "../../assets/Image/ProdukKatalog/Cair630/Blackcurrant.png";
+import BlueCuracaoCair630 from "../../assets/Image/ProdukKatalog/Cair630/Blue Curacao.png";
+import BlueberryCair630 from "../../assets/Image/ProdukKatalog/Cair630/Blueberry.png";
+import BrownSugarCair630 from "../../assets/Image/ProdukKatalog/Cair630/Brown Sugar.png";
+import ButterscotchCair630 from "../../assets/Image/ProdukKatalog/Cair630/Butterscotch.png";
+import CappuccinoCair630 from "../../assets/Image/ProdukKatalog/Cair630/Cappuccino.png";
+import CherryCair630 from "../../assets/Image/ProdukKatalog/Cair630/Cherry.png";
+import ChrysanthemumCair630 from "../../assets/Image/ProdukKatalog/Cair630/Chrysanthemum.png";
+import CoklatCair630 from "../../assets/Image/ProdukKatalog/Cair630/Coklat.png";
+import CottonCandyCair630 from "../../assets/Image/ProdukKatalog/Cair630/Cotton Candy.png";
+import CranberryCair630 from "../../assets/Image/ProdukKatalog/Cair630/Cranberry.png";
+import CreamyVanillaCair630 from "../../assets/Image/ProdukKatalog/Cair630/Creamy Vanilla.png";
+import DurianCair630 from "../../assets/Image/ProdukKatalog/Cair630/Durian.png";
+import GreenTeaCair630 from "../../assets/Image/ProdukKatalog/Cair630/Green Tea.png";
+import HazelnutCair630 from "../../assets/Image/ProdukKatalog/Cair630/Hazelnut.png";
+import JambuCair630 from "../../assets/Image/ProdukKatalog/Cair630/Jambu.png";
+import JasmineCair630 from "../../assets/Image/ProdukKatalog/Cair630/Jasmine.png";
+import JerukCair630 from "../../assets/Image/ProdukKatalog/Cair630/Jeruk.png";
+import KaramelCair630 from "../../assets/Image/ProdukKatalog/Cair630/Karamel.png";
+import KelapaCair630 from "../../assets/Image/ProdukKatalog/Cair630/Kelapa.png";
+import KiwiCair630 from "../../assets/Image/ProdukKatalog/Cair630/Kiwi.png";
+import KopiCair630 from "../../assets/Image/ProdukKatalog/Cair630/Kopi.png";
+import LeciCair630 from "../../assets/Image/ProdukKatalog/Cair630/Leci.png";
+import LemonCair630 from "../../assets/Image/ProdukKatalog/Cair630/Lemon.png";
+import MaduCair630 from "../../assets/Image/ProdukKatalog/Cair630/Madu.png";
+import ManggaCair630 from "../../assets/Image/ProdukKatalog/Cair630/Mangga.png";
+import MarkisaCair630 from "../../assets/Image/ProdukKatalog/Cair630/Markisa.png";
+import MelonCair630 from "../../assets/Image/ProdukKatalog/Cair630/Melon.png";
+import MintCair630 from "../../assets/Image/ProdukKatalog/Cair630/Mint.png";
+import MochaccinoCair630 from "../../assets/Image/ProdukKatalog/Cair630/Mochaccino.png";
+import MojitoCair630 from "../../assets/Image/ProdukKatalog/Cair630/Mojito.png";
+import NanasCair630 from "../../assets/Image/ProdukKatalog/Cair630/Nanas.png";
+import PandanCair630 from "../../assets/Image/ProdukKatalog/Cair630/Pandan.png";
+import PermenKaretCair630 from "../../assets/Image/ProdukKatalog/Cair630/Permen Karet.png";
+import PersikCair630 from "../../assets/Image/ProdukKatalog/Cair630/Persik.png";
+import PisangCair630 from "../../assets/Image/ProdukKatalog/Cair630/Pisang.png";
+import RaspberryCair630 from "../../assets/Image/ProdukKatalog/Cair630/Raspberry.png";
+import RedVelvetCair630 from "../../assets/Image/ProdukKatalog/Cair630/Red Velvet.png";
+import RoseCair630 from "../../assets/Image/ProdukKatalog/Cair630/Rose.png";
+import SarsaparillaCair630 from "../../assets/Image/ProdukKatalog/Cair630/Sarsaparilla.png";
+import SemangkaCair630 from "../../assets/Image/ProdukKatalog/Cair630/Semangka.png";
+import SirsakCair630 from "../../assets/Image/ProdukKatalog/Cair630/Sirsak.png";
+import SoyaCair630 from "../../assets/Image/ProdukKatalog/Cair630/Soya.png";
+import StroberiCair630 from "../../assets/Image/ProdukKatalog/Cair630/Stroberi.png";
+import SusuCair630 from "../../assets/Image/ProdukKatalog/Cair630/Susu.png";
+import TaroCair630 from "../../assets/Image/ProdukKatalog/Cair630/Taro.png";
+import TiramisuCair630 from "../../assets/Image/ProdukKatalog/Cair630/Tiramisu.png";
+import VanillaCair630 from "../../assets/Image/ProdukKatalog/Cair630/Vanilla.png";
+import YogurtCair630 from "../../assets/Image/ProdukKatalog/Cair630/Yogurt.png";
+
 // import gambar bubuk
 import AlpukatBubuk from "../../assets/Image/ProdukKatalog/Bubuk/Alpukat.png";
 import AnggurBubuk from "../../assets/Image/ProdukKatalog/Bubuk/Anggur.png";
@@ -147,7 +203,7 @@ export const produk = [
     category: "rempah_kacang",
     image: AlmondCair,
     variant: [
-      { title: "630 ML", image: AlmondCair },
+      { title: "630 ML", image: AlmondCair630 },
       { title: "60 ML", image: AlmondCair },
       { title: "350 ML", image: AlmondCair },
     ],
@@ -160,7 +216,7 @@ export const produk = [
     category: "buah",
     image: AlpukatCair,
     variant: [
-      { title: "630 ML", image: AlpukatCair },
+      { title: "630 ML", image: AlpukatCair630 },
       { title: "60 ML", image: AlpukatCair },
       { title: "350 ML", image: AlpukatCair },
     ],
@@ -173,7 +229,7 @@ export const produk = [
     category: "buah",
     image: AnggurCair,
     variant: [
-      { title: "630 ML", image: AnggurCair },
+      { title: "630 ML", image: AnggurCair630 },
       { title: "60 ML", image: AnggurCair },
       { title: "350 ML", image: AnggurCair },
     ],
@@ -186,7 +242,7 @@ export const produk = [
     category: "buah",
     image: ApelCair,
     variant: [
-      { title: "630 ML", image: ApelCair },
+      { title: "630 ML", image: ApelCair630 },
       { title: "60 ML", image: ApelCair },
       { title: "350 ML", image: ApelCair },
     ],
@@ -199,7 +255,7 @@ export const produk = [
     category: "buah",
     image: AsamJawaCair,
     variant: [
-      { title: "630 ML", image: AsamJawaCair },
+      { title: "630 ML", image: AsamJawaCair630 },
       { title: "60 ML", image: AsamJawaCair },
       { title: "350 ML", image: AsamJawaCair },
     ],
@@ -212,7 +268,7 @@ export const produk = [
     category: "buah",
     image: BlackcurrantCair,
     variant: [
-      { title: "630 ML", image: BlackcurrantCair },
+      { title: "630 ML", image: BlackcurrantCair630 },
       { title: "60 ML", image: BlackcurrantCair },
       { title: "350 ML", image: BlackcurrantCair },
     ],
@@ -225,7 +281,7 @@ export const produk = [
     category: "segar_unik",
     image: BlueCuracaoCair,
     variant: [
-      { title: "630 ML", image: BlueCuracaoCair },
+      { title: "630 ML", image: BlueCuracaoCair630 },
       { title: "60 ML", image: BlueCuracaoCair },
       { title: "350 ML", image: BlueCuracaoCair },
     ],
@@ -238,7 +294,7 @@ export const produk = [
     category: "buah",
     image: BlueberryCair,
     variant: [
-      { title: "630 ML", image: BlueberryCair },
+      { title: "630 ML", image: BlueberryCair630 },
       { title: "60 ML", image: BlueberryCair },
       { title: "350 ML", image: BlueberryCair },
     ],
@@ -251,7 +307,7 @@ export const produk = [
     category: "rempah_kacang",
     image: BrownSugarCair,
     variant: [
-      { title: "630 ML", image: BrownSugarCair },
+      { title: "630 ML", image: BrownSugarCair630 },
       { title: "60 ML", image: BrownSugarCair },
       { title: "350 ML", image: BrownSugarCair },
     ],
@@ -264,7 +320,7 @@ export const produk = [
     category: "dessert",
     image: ButterscotchCair,
     variant: [
-      { title: "630 ML", image: ButterscotchCair },
+      { title: "630 ML", image: ButterscotchCair630 },
       { title: "60 ML", image: ButterscotchCair },
       { title: "350 ML", image: ButterscotchCair },
     ],
@@ -277,7 +333,7 @@ export const produk = [
     category: "kopi_teh",
     image: CappuccinoCair,
     variant: [
-      { title: "630 ML", image: CappuccinoCair },
+      { title: "630 ML", image: CappuccinoCair630 },
       { title: "60 ML", image: CappuccinoCair },
       { title: "350 ML", image: CappuccinoCair },
     ],
@@ -290,7 +346,7 @@ export const produk = [
     category: "buah",
     image: CherryCair,
     variant: [
-      { title: "630 ML", image: CherryCair },
+      { title: "630 ML", image: CherryCair630 },
       { title: "60 ML", image: CherryCair },
       { title: "350 ML", image: CherryCair },
     ],
@@ -303,7 +359,7 @@ export const produk = [
     category: "floral",
     image: ChrysanthemumCair,
     variant: [
-      { title: "630 ML", image: ChrysanthemumCair },
+      { title: "630 ML", image: ChrysanthemumCair630 },
       { title: "60 ML", image: ChrysanthemumCair },
       { title: "350 ML", image: ChrysanthemumCair },
     ],
@@ -316,7 +372,7 @@ export const produk = [
     category: "dessert",
     image: CoklatCair,
     variant: [
-      { title: "630 ML", image: CoklatCair },
+      { title: "630 ML", image: CoklatCair630 },
       { title: "60 ML", image: CoklatCair },
       { title: "350 ML", image: CoklatCair },
     ],
@@ -329,7 +385,7 @@ export const produk = [
     category: "dessert",
     image: CottonCandyCair,
     variant: [
-      { title: "630 ML", image: CottonCandyCair },
+      { title: "630 ML", image: CottonCandyCair630 },
       { title: "60 ML", image: CottonCandyCair },
       { title: "350 ML", image: CottonCandyCair },
     ],
@@ -342,7 +398,7 @@ export const produk = [
     category: "buah",
     image: CranberryCair,
     variant: [
-      { title: "630 ML", image: CranberryCair },
+      { title: "630 ML", image: CranberryCair630 },
       { title: "60 ML", image: CranberryCair },
       { title: "350 ML", image: CranberryCair },
     ],
@@ -355,7 +411,7 @@ export const produk = [
     category: "dessert",
     image: CreamyVanillaCair,
     variant: [
-      { title: "630 ML", image: CreamyVanillaCair },
+      { title: "630 ML", image: CreamyVanillaCair630 },
       { title: "60 ML", image: CreamyVanillaCair },
       { title: "350 ML", image: CreamyVanillaCair },
     ],
@@ -368,7 +424,7 @@ export const produk = [
     category: "buah",
     image: DurianCair,
     variant: [
-      { title: "630 ML", image: DurianCair },
+      { title: "630 ML", image: DurianCair630 },
       { title: "60 ML", image: DurianCair },
       { title: "350 ML", image: DurianCair },
     ],
@@ -381,7 +437,7 @@ export const produk = [
     category: "kopi_teh",
     image: GreenTeaCair,
     variant: [
-      { title: "630 ML", image: GreenTeaCair },
+      { title: "630 ML", image: GreenTeaCair630 },
       { title: "60 ML", image: GreenTeaCair },
       { title: "350 ML", image: GreenTeaCair },
     ],
@@ -394,7 +450,7 @@ export const produk = [
     category: "rempah_kacang",
     image: HazelnutCair,
     variant: [
-      { title: "630 ML", image: HazelnutCair },
+      { title: "630 ML", image: HazelnutCair630 },
       { title: "60 ML", image: HazelnutCair },
       { title: "350 ML", image: HazelnutCair },
     ],
@@ -407,7 +463,7 @@ export const produk = [
     category: "buah",
     image: JambuCair,
     variant: [
-      { title: "630 ML", image: JambuCair },
+      { title: "630 ML", image: JambuCair630 },
       { title: "60 ML", image: JambuCair },
       { title: "350 ML", image: JambuCair },
     ],
@@ -420,7 +476,7 @@ export const produk = [
     category: "floral",
     image: JasmineCair,
     variant: [
-      { title: "630 ML", image: JasmineCair },
+      { title: "630 ML", image: JasmineCair630 },
       { title: "60 ML", image: JasmineCair },
       { title: "350 ML", image: JasmineCair },
     ],
@@ -433,7 +489,7 @@ export const produk = [
     category: "buah",
     image: JerukCair,
     variant: [
-      { title: "630 ML", image: JerukCair },
+      { title: "630 ML", image: JerukCair630 },
       { title: "60 ML", image: JerukCair },
       { title: "350 ML", image: JerukCair },
     ],
@@ -446,7 +502,7 @@ export const produk = [
     category: "dessert",
     image: KaramelCair,
     variant: [
-      { title: "630 ML", image: KaramelCair },
+      { title: "630 ML", image: KaramelCair630 },
       { title: "60 ML", image: KaramelCair },
       { title: "350 ML", image: KaramelCair },
     ],
@@ -459,7 +515,7 @@ export const produk = [
     category: "buah",
     image: KelapaCair,
     variant: [
-      { title: "630 ML", image: KelapaCair },
+      { title: "630 ML", image: KelapaCair630 },
       { title: "60 ML", image: KelapaCair },
       { title: "350 ML", image: KelapaCair },
     ],
@@ -472,7 +528,7 @@ export const produk = [
     category: "buah",
     image: KiwiCair,
     variant: [
-      { title: "630 ML", image: KiwiCair },
+      { title: "630 ML", image: KiwiCair630 },
       { title: "60 ML", image: KiwiCair },
       { title: "350 ML", image: KiwiCair },
     ],
@@ -485,7 +541,7 @@ export const produk = [
     category: "kopi_teh",
     image: KopiCair,
     variant: [
-      { title: "630 ML", image: KopiCair },
+      { title: "630 ML", image: KopiCair630 },
       { title: "60 ML", image: KopiCair },
       { title: "350 ML", image: KopiCair },
     ],
@@ -498,7 +554,7 @@ export const produk = [
     category: "buah",
     image: LeciCair,
     variant: [
-      { title: "630 ML", image: LeciCair },
+      { title: "630 ML", image: LeciCair630 },
       { title: "60 ML", image: LeciCair },
       { title: "350 ML", image: LeciCair },
     ],
@@ -511,7 +567,7 @@ export const produk = [
     category: "buah",
     image: LemonCair,
     variant: [
-      { title: "630 ML", image: LemonCair },
+      { title: "630 ML", image: LemonCair630 },
       { title: "60 ML", image: LemonCair },
       { title: "350 ML", image: LemonCair },
     ],
@@ -524,7 +580,7 @@ export const produk = [
     category: "rempah_kacang",
     image: MaduCair,
     variant: [
-      { title: "630 ML", image: MaduCair },
+      { title: "630 ML", image: MaduCair630 },
       { title: "60 ML", image: MaduCair },
       { title: "350 ML", image: MaduCair },
     ],
@@ -537,7 +593,7 @@ export const produk = [
     category: "buah",
     image: ManggaCair,
     variant: [
-      { title: "630 ML", image: ManggaCair },
+      { title: "630 ML", image: ManggaCair630 },
       { title: "60 ML", image: ManggaCair },
       { title: "350 ML", image: ManggaCair },
     ],
@@ -550,7 +606,7 @@ export const produk = [
     category: "buah",
     image: MarkisaCair,
     variant: [
-      { title: "630 ML", image: MarkisaCair },
+      { title: "630 ML", image: MarkisaCair630 },
       { title: "60 ML", image: MarkisaCair },
       { title: "350 ML", image: MarkisaCair },
     ],
@@ -563,7 +619,7 @@ export const produk = [
     category: "buah",
     image: MelonCair,
     variant: [
-      { title: "630 ML", image: MelonCair },
+      { title: "630 ML", image: MelonCair630 },
       { title: "60 ML", image: MelonCair },
       { title: "350 ML", image: MelonCair },
     ],
@@ -576,7 +632,7 @@ export const produk = [
     category: "floral",
     image: MintCair,
     variant: [
-      { title: "630 ML", image: MintCair },
+      { title: "630 ML", image: MintCair630 },
       { title: "60 ML", image: MintCair },
       { title: "350 ML", image: MintCair },
     ],
@@ -589,7 +645,7 @@ export const produk = [
     category: "kopi_teh",
     image: MochaccinoCair,
     variant: [
-      { title: "630 ML", image: MochaccinoCair },
+      { title: "630 ML", image: MochaccinoCair630 },
       { title: "60 ML", image: MochaccinoCair },
       { title: "350 ML", image: MochaccinoCair },
     ],
@@ -602,7 +658,7 @@ export const produk = [
     category: "segar_unik",
     image: MojitoCair,
     variant: [
-      { title: "630 ML", image: MojitoCair },
+      { title: "630 ML", image: MojitoCair630 },
       { title: "60 ML", image: MojitoCair },
       { title: "350 ML", image: MojitoCair },
     ],
@@ -615,7 +671,7 @@ export const produk = [
     category: "buah",
     image: NanasCair,
     variant: [
-      { title: "630 ML", image: NanasCair },
+      { title: "630 ML", image: NanasCair630 },
       { title: "60 ML", image: NanasCair },
       { title: "350 ML", image: NanasCair },
     ],
@@ -628,7 +684,7 @@ export const produk = [
     category: "floral",
     image: PandanCair,
     variant: [
-      { title: "630 ML", image: PandanCair },
+      { title: "630 ML", image: PandanCair630 },
       { title: "60 ML", image: PandanCair },
       { title: "350 ML", image: PandanCair },
     ],
@@ -641,7 +697,7 @@ export const produk = [
     category: "dessert",
     image: PermenKaretCair,
     variant: [
-      { title: "630 ML", image: PermenKaretCair },
+      { title: "630 ML", image: PermenKaretCair630 },
       { title: "60 ML", image: PermenKaretCair },
       { title: "350 ML", image: PermenKaretCair },
     ],
@@ -654,7 +710,7 @@ export const produk = [
     category: "buah",
     image: PersikCair,
     variant: [
-      { title: "630 ML", image: PersikCair },
+      { title: "630 ML", image: PersikCair630 },
       { title: "60 ML", image: PersikCair },
       { title: "350 ML", image: PersikCair },
     ],
@@ -667,7 +723,7 @@ export const produk = [
     category: "buah",
     image: PisangCair,
     variant: [
-      { title: "630 ML", image: PisangCair },
+      { title: "630 ML", image: PisangCair630 },
       { title: "60 ML", image: PisangCair },
       { title: "350 ML", image: PisangCair },
     ],
@@ -680,7 +736,7 @@ export const produk = [
     category: "buah",
     image: RaspberryCair,
     variant: [
-      { title: "630 ML", image: RaspberryCair },
+      { title: "630 ML", image: RaspberryCair630 },
       { title: "60 ML", image: RaspberryCair },
       { title: "350 ML", image: RaspberryCair },
     ],
@@ -693,7 +749,7 @@ export const produk = [
     category: "dessert",
     image: RedVelvetCair,
     variant: [
-      { title: "630 ML", image: RedVelvetCair },
+      { title: "630 ML", image: RedVelvetCair630 },
       { title: "60 ML", image: RedVelvetCair },
       { title: "350 ML", image: RedVelvetCair },
     ],
@@ -706,7 +762,7 @@ export const produk = [
     category: "floral",
     image: RoseCair,
     variant: [
-      { title: "630 ML", image: RoseCair },
+      { title: "630 ML", image: RoseCair630 },
       { title: "60 ML", image: RoseCair },
       { title: "350 ML", image: RoseCair },
     ],
@@ -719,7 +775,7 @@ export const produk = [
     category: "segar_unik",
     image: SarsaparillaCair,
     variant: [
-      { title: "630 ML", image: SarsaparillaCair },
+      { title: "630 ML", image: SarsaparillaCair630 },
       { title: "60 ML", image: SarsaparillaCair },
       { title: "350 ML", image: SarsaparillaCair },
     ],
@@ -732,7 +788,7 @@ export const produk = [
     category: "buah",
     image: SemangkaCair,
     variant: [
-      { title: "630 ML", image: SemangkaCair },
+      { title: "630 ML", image: SemangkaCair630 },
       { title: "60 ML", image: SemangkaCair },
       { title: "350 ML", image: SemangkaCair },
     ],
@@ -745,7 +801,7 @@ export const produk = [
     category: "buah",
     image: SirsakCair,
     variant: [
-      { title: "630 ML", image: SirsakCair },
+      { title: "630 ML", image: SirsakCair630 },
       { title: "60 ML", image: SirsakCair },
       { title: "350 ML", image: SirsakCair },
     ],
@@ -758,7 +814,7 @@ export const produk = [
     category: "rempah_kacang",
     image: SoyaCair,
     variant: [
-      { title: "630 ML", image: SoyaCair },
+      { title: "630 ML", image: SoyaCair630 },
       { title: "60 ML", image: SoyaCair },
       { title: "350 ML", image: SoyaCair },
     ],
@@ -771,7 +827,7 @@ export const produk = [
     category: "buah",
     image: StroberiCair,
     variant: [
-      { title: "630 ML", image: StroberiCair },
+      { title: "630 ML", image: StroberiCair630 },
       { title: "60 ML", image: StroberiCair },
       { title: "350 ML", image: StroberiCair },
     ],
@@ -784,7 +840,7 @@ export const produk = [
     category: "segar_unik",
     image: SusuCair,
     variant: [
-      { title: "630 ML", image: SusuCair },
+      { title: "630 ML", image: SusuCair630 },
       { title: "60 ML", image: SusuCair },
       { title: "350 ML", image: SusuCair },
     ],
@@ -797,7 +853,7 @@ export const produk = [
     category: "dessert",
     image: TaroCair,
     variant: [
-      { title: "630 ML", image: TaroCair },
+      { title: "630 ML", image: TaroCair630 },
       { title: "60 ML", image: TaroCair },
       { title: "350 ML", image: TaroCair },
     ],
@@ -810,7 +866,7 @@ export const produk = [
     category: "dessert",
     image: TiramisuCair,
     variant: [
-      { title: "630 ML", image: TiramisuCair },
+      { title: "630 ML", image: TiramisuCair630 },
       { title: "60 ML", image: TiramisuCair },
       { title: "350 ML", image: TiramisuCair },
     ],
@@ -823,7 +879,7 @@ export const produk = [
     category: "dessert",
     image: VanillaCair,
     variant: [
-      { title: "630 ML", image: VanillaCair },
+      { title: "630 ML", image: VanillaCair630 },
       { title: "60 ML", image: VanillaCair },
       { title: "350 ML", image: VanillaCair },
     ],
@@ -836,7 +892,7 @@ export const produk = [
     category: "segar_unik",
     image: YogurtCair,
     variant: [
-      { title: "630 ML", image: YogurtCair },
+      { title: "630 ML", image: YogurtCair630 },
       { title: "60 ML", image: YogurtCair },
       { title: "350 ML", image: YogurtCair },
     ],

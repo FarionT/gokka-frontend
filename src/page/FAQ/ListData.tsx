@@ -2,7 +2,7 @@
 import { Button } from "../../ui-kit";
 
 // import logo
-import NoHalal from "../../assets/Logo/NoHalal.svg";
+import NoHalal from "../../assets/Logo/NoHalal.png";
 import NoPIRT from "../../assets/Logo/NoPIRT.svg";
 import RightNumbering from "../../assets/Logo/RightNumbering.svg";
 import Tiktok from "../../assets/Logo/Tiktok.svg";
@@ -36,13 +36,17 @@ const FAQData = [
           </div>
         </div>
         <div className="flex gap-5 items-center">
-          <img src={RightNumbering} className="w-10" />
+          <div className="w-10">
+            <img src={RightNumbering} className="w-full" />
+          </div>
           <div>
             Mau nikmatin Gokka? Gampang banget! Ikuti langkah-langkahnya, ya!
           </div>
         </div>
-        <div className="flex gap-5 items-center font-bold text-xl">
-          <img src={RightNumbering} className="w-10" />
+        <div className="flex gap-5 items-center font-bold">
+          <div className="w-10">
+            <img src={RightNumbering} className="w-full" />
+          </div>
           <div>
             Kalau Sudah Punya Akun:
           </div>
@@ -85,20 +89,23 @@ const FAQData = [
     answer: (
       <div className="flex flex-col gap-6">
         <div className="flex gap-5 items-center">
-          <img src={RightNumbering} className="w-10" />
+          <div className="w-10">
+            <img src={RightNumbering} className="w-full" />
+          </div>
           <div>
             Tenang aja, semuanya udah halal, jadi bisa dinikmati bareng siapa
             pun, kapan pun!
           </div>
         </div>
         <div className="flex justify-center gap-8">
-          <div className="flex flex-col items-center">
-            <img src={NoPIRT} />
+          <div className="flex flex-col items-center text-sm md:text-base">
+            <img src={NoPIRT} className="h-16 pb-2" />
             <div className="text-center">Nomor P-IRT:</div>
             <div className="text-center font-bold">2073671040052-26</div>
           </div>
-          <div className="flex flex-col items-center">
-            <img src={NoHalal} />
+          <div className="w-2 h-full bg-white"></div>
+          <div className="flex flex-col items-center text-sm md:text-base">
+            <img src={NoHalal} className="h-16 pb-2" />
             <div className="text-center">Nomor Halal:</div>
             <div className="text-center font-bold">36110006299010322</div>
           </div>
@@ -111,7 +118,9 @@ const FAQData = [
     answer: (
       <div className="flex flex-col">
         <div className="flex gap-5 items-center">
-          <img src={RightNumbering} className="w-10" />
+          <div className="w-10">
+            <img src={RightNumbering} className="w-full" />
+          </div>
           <div>
             Tenang aja, produk kami aman di konsumsi dengan kandungan sebagai
             berikut, untuk sirup cair & bubuk:
@@ -143,7 +152,9 @@ const FAQData = [
     answer: (
       <div className="flex flex-col">
         <div className="flex gap-5 items-center">
-          <img src={RightNumbering} className="w-10" />
+          <div className="w-10">
+            <img src={RightNumbering} className="w-full" />
+          </div>
           <div>Tidak, semua produk Gokka, tidak mengandung kafein.</div>
         </div>
       </div>
@@ -154,10 +165,14 @@ const FAQData = [
     answer: (
       <div className="flex flex-col gap-6">
         <div className="flex gap-5 items-center">
-          <img src={RightNumbering} className="w-10" />
+          <div className="w-10">
+            <img src={RightNumbering} className="w-full" />
+          </div>
           <div>Kunjungi artikel resep kami untuk cara penggunaannya.</div>
         </div>
-        <Button className="w-fit font-bold mx-auto">Kunjungi</Button>
+        <a className="flex justify-center" href='/resep'>
+          <Button className="w-fit font-bold mx-auto">Kunjungi</Button>
+        </a>
       </div>
     ),
   },
@@ -194,7 +209,9 @@ const FAQData = [
           </div>
         </div>
         <div className="flex gap-5 items-center">
-          <img src={RightNumbering} className="w-10" />
+          <div className="w-10">
+            <img src={RightNumbering} className="w-full" />
+          </div>
           <div>
             Saat ini kami masih belum memiliki toko ritel offline. Namun, kami
             memiliki media sosial, yaitu Instagram, dan Tiktok. Serta platform

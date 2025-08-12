@@ -2,7 +2,7 @@ import "./TentangKami.scss";
 
 // import logo
 import RightNumbering from "../../assets/Logo/RightNumbering.svg";
-import NoHalal from "../../assets/Logo/NoHalal.svg";
+import NoHalal from "../../assets/Logo/NoHalal.png";
 import NoPIRT from "../../assets/Logo/NoPIRT.svg";
 
 // import image
@@ -17,7 +17,7 @@ const TentangKami = () => {
     <div className="tentang">
       {/* filosofi  */}
       <div className="p-8">
-        <div className="flex gradient-gold gradient-gold-line-left font-semibold">
+        <div className="flex gradient-gold gradient-gold-line-left font-semibold text-2xl">
           Nilai Filosofis
         </div>
         <div className="flex flex-wrap justify-center gap-8 py-8">
@@ -98,12 +98,16 @@ const TentangKami = () => {
         </div>
         <div className="flex justify-center gap-8 text-white text-sm md:text-base">
           <div className="flex flex-col items-center">
-            <img src={NoPIRT} />
+            <div className="h-16 flex items-center justify-center">
+              <img src={NoPIRT} className="h-14" />
+            </div>
             <div className="text-center">Nomor P-IRT:</div>
             <div className="text-center font-bold">2073671040052-26</div>
           </div>
           <div className="flex flex-col items-center">
-            <img src={NoHalal} />
+            <div className="h-16 flex items-center justify-center">
+              <img src={NoHalal} className="h-16" />
+            </div>
             <div className="text-center">Nomor Halal:</div>
             <div className="text-center font-bold">36110006299010322</div>
           </div>

@@ -61,7 +61,7 @@ const ResepStep = () => {
             {recipe.steps.map((item, index) => (
               <SwiperSlide>
                 <div key={index} className="resep-step-item aspect-square">
-                  <video className="relative h-full w-full object-cover object-[0%_65%]" autoPlay muted loop >
+                  <video className="relative h-full w-full object-cover object-[0%_65%]" autoPlay muted loop playsInline >
                     <source src={item.image} type="video/mp4" />
                   </video>
                 </div>

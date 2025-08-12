@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  font-family: 'Poppins';
+  font-family: 'Poppins' !important;
   font-weight: 300;
   background-color: #332d1e;
 }

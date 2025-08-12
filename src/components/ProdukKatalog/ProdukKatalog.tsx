@@ -20,12 +20,14 @@ const ProdukKatalog = ({
   return (
     <div className='relative produk-katalog w-[150px] md:w-[200px] rounded-2xl' onClick={onClick} style={{ background: color }}>
       <img className='absolute w-full h-full z-1 top-0 rounded-2xl pattern' src={KatalogBackground} loading="lazy" />
-      <img src={image} className='relative mx-auto w-52 z-2' loading="lazy" />
+      <div className='w-52 h-56 mx-auto flex items-center justify-center'>
+        <img src={image} alt={name} className='relative mx-auto w-50 z-2' loading="lazy" />
+      </div>
       <img className='absolute w-6 h-6 top-4 right-4 z-4' src={Info} />
       <div className='absolute z-5 w-full h-fit bottom-0'>
         <div className='absolute produk-katalog-text-bg z-5 w-full h-full bottom-0 opacity-80 rounded-b-2xl'></div>
         <div className='relative flex text-sm md:text-base font-semibold gradient-gold gradient-gold-line z-6'>RASA</div>
-        <div className='px-2 md:px-5 py-3 font-bold text-[15px] md:text-lg text-white z-6 relative'>{name}</div>
+        <div className='px-2 md:px-5 pb-3 font-bold text-[15px] md:text-lg text-white z-6 relative'>{name}</div>
       </div>
     </div>
   )

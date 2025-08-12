@@ -3,7 +3,7 @@ import './Navbar.scss';
 
 // Import Images
 import Gokka from '../../assets/Logo/Gokka.svg';
-import Search from '../../assets/Logo/Search.svg';
+// import Search from '../../assets/Logo/Search.svg';
 import { useLocation } from 'react-router';
 
 const Navbar: React.FC = () => {
@@ -56,7 +56,7 @@ const Navbar: React.FC = () => {
 
   return (
     <>
-      <nav className="navbar bg-gray-800 font-inter px-6">
+      <nav className="navbar bg-gray-800 font-inter px-6 sticky top-0 z-25">
         <div className="mx-auto max-w-[1200px]">
           <div className="relative flex h-16 md:h-[80px] items-center justify-between">
             {/* Logo section - always on the left */}
@@ -150,7 +150,7 @@ const Navbar: React.FC = () => {
                   />
                 </svg>
               </button> */}
-              <img src={Search} className='h-6' /> 
+              {/* <img src={Search} className='h-6' />  */}
               {/* Profile dropdown */}
               <div className="relative ml-3" ref={userMenuRef}>
                 {/* <div>

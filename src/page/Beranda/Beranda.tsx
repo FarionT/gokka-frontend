@@ -58,13 +58,13 @@ const Beranda = () => {
   return (
     <div className="beranda">
       {/* banner  */}
-      <div className='beranda-banner h-[700px] relative overflow-hidden'>
+      <div className='beranda-banner h-[700px] relative overflow-hidden rounded-2xl mt-8 xl:mx-auto mx-6'>
         <Swiper
           modules={[Autoplay]}
-          // autoplay={{
-          //   delay: 2500,
-          //   disableOnInteraction: false,
-          // }}
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+          }}
           slidesPerView={1}
           className='xl:mx-auto mx-6 h-full'
         >
@@ -279,24 +279,24 @@ const Beranda = () => {
           <span className='text-white pt-3 text-xs xl:text-base w-68'>Produk kami dapat dibeli di berbagai platform e-commerce</span>
         </div>
         <div className='flex items-center justify-center gap-8 md:gap-15 lg:gap-24 py-12'>
-          <a className='flex flex-col items-center justify-between gap-1' href='#'>
+          <a className='flex flex-col items-center justify-between gap-1'>
             <img src={Shopee} className='h-9 md:h-14 lg:h-18' />
             <div className='text-xs md:text-base lg:text-lg'>Shopee</div>
           </a>
-          <a className='flex flex-col items-center justify-between gap-1' href='#'>
+          <a className='flex flex-col items-center justify-between gap-1'>
             <img src={Blibli} className='h-9 md:h-14 lg:h-18' />
             <div className='text-xs md:text-base lg:text-lg'>Blibli</div>
           </a>
-          <a className='flex flex-col items-center justify-between gap-1' href='#'>
+          <a className='flex flex-col items-center justify-between gap-1'>
             <img src={Lazada} className='h-9 md:h-14 lg:h-18' />
             <div className='text-xs md:text-base lg:text-lg'>Lazada</div>
           </a>
-          <a className='flex flex-col items-center justify-between gap-1' href='#'>
+          <a className='flex flex-col items-center justify-between gap-1'>
             <img src={Tokopedia} className='h-9 md:h-14 lg:h-18' />
             <div className='text-xs md:text-base lg:text-lg'>Tokopedia</div>
           </a>
         </div>
-        <a href='https://linktr.ee/gokkaindonesia'  className='w-fit flex mx-auto'>
+        <a href='https://linktr.ee/gokkaindonesia' target='__blank'  className='w-fit flex mx-auto'>
           <Button className='mx-auto font-bold'>Beli Sekarang</Button>
         </a>
       </div>

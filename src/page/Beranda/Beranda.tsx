@@ -127,7 +127,7 @@ const Beranda = () => {
         <div className='gradient-gold gradient-gold-both flex font-semibold py-8 text-base md:text-2xl'>SIRUP BUBUK</div>
         <div className='px-8 xl:px-0'>
           <Swiper
-            modules={[Pagination, Navigation]}
+            modules={[Pagination, Navigation, Autoplay]}
             navigation
             spaceBetween={50}
             slidesPerView={1}
@@ -212,13 +212,13 @@ const Beranda = () => {
           >
             {resepData.map((item, index) => (
               <SwiperSlide>
-                <div className='beranda-resep-item flex flex-col py-10 overflow-hidden' key={index}>
+                <div className='beranda-resep-item flex flex-col pt-10 overflow-hidden' key={index}>
                   <div className='beranda-resep-item-circle flex justify-center items-center mx-auto'>
                     <img src={WingRight} className='beranda-resep-item-wing-left' />
                     <img src={WingRight} className='beranda-resep-item-wing-right' />
                     <img src={item.image} />
                   </div>
-                  <div className='flex font-semibold text-xl pb-8 mx-auto py-8'>{item.name}</div>
+                  <div className='flex font-semibold text-xl pb-5 mx-auto pt-8'>{item.name}</div>
                 </div>
               </SwiperSlide>
             ))}
@@ -288,7 +288,9 @@ const Beranda = () => {
             <div className='text-xs md:text-base lg:text-lg'>Blibli</div>
           </a>
           <a className='flex flex-col items-center justify-between gap-1'>
-            <img src={Lazada} className='h-9 md:h-14 lg:h-18' />
+            <div className='h-9 md:h-14 lg:h-18 pt-1 md:pt-2'>
+              <img src={Lazada} className='h-full' />
+            </div>
             <div className='text-xs md:text-base lg:text-lg'>Lazada</div>
           </a>
           <a className='flex flex-col items-center justify-between gap-1'>

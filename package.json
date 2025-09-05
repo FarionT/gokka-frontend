@@ -1,7 +1,7 @@
 {
   "name": "gokka-frontend",
   "private": true,
-  "version": "0.10.2-development",
+  "version": "0.10.3-development",
   "type": "module",
   "scripts": {
     "dev": "vite --host",

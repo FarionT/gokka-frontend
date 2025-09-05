@@ -201,7 +201,7 @@ const Produk = () => {
               <div className="text-sm md:text-base">➤ Diproduksi menggunakan gula asli dari merk <span className="font-bold">Gulaku</span>.</div>
               <div>
                 <div className="gradient-gold w-fit font-semibold pt-6 pb-4 md:text-xl">Izin Edar & Halal</div>
-                <div className="flex justify-center gap-8 md:gap-12 shrink-0">
+                <div className="flex flex-col xs:flex-row justify-center gap-4 xs:gap-8 md:gap-12 shrink-0">
                   <div className="flex flex-col items-center text-sm md:text-base">
                     <img src={NoPIRT} className="h-16 pb-2" />
                     <div className="text-center">Nomor P-IRT:</div>

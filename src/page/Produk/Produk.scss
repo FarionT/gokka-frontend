@@ -30,6 +30,19 @@
       mix-blend-mode: multiply;
       // opacity: 0.9;
     }
+    @media screen and (max-width: 450px) {
+      .gradient-gold {
+        &-line {
+          &::before{
+            content: ""; /* Essential for pseudo-elements */
+            width: 40px; /* Width of the line */
+            height: 2px; /* Thickness of the line */
+            background-image: linear-gradient(to right, #A16706, #E3B61B, #F9F3A5, #E3B61B, #A16706);; /* Color of the line, matching one of the gradient colors */
+            margin: auto 10px auto 0; /* Center the line and add space below it */
+          }
+        }
+      }
+    }
   }
 
   // .swiper-pagination {

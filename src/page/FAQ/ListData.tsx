@@ -27,7 +27,10 @@ const FAQData = [
             <div className="text-xs">Blibli</div>
           </div>
           <div className="flex flex-col items-center">
-            <img src={Lazada} className="h-8" />
+            <div className='h-8 pt-1'>
+              <img src={Lazada} className='h-full' />
+            </div>
+            {/* <img src={Lazada} className="h-8" /> */}
             <div className="text-xs">Lazada</div>
           </div>
           <div className="flex flex-col items-center">
@@ -200,7 +203,9 @@ const FAQData = [
             <div className="text-xs">Blibli</div>
           </div>
           <div className="flex flex-col items-center">
-            <img src={Lazada} className="h-8" />
+            <div className='h-8 pt-1'>
+              <img src={Lazada} className='h-full' />
+            </div>
             <div className="text-xs">Lazada</div>
           </div>
           <div className="flex flex-col items-center">

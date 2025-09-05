@@ -58,13 +58,15 @@
     &-item {
       &-wing {
         &-left {
+          width: 230px;
           transform: scaleX(-1);
           position: absolute;
-          left: -30%;
+          left: -40%;
         }
         &-right {
+          width: 230px;
           position: absolute;
-          right: -30%;
+          right: -40%;
         }
       }
 

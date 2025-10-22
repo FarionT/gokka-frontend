@@ -275,7 +275,7 @@ const AdminProductDetail = () => {
                 handleDataCompositionChange(index, 'name', e)
               }}       
             />
-            <AdminButton className='self-center' color='destructive' onClick={() => setProductCompositions((prev: any) => prev.filter((item: any, i: any) => i !== index))}>Delete</AdminButton>
+            <AdminButton className='self-center' color='destructive' onClick={() => setProductCompositions((prev: any) => prev.filter((_: any, i: any) => i !== index))}>Delete</AdminButton>
           </div>
         )) : <div>No compositions added yet.</div>}
       </div>
@@ -317,7 +317,7 @@ const AdminProductDetail = () => {
               />
               <img src={variant.path instanceof File ? URL.createObjectURL(variant.path) : variant.path} className='w-64 h-32 object-contain border-1' />
             </div>
-            <AdminButton className='self-start' color='destructive' onClick={() => setProductVariants((prev: any) => prev.filter((item: any, i: any) => i !== index))}>Delete</AdminButton>
+            <AdminButton className='self-start' color='destructive' onClick={() => setProductVariants((prev: any) => prev.filter((_: any, i: any) => i !== index))}>Delete</AdminButton>
           </div>
         )) : <div>No variants added yet.</div>}
       </div>

@@ -30,7 +30,6 @@ export const useErrorHandler = () => {
 
   const handleErrorResponse = (
     res: any,
-    parentRoute?: string,
     customHeader?: string
   ) => {
     switch (res.status) {

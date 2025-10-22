@@ -12,7 +12,7 @@ import { deletePromo, getAllPromos } from '../../services/promo.services';
 const AdminPromo = () => {
   const { showLoader, hideLoader } = useLoader();
   const [page, setPage] = useState(1);
-  const [row, setRow] = useState(10);
+  const row = 10;
   const [search, setSearch] = useState('');
   const [totalItem, setTotalItem] = useState(0);
   const [data, setData] = useState<any>([]);

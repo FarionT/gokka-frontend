@@ -16,7 +16,6 @@ const AdminProductDetail = () => {
   const [productCategories, setProductCategories] = useState<any>([]);
   const [productSubcategories, setProductSubcategories] = useState<any>([]);
   const [mainImage, setMainImage] = useState<File | null>(null);
-  const [mainImageName, setMainImageName] = useState<any>('');
   const [productVariants, setProductVariants] = useState<any>([]);
   const [productCompositions, setProductCompositions] = useState<any>([]);
   const [description, setDescription] = useState('');
@@ -132,7 +131,6 @@ const AdminProductDetail = () => {
     // We only care about the File or null in this case
     if (file instanceof File || file === null) {
       setMainImage(file);
-      setMainImageName(file ? file.name : '');
     }
     // Optionally, you might handle error states if it's not a file/null
   };

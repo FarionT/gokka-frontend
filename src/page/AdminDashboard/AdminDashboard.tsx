@@ -1,5 +1,4 @@
-import { Breadcrumb, Table } from '../../ui-kit';
-import type { Column } from '../../ui-kit/Table/Table';
+import { Breadcrumb } from '../../ui-kit';
 import './AdminDashboard.scss';
 
 // Importing Images

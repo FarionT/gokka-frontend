@@ -5,10 +5,8 @@ import Gokka from '../../assets/Logo/Gokka.svg';
 import { login } from "../../services/login.services";
 import { useAuth, useErrorHandler, useLogin } from "../../utils/getAuth";
 import { useNavigate } from "react-router";
-import { useLoader } from "../../utils/userLoader";
 
 const Login = () => {
-  const { showLoader, hideLoader } = useLoader();
   const { isLoggedIn } = useAuth();
   const saveLogin = useLogin();
   const currData = localStorage.getItem("gokka_login");

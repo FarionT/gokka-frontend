@@ -323,7 +323,7 @@ const AdminRecipeDetail = () => {
                 handleDataCompositionChange(index, 'name', e)
               }}       
             />
-            <AdminButton className='self-center' color='destructive' onClick={() => setRecipeIngredients((prev: any) => prev.filter((item: any, i: any) => i !== index))}>Delete</AdminButton>
+            <AdminButton className='self-center' color='destructive' onClick={() => setRecipeIngredients((prev: any) => prev.filter((_: any, i: any) => i !== index))}>Delete</AdminButton>
           </div>
         )) : <div>No ingredients added yet.</div>}
       </div>
@@ -388,7 +388,7 @@ const AdminRecipeDetail = () => {
               />
               <video controls src={variant.path instanceof File ? URL.createObjectURL(variant.path) : variant.path} className='w-64 h-32 object-contain border-1' />
             </div>
-            <AdminButton className='self-start' color='destructive' onClick={() => setRecipeSteps((prev: any) => prev.filter((item: any, i: any) => i !== index))}>Delete</AdminButton>
+            <AdminButton className='self-start' color='destructive' onClick={() => setRecipeSteps((prev: any) => prev.filter((_: any, i: any) => i !== index))}>Delete</AdminButton>
           </div>
         )) : <div>No steps added yet.</div>}
       </div>

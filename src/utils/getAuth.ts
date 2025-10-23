@@ -46,29 +46,29 @@ export const useErrorHandler = () => {
         break;
       case 403:
         navigate("/");
-        Toast("Akses Ditolak", "error", res.data.message);
+        Toast("Access Denied", "error", res.data.message);
         // localStorage.removeItem("aks_login");
         // setTimeout(() => {
         //   navigate("/login");
         // }, 100);
         break;
       case 404:
-        Toast("Tidak Ditemukan", "error", res.data.message);
+        Toast("Not Found", "error", res.data.message);
         // setTimeout(() => {
         //   navigate(parentRoute ? parentRoute : parentPath);
         // }, 100);
         break;
       case 413:
-        Toast("Gagal", "error", "Data yang dikirim terlalu besar.");
+        Toast("Failed", "error", "Data yang dikirim terlalu besar.");
         break;
       case 422:
-        Toast(customHeader || "Terjadi Kesalahan!", "error", res.data.message);
+        Toast(customHeader || "Failed", "error", res.data.message);
         break;
       case 500:
-        Toast("Terjadi Kesalahan!", "error", res.data.message);
+        Toast("Failed", "error", res.data.message);
         break;
       case 502:
-        Toast("Terjadi Kesalahan!", "error", res.data.message);
+        Toast("Failed", "error", res.data.message);
         break;
     }
   };

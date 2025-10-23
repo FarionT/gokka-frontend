@@ -81,19 +81,15 @@ const AdminPromoDetail = () => {
     if (id) {
       const res = await updatePromo(id, form);
       if (res.status === 200) {
-        Toast('Success Updating Data', 'success', res.data.message)
+        Toast('Success', 'success', res.data.message)
         navigate('/admin/v1/promos')
-      } else {
-        Toast('Failed Updating Data', 'error', res.data.message)
-      }
+      } else handleErrorResponse(res)
     } else {
       const res = await createPromo(form)
       if (res.status === 201) {
-        Toast('Success Creating Data', 'success', res.data.message)
+        Toast('Success', 'success', res.data.message)
         navigate('/admin/v1/promos')
-      } else {
-        Toast('Failed Creating Data', 'error', res.data.message)
-      }
+      } else handleErrorResponse(res)
     }
     hideLoader()
   }
@@ -103,7 +99,7 @@ const AdminPromoDetail = () => {
       if (res.status === 200) {
         const data = res.data.data;
         setProductCategories(data);
-      }
+      } else handleErrorResponse(res)
     })
   }, [])
 
@@ -136,7 +132,7 @@ const AdminPromoDetail = () => {
       if (res.status === 200) {
         const data = res.data.data;
         setProductOptions(data.rows.map((product: any) => ({ label: product.name, value: product.id })))
-      }
+      } else handleErrorResponse(res)
     } finally {
       hideLoader()
     }

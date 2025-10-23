@@ -90,6 +90,10 @@ const AdminFAQ = () => {
     fetchData();
   }, [page, debouncedSearch])
 
+  useEffect(() => {
+    setPage(1)
+  }, [debouncedSearch])
+
   return (
     <div className="admin-dashboard">
       <Breadcrumb items={breadcrumbData} />

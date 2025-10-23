@@ -46,8 +46,6 @@ const Sidebar: React.FC<AdminSidebarProps> = ({ isExpanded }) => {
     const navigate = useNavigate();
     const location = useLocation();
     const logout = () => {
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        const navigate = useNavigate();
         localStorage.removeItem("gokka_login");
         navigate("/admin/v1/login");
     }
@@ -74,7 +72,7 @@ const Sidebar: React.FC<AdminSidebarProps> = ({ isExpanded }) => {
             {/* Menu Items */}
             <nav className="flex-1 overflow-y-auto p-4 space-y-2">
                 {menuItems.map((item) => {
-                    const isActive = item.href === currentPath;
+                    const isActive = currentPath.startsWith(item.href);
                     return (
                         <div
                             key={item.name}

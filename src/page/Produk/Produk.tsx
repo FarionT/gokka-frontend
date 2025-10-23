@@ -152,7 +152,7 @@ const Produk = () => {
                 effect={'coverflow'}
                 grabCursor={true}
                 slidesPerView={1}
-                loop={true}
+                loop={false}
                 coverflowEffect={{
                   rotate: 0,
                   stretch: 0,

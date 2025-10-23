@@ -6,9 +6,11 @@ import './AdminProductDetail.scss';
 import { useEffect, useState } from 'react';
 import { createProduct, getProductById, getProductCategory, updateProduct } from '../../services/product.services';
 import { useLoader } from '../../utils/userLoader';
+import { useErrorHandler } from '../../utils/getAuth';
 
 const AdminProductDetail = () => {
   const { showLoader, hideLoader } = useLoader();
+  const handleErrorResponse = useErrorHandler();
   const [name, setName] = useState('');
   const [color, setColor] = useState('#000000');
   const [productCategoryId, setProductCategoryId] = useState('');
@@ -33,7 +35,7 @@ const AdminProductDetail = () => {
         const data = res.data.data;
         const mainImage = await fetch(data.path)
         const blob = await mainImage.blob();
-        const mainFile = new File([blob], 'main', {
+        const mainFile = new File([blob], data.file_name, {
           type: blob.type
         })
         setName(data.name);
@@ -48,7 +50,7 @@ const AdminProductDetail = () => {
             if (item.path) {
               const response = await fetch(item.path);
               const blob = await response.blob();
-              const file =  new File([blob], 'children', {
+              const file =  new File([blob], item.file_name, {
                 type: blob.type,
               });
               return { ...item, path: file }
@@ -59,7 +61,7 @@ const AdminProductDetail = () => {
         );
         const actualChildrenFiles = await Promise.all(childrenFilePromises);
         setProductVariants(actualChildrenFiles.filter(Boolean));
-      }
+      } else handleErrorResponse(res)
     } finally {
       hideLoader()
     }
@@ -77,7 +79,7 @@ const AdminProductDetail = () => {
       if (res.status === 200) {
         const data = res.data.data;
         setProductCategories(data);
-      }
+      } else handleErrorResponse(res)
     } finally {
       hideLoader()
     }
@@ -111,18 +113,15 @@ const AdminProductDetail = () => {
     if (id) {
       const res = await updateProduct(id, formData)
       if (res.status === 200) {
+        Toast('Success', 'success', res.data.message)
         navigate('/admin/v1/products')
-        Toast('Sukses', 'success', 'Done')
-      } else {
-        Toast('Failed Updating Data', 'error', res.data.message)
-      }
+      } else handleErrorResponse(res)
     } else {
       const res = await createProduct(formData)
       if (res.status === 201) {
+        Toast('Success', 'success', res.data.message)
         navigate('/admin/v1/products')
-      } else {
-        Toast('Failed Creating Data', 'error', res.data.message)
-      }
+      } else handleErrorResponse(res)
     }
     hideLoader()
   }

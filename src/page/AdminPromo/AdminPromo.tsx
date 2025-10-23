@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router';
-import { AdminButton, Breadcrumb, InputField, Table } from '../../ui-kit';
+import { AdminButton, Breadcrumb, InputField, Table, Toast } from '../../ui-kit';
 import type { Column } from '../../ui-kit/Table/Table';
 import './AdminPromo.scss';
 
@@ -8,9 +8,11 @@ import { useEffect, useState } from 'react';
 import { useDebounce } from '../../utils/useDebounce';
 import { useLoader } from '../../utils/userLoader';
 import { deletePromo, getAllPromos } from '../../services/promo.services';
+import { useErrorHandler } from '../../utils/getAuth';
 
 const AdminPromo = () => {
   const { showLoader, hideLoader } = useLoader();
+  const handleErrorResponse = useErrorHandler();
   const [page, setPage] = useState(1);
   const row = 10;
   const [search, setSearch] = useState('');
@@ -86,7 +88,7 @@ const AdminPromo = () => {
         const totalData = res.data.data;
         setTotalItem(totalData.count);
         setData(totalData.rows)
-      }
+      } else handleErrorResponse(res)
     } finally {
       hideLoader()
     }
@@ -97,8 +99,9 @@ const AdminPromo = () => {
       showLoader()
       const res = await deletePromo(id)
       if (res.status === 200) {
+        Toast('Success', 'success', res.data.message)
         fetchData();
-      }
+      } else handleErrorResponse(res)
     } finally {
       hideLoader()
     }
@@ -107,6 +110,10 @@ const AdminPromo = () => {
   useEffect(() => {
     fetchData();
   }, [page, debouncedSearch])
+
+  useEffect(() => {
+    setPage(1)
+  }, [debouncedSearch])
 
   return (
     <div className="admin-promo">

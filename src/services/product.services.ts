@@ -14,8 +14,11 @@ export const getAllProducts = (params: any) => {
   if (params.sort_type && params.sort_type !== "") {
     queryParams.append("sort_type", String(params.sort_type));
   }
-  if (params.role_id && params.role_id !== "") {
-    queryParams.append("role_id", String(params.role_id));
+  if (params.category && params.category !== "") {
+    queryParams.append("category", params.category);
+  }
+  if (params.subcategory && params.subcategory !== "") {
+    queryParams.append("subcategory", params.subcategory);
   }
   return getAPI(`products?${queryParams}`, {});
 };

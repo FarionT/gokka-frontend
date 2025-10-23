@@ -446,7 +446,7 @@ export const produk = [
     id: 20,
     name: "Hazelnut",
     color: "#7E583A",
-    type: "dessert",
+    type: "cair",
     category: "rempah_kacang",
     image: HazelnutCair,
     variant: [
@@ -1276,3 +1276,14 @@ export const produk = [
     variant: [{ title: "1 KG", image: YogurtBubuk }, { title: "50G", image: YogurtBubuk }, { title: "75G", image: YogurtBubuk }],
   }
 ];
+
+const temp2 = produk.filter(item => item.type === 'cair')
+const data = temp2.map(item => {
+  return {
+    name: item.name,
+    color: item.color,
+    product_category: item.type,
+    product_subcategory: item.category
+  }
+})
+console.log(data)

@@ -7,9 +7,11 @@ import { useEffect, useState } from 'react';
 import { createRecipe, getRecipeById, updateRecipe } from '../../services/recipe.services';
 import { getProductByCategory, getProductCategory } from '../../services/product.services';
 import { useLoader } from '../../utils/userLoader';
+import { useErrorHandler } from '../../utils/getAuth';
 
 const AdminRecipeDetail = () => {
   const { showLoader, hideLoader } = useLoader();
+  const handleErrorResponse = useErrorHandler();
   const [name, setName] = useState('');
   const [productId, setProductId] = useState('');
   const [time, setTime] = useState('');
@@ -36,7 +38,7 @@ const AdminRecipeDetail = () => {
         const data = res.data.data;
         const mainImage = await fetch(data.path)
         const blob = await mainImage.blob();
-        const mainFile = new File([blob], 'main', {
+        const mainFile = new File([blob], data.file_name, {
           type: blob.type
         })
         setName(data.name);
@@ -52,7 +54,7 @@ const AdminRecipeDetail = () => {
             if (item.path) {
               const response = await fetch(item.path);
               const blob = await response.blob();
-              const file =  new File([blob], 'children', {
+              const file =  new File([blob], item.file_name, {
                 type: blob.type,
               });
               return { ...item, path: file }
@@ -64,7 +66,7 @@ const AdminRecipeDetail = () => {
         const actualChildrenFiles = await Promise.all(childrenFilePromises);
 
         setRecipeSteps(actualChildrenFiles.filter(Boolean));
-      }
+      } else handleErrorResponse(res)
     } finally {
       hideLoader()
     }
@@ -109,17 +111,13 @@ const AdminRecipeDetail = () => {
       if (res.status === 200) {
         Toast('Success Updating Data', 'success', res.data.message)
         navigate('/admin/v1/recipes')
-      } else {
-        Toast('Failed Updating Data', 'error', res.data.message)
-      }
+      } else handleErrorResponse(res)
     } else {
       const res = await createRecipe(formData)
       if (res.status === 201) {
         Toast('Success Creating Data', 'success', res.data.message)
         navigate('/admin/v1/recipes')
-      } else {
-        Toast('Failed Creating Data', 'error', res.data.message)
-      }
+      } else handleErrorResponse(res)
     }
     hideLoader()
   }
@@ -129,7 +127,7 @@ const AdminRecipeDetail = () => {
       if (res.status === 200) {
         const data = res.data.data;
         setProductCategories(data);
-      }
+      } else handleErrorResponse(res)
     })
   }, [])
 
@@ -176,7 +174,7 @@ const AdminRecipeDetail = () => {
       if (res.status === 200) {
         const data = res.data.data;
         setProductOptions(data.rows.map((product: any) => ({ label: product.name, value: product.id })))
-      }
+      } else handleErrorResponse(res)
     } finally {
       hideLoader()
     }
@@ -290,12 +288,11 @@ const AdminRecipeDetail = () => {
           <InputField
             label="Main Picture"
             type="file" // Set the type to 'file'
-            fileType='video'
             value={mainImage} // Pass the state value
             onChange={handleFileChange} // Pass the state setter function
             className="mb-6"
           />
-          <video controls src={mainImage ? URL.createObjectURL(mainImage!) : ''} className='w-64 border-1' />
+          <img src={mainImage ? URL.createObjectURL(mainImage!) : ''} className='w-64 border-1' />
         </div>
       </div>
       <div className='flex justify-between items-center mb-5'>

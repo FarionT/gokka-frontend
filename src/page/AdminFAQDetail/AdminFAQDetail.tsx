@@ -1,13 +1,15 @@
 import { useNavigate, useSearchParams } from 'react-router';
 import { createFAQ, getFAQById, updateFAQ } from '../../services/faq.services';
-import { AdminButton, Breadcrumb, InputField, Toast } from '../../ui-kit';
+import { AdminButton, Breadcrumb, InputField } from '../../ui-kit';
 import './AdminFAQDetail.scss';
 
 // Importing Images
 import { useEffect, useState } from 'react';
 import { useLoader } from '../../utils/userLoader';
+import { useErrorHandler } from '../../utils/getAuth';
 
 const AdminFAQDetail = () => {
+  const handleErrorResponse = useErrorHandler();
   const { showLoader, hideLoader } = useLoader();
   const [question, setQuestion] = useState('');
   const [answer, setAnswer] = useState('');
@@ -52,16 +54,12 @@ const AdminFAQDetail = () => {
         const res = await updateFAQ(id, data)
         if (res.status === 200) {
           navigate('/admin/v1/faq')
-        } else {
-          Toast('Failed Updating Data', 'error', res.data.message)
-        }
+        } else handleErrorResponse(res)
       } else {
         const res = await createFAQ(data)
         if (res.status === 201) {
           navigate('/admin/v1/faq')
-        } else {
-          Toast('Failed Creating Data', 'error', res.data.message)
-        }
+        } else handleErrorResponse(res)
       }
     } finally {
       hideLoader()
@@ -77,6 +75,7 @@ const AdminFAQDetail = () => {
           label='Question'
           placeholder='Question'
           type='textarea'
+          rows={4}
           value={question}
           onChange={(e: any) => setQuestion(e)}       
         />
@@ -84,6 +83,7 @@ const AdminFAQDetail = () => {
           label='Answer'
           placeholder='Answer'
           type='textarea'
+          rows={10}
           value={answer}
           onChange={(e: any) => setAnswer(e)}       
         />

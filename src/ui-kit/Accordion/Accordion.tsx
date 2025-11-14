@@ -71,7 +71,7 @@ export const Accordions = ({
               <span className="accordion-title-text">{item.props.title}</span>
               <img className="accordion-title-icon" src={ChevronDown} />
             </div>
-            <div className={`accordion-content ${isOpen ? 'accordion-content-open' : ''}`}>
+            <div className={`accordion-content text-wrap whitespace-break-spaces ${isOpen ? 'accordion-content-open' : ''}`}>
               {item.props.children}
             </div>
           </div>

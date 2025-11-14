@@ -7,6 +7,9 @@ type TProdukBeranda = {
   image: string,
   name: string,
   color: string,
+  description: string,
+  price: number,
+  discount: number,
   onClick?: (event: React.MouseEvent) => void
 }
 
@@ -14,29 +17,40 @@ const ProdukBeranda = ({
   image,
   name,
   color,
+  description,
+  price,
+  discount,
   onClick
 }: TProdukBeranda) => {
 
+  function formatRupiah(value: number | string): string {
+    if (!value) return '';
+    const num = typeof value === 'string' ? parseInt(value.replace(/\D/g, '')) : value;
+    return num.toLocaleString('id-ID');
+  }
+
+  const finalPrice = Math.round(price * (100 - discount) / 100)
+
   return (
     <div 
-      className='relative produk-beranda w-fit pt-5 rounded-2xl'
+      className='relative produk-beranda w-fit pt-5 rounded-2xl h-[500px]'
       onClick={onClick} 
       style={{ backgroundColor: color}}
       // style={{ background: `linear-gradient(to top, ${color}, ${color}B3, ${color}99` }}
     >
       <div className='text-center produk-beranda-title relative z-3'>
         <div className='font-bold text-4xl'>{name}</div>
-        <div className='font-semibold text-xl'>+Nyegerin</div>
+        <div className='font-semibold text-xl'>{description}</div>
       </div>
       <div className='absolute z-5 flex bg-[#332d1e] p-2 rounded-2xl bottom-8 left-5 gap-1 xs:gap-2'>
         <div className='relative -ml-5 -mt-5 h-fit flex justify-center'>
           <img className='w-14 xs:w-16' src={Medal} />
-          <div className='absolute top-4.5 xs:top-5 font-semibold'>20%</div>
+          <div className='absolute top-4.5 xs:top-5 font-semibold'>{discount}%</div>
         </div>
         <div className=''>
           <div className='text-white text-sm xs:text-lg'>Great deals</div>
-          <div className='line-through decoration-red-800 decoration-2 text-[#73726e] font-semibold text-[10px]'>Rp. 44.000,00</div>
-          <div className='font-semibold text-xs xs:text-sm'>Rp. 35.200,00</div>
+          <div className='line-through decoration-red-800 decoration-2 text-[#73726e] font-semibold text-[10px]'>Rp. {formatRupiah(price)},00</div>
+          <div className='font-semibold text-xs xs:text-sm'>Rp. {formatRupiah(finalPrice)},00</div>
         </div>
       </div>
       <img src={image} className='mx-auto w-96 relative z-2' />

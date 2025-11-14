@@ -21,7 +21,6 @@ const BasicLayout = () => {
 
 const PrivateRoutes = () => {
   const { isLoggedIn } = useAuth();
-  console.log(isLoggedIn)
   return isLoggedIn ? <BasicLayout /> : <Navigate to='/' />
 }
 

@@ -17,8 +17,8 @@ const FAQ = () => {
       }
       const res = await getAllFAQ(params);
       if (res.status === 200) {
-        const data = res.data.data;
-        setData(data.rows)
+        const datas = res.data.data;
+        setData(datas.rows)
       } else handleErrorResponse(res)
     } finally {
       hideLoader();

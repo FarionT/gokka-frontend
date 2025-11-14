@@ -3,14 +3,14 @@ import { AdminButton, InputField, Toast } from "../../ui-kit";
 import "./ChangePassword.scss";
 import Gokka from '../../assets/Logo/Gokka.svg';
 import { changePassword } from "../../services/login.services";
-import { useAuth, useErrorHandler, useLogin } from "../../utils/getAuth";
+import { useAuth, useErrorHandler } from "../../utils/getAuth";
 import { useNavigate } from "react-router";
 import { useLoader } from "../../utils/userLoader";
 
 const ChangePassword = () => {
   const { showLoader, hideLoader } = useLoader();
   const { isLoggedIn } = useAuth();
-  const saveLogin = useLogin();
+  // const saveLogin = useLogin();
   const currData = localStorage.getItem("gokka_login");
   const navigate = useNavigate();
   const handleErrorResponse = useErrorHandler();
@@ -24,17 +24,16 @@ const ChangePassword = () => {
       showLoader();
       const res = await changePassword(oldPassword, newPassword)
       if (res.status === 200) {
-        const data: any = res.data.data;
-        const tokens = res.data.tokens;
-        const initialState: any = {
-          isLoggedIn: true,
-          user: data,
-          token: tokens?.access.token || "",
-          refresh: tokens?.refresh.token || "",
-        };
-        saveLogin(initialState);
+        // const data: any = res.data.data;
+        // const tokens = res.data.tokens;
+        // const initialState: any = {
+        //   isLoggedIn: true,
+        //   user: data,
+        //   token: tokens?.access.token || "",
+        //   refresh: tokens?.refresh.token || "",
+        // };
         Toast("Sukses", "success", res.data.message);
-        navigate("/admin/dashboard")
+        navigate("/admin/v1/dashboard")
       } else handleErrorResponse(res);
     } finally {
       hideLoader()
@@ -52,17 +51,17 @@ const ChangePassword = () => {
   useEffect(() => {
     if (currData) {
       if (JSON.parse(currData).user.is_pwd_resetted === true && isLoggedIn) {
-        navigate("/");
+        navigate("/admin/v1/dashboard");
       } 
     }
-  }, [isLoggedIn, navigate, currData]);
+  }, [currData]);
 
   return (
     <div className="flex items-center justify-center min-h-screen">
       <div className="w-64">
         <img src={Gokka} className="mb-4 mx-auto" />
         <form onSubmit={handleSubmit}>
-          <div className="bg-white p-6 rounded-2xl">
+          <div className="bg-white p-6 rounded-2xl gap-6 flex flex-col gap-4">
             <InputField
               label="Password Lama"
               placeholder="Password Lama"
@@ -77,7 +76,7 @@ const ChangePassword = () => {
               value={newPassword}
               onChange={(val) => setNewPassword(val as string)}
             />
-            <AdminButton onClick={() => console.log('test')} disabled={handleButtonDisabled()}>
+            <AdminButton disabled={handleButtonDisabled()}>
               Login
             </AdminButton>
           </div>

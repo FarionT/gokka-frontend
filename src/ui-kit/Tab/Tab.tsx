@@ -1,5 +1,6 @@
 import { useState, type ReactElement, type ReactNode } from "react";
 import './Tab.scss';
+import React from "react";
 
 // Add onChange to TTab to pass the new active tab index to the parent
 type TTab = {
@@ -50,15 +51,18 @@ export const Tabs = ({
   return (
     <div className={`${className ?? ''} tab`}>
       <div className={`flex tab-title tab-title-${position} gap-6`}>
-        {children.map((item, index) => (
-          <div 
-            className={`tab-title-text ${currentActiveTab === index ? 'tab-active' : ''}`} 
-            key={index} 
-            onClick={() => { changeTab(index) }}
-          >
-            {item.props.title}
-          </div>
-        ))}
+        {React.Children.map(children, (item, index) => {
+          if (!item || !('props' in item)) return null; // safety check
+          return (
+            <div
+              className={`tab-title-text ${currentActiveTab === index ? 'tab-active' : ''}`}
+              key={index}
+              onClick={() => changeTab(index)}
+            >
+              {item.props.title}
+            </div>
+          );
+        })}
       </div>
       <div className="tab-content py-6">{children[currentActiveTab]}</div>
     </div>

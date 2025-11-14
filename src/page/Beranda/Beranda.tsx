@@ -1,5 +1,4 @@
 import './Beranda.scss';
-import { produk } from '../Produk/ListData';
 
 // Importing Images
 import Shopee from '../../assets/Logo/Shopee.svg';
@@ -27,10 +26,58 @@ import { Button } from '../../ui-kit';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { ProdukBeranda, TestimoniBeranda } from '../../components';
-import { resepData } from '../Resep/ResepData';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useLoader } from '../../utils/userLoader';
+import { getAllPromos } from '../../services/promo.services';
+import { useErrorHandler } from '../../utils/getAuth';
+import { getAllRecipes } from '../../services/recipe.services';
+import { useNavigate } from 'react-router';
 
 const Beranda = () => {
+  const navigate = useNavigate();
+  const { showLoader, hideLoader } = useLoader();
+  const handleErrorResponse = useErrorHandler();
+  const [promos, setPromos] = useState<any>([]);
+  const [recipes, setRecipes] = useState<any>([])
+  
+  const fetchData = async () => {
+    const params = {
+      pagination: false,
+    }
+    try {
+      showLoader();
+      const res = await getAllPromos(params)
+      if (res.status === 200) {
+        const totalData = res.data.data;
+        setPromos(totalData.rows)
+      } else handleErrorResponse(res)
+    } finally {
+      hideLoader()
+    }
+  }
+
+  const fetchRecipeData = async () => {
+    try {
+      showLoader();
+      const params = {
+        pagination: false
+      }
+      const res = await getAllRecipes(params);
+      if (res.status === 200) {
+        const datas = res.data.data;
+        setRecipes(datas.rows)
+      } else handleErrorResponse(res)
+    } finally {
+      hideLoader();
+    }
+
+  }
+
+  useEffect(() => {
+    fetchData();
+    fetchRecipeData();
+  }, [])
+
   const tentangLogo = [
     {
       src: VariatifRasa,
@@ -83,9 +130,7 @@ const Beranda = () => {
         <div className='flex flex-col items-center gap-2 beranda-banner-text relative z-4'>
           <div className='gradient-gold font-bold text-xl md:text-4xl text-shadow-xs/10'><span>Jelajahi Rasa,</span>{' '}<span>Penuh Warna!</span></div>
           <div className='font-semibold text-white'>Kami memiliki 54 varian rasa</div>
-          <a href='/produk'>
-            <Button className='font-bold w-fit'>Jelajahi</Button>
-          </a>
+          <Button className='font-bold w-fit' onClick={() => navigate('/produk')}>Jelajahi</Button>
         </div>
         {/* <img src={Model} className='beranda-banner-image' />
         <div className='flex flex-col items-center gap-2 beranda-banner-text'>
@@ -98,7 +143,7 @@ const Beranda = () => {
       <div className='beranda-produk'>
         <div className='gradient-gold gradient-gold-line flex w-fit font-semibold py-8 text-base md:text-2xl'>PRODUK KAMI</div>
         <div className='mx-auto flex gradient-gold font-bold w-fit text-3xl md:text-4xl py-8'>Produk Best Seller</div>
-        <div className='gradient-gold gradient-gold-both flex font-semibold py-8 text-base md:text-2xl px-4'>SIRUP CAIR</div>
+        {/* <div className='gradient-gold gradient-gold-both flex font-semibold py-8 text-base md:text-2xl px-4'>SIRUP CAIR</div> */}
         <div className='px-8 xl:px-0'>
           <Swiper
             modules={[Pagination, Navigation]}
@@ -116,15 +161,26 @@ const Beranda = () => {
               }
             }}
           >
-            <SwiperSlide><ProdukBeranda image={produk[0].image} name={produk[0].name} color={produk[0].color} /></SwiperSlide>
-            <SwiperSlide><ProdukBeranda image={produk[0].image} name={produk[0].name} color={produk[0].color} /></SwiperSlide>
-            <SwiperSlide><ProdukBeranda image={produk[0].image} name={produk[0].name} color={produk[0].color} /></SwiperSlide>
+            {promos.length > 0 ? promos.map((promo: any) => (
+              <SwiperSlide>
+                <ProdukBeranda 
+                  image={promo.product_variant_path} 
+                  name={promo.product_name} 
+                  color={promo.product_color} 
+                  description={promo.description}
+                  price={promo.price}
+                  discount={promo.discount}
+                />
+              </SwiperSlide>
+            )) : <div>No Data</div>}
+            {/* <SwiperSlide><ProdukBeranda image={produk[0].image} name={produk[0].name} color={produk[0].color} /></SwiperSlide>
+            <SwiperSlide><ProdukBeranda image={produk[0].image} name={produk[0].name} color={produk[0].color} /></SwiperSlide> */}
           </Swiper>
         </div>
-        <a href='/produk' className='w-fit flex mx-auto'>
-          <Button className='font-bold w-fit mx-auto my-8'>Jelajahi Produk</Button>
-        </a>
-        <div className='gradient-gold gradient-gold-both flex font-semibold py-8 text-base md:text-2xl'>SIRUP BUBUK</div>
+        <div className='flex justify-center'>
+          <Button className='font-bold w-fit mx-auto my-8' onClick={() => navigate('/produk')}>Jelajahi Produk</Button>
+        </div>
+        {/* <div className='gradient-gold gradient-gold-both flex font-semibold py-8 text-base md:text-2xl'>SIRUP BUBUK</div>
         <div className='px-8 xl:px-0'>
           <Swiper
             modules={[Pagination, Navigation, Autoplay]}
@@ -149,7 +205,7 @@ const Beranda = () => {
         </div>
         <a href='/produk' className='w-fit flex mx-auto'>
           <Button className='font-bold w-fit mx-auto flex my-8'>Jelajahi Produk</Button>
-        </a>
+        </a> */}
       </div>
       {/* beranda tentang kami */}
       <div className='beranda-tentang mx-auto'>
@@ -174,9 +230,7 @@ const Beranda = () => {
               <div className=''>
                 Kami, sangat suka berinovasi untuk memiliki varian rasa yang banyak dan kreatif dalam membuat rasa esen. Sehingga dapat memenuhi kebutuhan konsumen yang bervariasi
               </div>
-              <a href='/tentang-kami'>
-                <Button className='w-fit font-bold'>Baca Artikel</Button>
-              </a>
+              <Button className='w-fit font-bold' onClick={() => navigate('/tentang-kami')}>Baca Artikel</Button>
             </div>
           </div>
         </div>
@@ -186,9 +240,7 @@ const Beranda = () => {
             <span>Ayo Temukan</span>
             <span className='gradient-gold'>Duniamu!</span>
           </div>
-          <a href='/produk'>
-            <Button className='w-fit font-bold'>Jelajahi</Button>
-          </a>
+          <Button className='w-fit font-bold' onClick={() => navigate('/produk')}>Jelajahi</Button>
         </div>
       </div>
       {/* RESEP KAMI  */}
@@ -210,15 +262,15 @@ const Beranda = () => {
               setActiveResepSlide(swiper.activeIndex)
             }}
           >
-            {resepData.map((item, index) => (
+            {recipes.map((recipe: any) => (
               <SwiperSlide>
-                <div className='beranda-resep-item flex flex-col pt-10 overflow-hidden' key={index}>
+                <div className='beranda-resep-item flex flex-col pt-10 overflow-hidden' key={recipe.id}>
                   <div className='beranda-resep-item-circle flex justify-center items-center mx-auto'>
                     <img src={WingRight} className='beranda-resep-item-wing-left' />
                     <img src={WingRight} className='beranda-resep-item-wing-right' />
-                    <img src={item.image} />
+                    <img src={recipe.path} />
                   </div>
-                  <div className='flex font-semibold text-xl pb-5 mx-auto pt-8'>{item.name}</div>
+                  <div className='flex font-semibold text-xl pb-5 mx-auto pt-8'>{recipe.name}</div>
                 </div>
               </SwiperSlide>
             ))}
@@ -227,9 +279,7 @@ const Beranda = () => {
             <div onClick={() => swiperRef.current?.slidePrev()} className={`cursor-pointer`} >
               <img src={Left} className='w-5' /> 
             </div>
-            <a href={`/resep/${activeResepSlide + 1}`} className='mx-auto'>
-              <Button className='font-bold mx-auto word'>Baca Artikel</Button>
-            </a>
+            <Button className='font-bold mx-auto word' onClick={() => navigate(`/resep/${recipes[activeResepSlide].id}`)}>Baca Artikel</Button>
             <div onClick={() => swiperRef.current?.slideNext()} className={`cursor-pointer`} >
               <img src={Right} className='w-5' /> 
             </div>
@@ -265,9 +315,9 @@ const Beranda = () => {
             <SwiperSlide><TestimoniBeranda product={'Lemon'} review={'Rasa sangat enak'} user={'Oween N'} image={TestimoniThree} /></SwiperSlide>
           </Swiper>
         </div>
-        <a href='/testimoni' className='flex justify-center py-8 mx-auto w-fit'>
-          <Button className='w-fit font-bold'>Review</Button>
-        </a>
+        <div className='flex justify-center py-8 mx-auto w-fit'>
+          <Button className='w-fit font-bold' onClick={() => navigate('/testimoni')}>Review</Button>
+        </div>
       </div>
       {/* beranda pembelian  */}
       <div className='beranda-pembelian flex flex-col py-20'>

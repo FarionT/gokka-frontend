@@ -4,27 +4,27 @@ export const testimoniData = [
     name: 'Michael',
     time: new Date(),
     product: 'Gokka Lemon',
-    comment: 'Mantep cuk'
+    comment: 'Mantep Rasanya'
   },
   {
     id: 2,
     name: 'Michael',
     time: new Date(),
     product: 'Gokka Lemon',
-    comment: 'Mantep cuk'
+    comment: 'Mantep Rasanya'
   },
   {
     id: 3,
     name: 'Michael',
     time: new Date(),
     product: 'Gokka Lemon',
-    comment: 'Mantep cuk'
+    comment: 'Mantep Rasanya'
   },
   {
     id: 4,
     name: 'Michael',
     time: new Date(),
     product: 'Gokka Lemon',
-    comment: 'Mantep cuk'
+    comment: 'Mantep Rasanya'
   },
 ]

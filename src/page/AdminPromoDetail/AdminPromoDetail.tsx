@@ -104,6 +104,7 @@ const AdminPromoDetail = () => {
   }, [])
 
   const getProductVariant = async () => {
+    if (!productId) return 
     try {
       showLoader()
       const res = await getProductById(productId);

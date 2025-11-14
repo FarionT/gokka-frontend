@@ -28,7 +28,7 @@ export const getProductCategory = () => {
 };
 
 export const getProductByCategory = (category: string, subcategory: string) => {
-  return getAPI(`products?pagination=false,category=${category},subcategory=${subcategory}`, {})
+  return getAPI(`products?pagination=false&category=${category}&subcategory=${subcategory}`, {})
 }
 
 export const getProductById = (id: string) => {

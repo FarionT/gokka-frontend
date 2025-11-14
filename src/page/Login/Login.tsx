@@ -53,8 +53,8 @@ const Login = () => {
 
   useEffect(() => {
     if (currData) {
-      if (JSON.parse(currData).user.is_pwd_resetted === true && isLoggedIn) {
-        navigate("/");
+      if (isLoggedIn) {
+        navigate("/admin/v1/dashboard");
       } 
     }
   }, [isLoggedIn, navigate, currData]);

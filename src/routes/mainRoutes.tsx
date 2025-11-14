@@ -39,7 +39,6 @@ const MainRoutes = () => {
         <Route element={<Beranda />} path='*' />
       </Route>
       <Route element={<PrivateRoutes />}>
-        <Route element={<ChangePassword />} path='/admin/v1/change-password' />
         <Route element={<AdminDashboard />} path='/admin/v1/dashboard' />
         <Route element={<AdminFAQ />} path='/admin/v1/faq' />
         <Route element={<AdminFAQDetail />} path='/admin/v1/faq/detail' />
@@ -52,6 +51,7 @@ const MainRoutes = () => {
       </Route>
       <Route element={<CustomRoutes />}>
         <Route element={<Login />} path='/admin/v1/login' />
+        <Route element={<ChangePassword />} path='/admin/v1/change-password' />
       </Route>
     </Routes>
   )

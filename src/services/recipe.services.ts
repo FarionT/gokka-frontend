@@ -23,6 +23,14 @@ export const getAllRecipes = (params: any) => {
 export const getRecipeById = (id: string) => {
   return getAPI(`recipes/${id}`, {});
 };
+export const getRecipeDetailById = (id: string) => {
+  return getAPI(`recipes/detail/${id}`, {});
+};
+export const getRecipeStepById = (params: any) => {
+  const queryParams = new URLSearchParams();
+  queryParams.append("step", params.step);
+  return getAPI(`recipes/step/${params.id}?${queryParams}`, {});
+};
 
 export const createRecipe = (data: any) => {
   return postFileAPI("recipes", data);

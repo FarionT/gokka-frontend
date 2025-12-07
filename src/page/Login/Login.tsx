@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { AdminButton, InputField, Toast } from "../../ui-kit";
 import "./Login.scss";
-import Gokka from '../../assets/Logo/Gokka.svg';
+import Gokka from '../../assets/Logo/Gokka.png';
 import { login } from "../../services/login.services";
 import { useAuth, useErrorHandler, useLogin } from "../../utils/getAuth";
 import { useNavigate } from "react-router";

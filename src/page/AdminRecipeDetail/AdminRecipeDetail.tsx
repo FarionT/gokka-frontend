@@ -3,6 +3,7 @@ import { AdminButton, Breadcrumb, InputField, Toast } from '../../ui-kit';
 import './AdminRecipeDetail.scss';
 
 // Importing Images
+import Jam from '../../assets/Logo/Jam.svg';
 import { useEffect, useState } from 'react';
 import { createRecipe, getRecipeById, updateRecipe } from '../../services/recipe.services';
 import { getProductByCategory, getProductCategory } from '../../services/product.services';
@@ -292,7 +293,7 @@ const AdminRecipeDetail = () => {
             onChange={handleFileChange} // Pass the state setter function
             className="mb-6"
           />
-          <img src={mainImage ? URL.createObjectURL(mainImage!) : ''} className='w-64 border-1' />
+          {mainImage && <img src={mainImage ? URL.createObjectURL(mainImage!) : Jam} className='w-64 border-1' />}
         </div>
       </div>
       <div className='flex justify-between items-center mb-5'>

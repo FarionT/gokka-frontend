@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router';
-import { AdminButton, Breadcrumb, InputField, Table, Toast } from '../../ui-kit';
+import { AdminButton, AdminModal, Breadcrumb, InputField, Table, Toast } from '../../ui-kit';
 import type { Column } from '../../ui-kit/Table/Table';
 import './AdminProduct.scss';
 
@@ -18,10 +18,12 @@ const AdminFAQ = () => {
   const [search, setSearch] = useState('');
   const [totalItem, setTotalItem] = useState(0);
   const [data, setData] = useState<any>([]);
+  const [selectedId, setSelectedId] = useState('')
   const [categoryId, setCategoryId] = useState('')
   const [subcategoryId, setSubcategoryId] = useState('')
   const [productCategories, setProductCategories] = useState<any>([])
   const [productSubcategories, setProductSubcategories] = useState<any>([])
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const navigate = useNavigate();
   const debouncedSearch = useDebounce(search, 500);
@@ -45,7 +47,7 @@ const AdminFAQ = () => {
         return (
           <div className='flex gap-4'>
             <AdminButton onClick={() => navigate(`/admin/v1/products/detail?id=${props.id}`)}>Edit</AdminButton>
-            <AdminButton color='destructive' onClick={() => deleteData(props.id)}>Delete</AdminButton>
+            <AdminButton color='destructive' onClick={() => { setSelectedId(props.id); openModal(); }}>Delete</AdminButton>
           </div>
         )
       }
@@ -134,6 +136,9 @@ const AdminFAQ = () => {
     // setProductSubcategoryId('');
   }, [productCategories, categoryId])
 
+  const openModal = (): void => setIsModalOpen(true);
+  const closeModal = (): void => setIsModalOpen(false);
+
   return (
     <div className="admin-dashboard">
       <Breadcrumb items={breadcrumbData} />
@@ -180,6 +185,15 @@ const AdminFAQ = () => {
           onNextPage={handleNextPage}
           onPrevPage={handlePrevPage}
         />
+      <AdminModal isOpen={isModalOpen} onClose={closeModal}>
+        <div className='bg-white h-fit w-full p-5 flex flex-col gap-5'>
+          <div className='text-xl'>Delete item?</div>
+          <div className='flex justify-end gap-5'>
+            <AdminButton color='secondary' onClick={() => closeModal()}>Cancel</AdminButton>
+            <AdminButton color='destructive' onClick={() => deleteData(selectedId)}>Delete</AdminButton>
+          </div>
+        </div>
+      </AdminModal>
     </div>
   )
 }

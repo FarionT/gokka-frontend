@@ -5,7 +5,7 @@ import Shopee from '../../assets/Logo/Shopee.svg';
 import Blibli from '../../assets/Logo/Blibli.svg';
 import Lazada from '../../assets/Logo/Lazada.svg';
 import Tokopedia from '../../assets/Logo/Tokopedia.svg';
-import BrandOwner from '../../assets/Image/BrandOwner.jpg';
+// import BrandOwner from '../../assets/Image/BrandOwner.jpg';
 import KualitasPremium from '../../assets/Logo/KualitasPremium.svg';
 import TahanLama from '../../assets/Logo/TahanLama.svg';
 import TerjaminHalal from '../../assets/Logo/TerjaminHalal.svg';
@@ -14,12 +14,10 @@ import Rame from '../../assets/Image/Rame.svg';
 import Model from '../../assets/Image/Banner1.png';
 import ModelTwo from '../../assets/Image/Model2.png';
 import KatalogBackground from '../../assets/Image/ProdukKatalog/KatalogBackground.jpg';
-import TestimoniOne from '../../assets/Image/Testimoni1.png';
-import TestimoniTwo from '../../assets/Image/Testimoni2.jpg';
-import TestimoniThree from '../../assets/Image/Testimoni3.png';
 import WingRight from '../../assets/Image/WingRight.svg';
 import Right from '../../assets/Logo/Right.svg';
 import Left from '../../assets/Logo/Left.svg';
+import RightNumbering from "../../assets/Logo/RightNumbering.svg";
 
 // Importing ui kit
 import { Button } from '../../ui-kit';
@@ -32,13 +30,17 @@ import { getAllPromos } from '../../services/promo.services';
 import { useErrorHandler } from '../../utils/getAuth';
 import { getAllRecipes } from '../../services/recipe.services';
 import { useNavigate } from 'react-router';
+import { getAllTestimonials } from '../../services/testimonial.services';
+import { getBerandaData } from '../../services/content.services';
 
 const Beranda = () => {
   const navigate = useNavigate();
   const { showLoader, hideLoader } = useLoader();
   const handleErrorResponse = useErrorHandler();
+  const [testimonials, setTestimonials] = useState<any>([])
   const [promos, setPromos] = useState<any>([]);
-  const [recipes, setRecipes] = useState<any>([])
+  const [recipes, setRecipes] = useState<any>([]);
+  const [pemilikData, setPemilikData] = useState<any>(null);
   
   const fetchData = async () => {
     const params = {
@@ -70,12 +72,44 @@ const Beranda = () => {
     } finally {
       hideLoader();
     }
+  }
 
+  const fetchTestimonialData = async () => {
+    try {
+      showLoader();
+      const params = {
+        pagination: true,
+        page: 1,
+        row: 3,
+      }
+      const res = await getAllTestimonials(params);
+      if (res.status === 200) {
+        const datas = res.data.data;
+        setTestimonials(datas.rows)
+      }
+    } finally {
+      hideLoader()
+    }
+  }
+
+  const fetchBerandaData = async () => {
+    try {
+      showLoader();
+      const res = await getBerandaData();
+      if (res.status === 200) {
+        const datas = res.data.data;
+        setPemilikData(datas)
+      }
+    } finally {
+      hideLoader()
+    }
   }
 
   useEffect(() => {
     fetchData();
     fetchRecipeData();
+    fetchTestimonialData();
+    fetchBerandaData();
   }, [])
 
   const tentangLogo = [
@@ -129,7 +163,7 @@ const Beranda = () => {
         <img src={KatalogBackground} className='absolute top-0 w-full h-full pattern rotate-180 object-cover' />
         <div className='flex flex-col items-center gap-2 beranda-banner-text relative z-4'>
           <div className='gradient-gold font-bold text-xl md:text-4xl text-shadow-xs/10'><span>Jelajahi Rasa,</span>{' '}<span>Penuh Warna!</span></div>
-          <div className='font-semibold text-white'>Kami memiliki 54 varian rasa</div>
+          <div className='font-semibold text-white'>Kami Memiliki Banyak Varian Rasa</div>
           <Button className='font-bold w-fit' onClick={() => navigate('/produk')}>Jelajahi</Button>
         </div>
         {/* <img src={Model} className='beranda-banner-image' />
@@ -215,7 +249,7 @@ const Beranda = () => {
           <span className='font-bold gradient-gold'>Sirup</span>
         </div>
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-16 text-white px-8 xl:px-0'>
-          <img src={BrandOwner} className='w-full rounded-3xl grayscale'/>
+          <img src={pemilikData ? pemilikData.beranda_pemilik_path : RightNumbering} className='w-full rounded-3xl grayscale'/>
           <div className='flex flex-col gap-16'>
             <div className='flex justify-between'>
               {tentangLogo.map((item, index) => (
@@ -226,10 +260,8 @@ const Beranda = () => {
               ))}
             </div>
             <div className='flex flex-col gap-6 items-center text-center'>
-              <div className='font-semibold text-xl md:text-3xl'>Pemilik Brand Gokka - Innawati</div>
-              <div className=''>
-                Kami, sangat suka berinovasi untuk memiliki varian rasa yang banyak dan kreatif dalam membuat rasa esen. Sehingga dapat memenuhi kebutuhan konsumen yang bervariasi
-              </div>
+              <div className='font-semibold text-xl md:text-3xl'>{pemilikData ? pemilikData.beranda_pemilik_title : ''}</div>
+              <div className=''>{pemilikData ? pemilikData.beranda_pemilik_description : ''}</div>
               <Button className='w-fit font-bold' onClick={() => navigate('/tentang-kami')}>Baca Artikel</Button>
             </div>
           </div>
@@ -294,26 +326,28 @@ const Beranda = () => {
         </div>
         <div className='text-white text-center text-sm md:text-base pt-6 pb-12'>Kami memiliki 22.000 + Rating 5 di <br/>e-commerce</div>
         <div className='px-8 xl:px-0'>
-          <Swiper
-            modules={[Pagination, Navigation]}
-            navigation
-            spaceBetween={50}
-            slidesPerView={1}
-            pagination={{ clickable: true }}
-            className='xl:mx-auto mx-6'
-            breakpoints={{ 
-              768: {
-                slidesPerView: 2
-              },
-              1200: {
-                slidesPerView: 3
-              }
-            }}
-          >
-            <SwiperSlide><TestimoniBeranda product={'Lemon'} review={'Rasa sangat enak'} user={'Oween N'} image={TestimoniOne} /></SwiperSlide>
-            <SwiperSlide><TestimoniBeranda product={'Lemon'} review={'Rasa sangat enak'} user={'Oween N'} image={TestimoniTwo} /></SwiperSlide>
-            <SwiperSlide><TestimoniBeranda product={'Lemon'} review={'Rasa sangat enak'} user={'Oween N'} image={TestimoniThree} /></SwiperSlide>
-          </Swiper>
+          {testimonials.length > 0 ? 
+            <Swiper
+              modules={[Pagination, Navigation]}
+              navigation
+              spaceBetween={50}
+              slidesPerView={1}
+              pagination={{ clickable: true }}
+              className='xl:mx-auto mx-6'
+              breakpoints={{ 
+                768: {
+                  slidesPerView: 2
+                },
+                1200: {
+                  slidesPerView: 3
+                }
+              }}
+            >
+              {testimonials.map((item: any) => (
+                <SwiperSlide><TestimoniBeranda product={item.item_name} review={item.comment} user={item.name} image={item.path} star={item.star} /></SwiperSlide>
+              ))}
+            </Swiper>
+          : <></>}
         </div>
         <div className='flex justify-center py-8 mx-auto w-fit'>
           <Button className='w-fit font-bold' onClick={() => navigate('/testimoni')}>Review</Button>

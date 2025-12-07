@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import './Navbar.scss';
 
 // Import Images
-import Gokka from '../../assets/Logo/Gokka.svg';
+import Gokka from '../../assets/Logo/Gokka.png';
 // import Search from '../../assets/Logo/Search.svg';
 import { useLocation } from 'react-router';
 
@@ -61,7 +61,7 @@ const Navbar: React.FC = () => {
           <div className="relative flex h-16 md:h-[80px] items-center justify-between">
             {/* Logo section - always on the left */}
             <a className="flex shrink-0 items-center" href='/'>
-              <img className="h-8 w-auto" src={Gokka} alt="Your Company" />
+              <img className="h-12 w-auto" src={Gokka} alt="Your Company" />
             </a>
 
             {/* Desktop navigation links - NOW HIDDEN BELOW LG BREAKPOINT */}

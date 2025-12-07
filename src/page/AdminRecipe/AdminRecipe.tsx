@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router';
-import { AdminButton, Breadcrumb, InputField, Table, Toast } from '../../ui-kit';
+import { AdminButton, AdminModal, Breadcrumb, InputField, Table, Toast } from '../../ui-kit';
 import type { Column } from '../../ui-kit/Table/Table';
 import './AdminRecipe.scss';
 
@@ -18,6 +18,8 @@ const AdminRecipe = () => {
   const [search, setSearch] = useState('');
   const [totalItem, setTotalItem] = useState(0);
   const [data, setData] = useState<any>([]);
+  const [selectedId, setSelectedId] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const navigate = useNavigate();
   const debouncedSearch = useDebounce(search, 500);
@@ -37,7 +39,7 @@ const AdminRecipe = () => {
         return (
           <div className='flex gap-4'>
             <AdminButton onClick={() => navigate(`/admin/v1/recipes/detail?id=${props.id}`)}>Edit</AdminButton>
-            <AdminButton color='destructive' onClick={() => deleteData(props.id)}>Delete</AdminButton>
+            <AdminButton color='destructive' onClick={() => { setSelectedId(props.id); openModal(); }}>Delete</AdminButton>
           </div>
         )
       }
@@ -75,13 +77,18 @@ const AdminRecipe = () => {
     }
   }
 
-  const deleteData = (id: any) => {
-    deleteRecipe(id).then((res) => {
-      if (res.status === 200) {
-        Toast('Success', 'success', res.data.message)
-        fetchData();
-      } else handleErrorResponse(res)
-    })
+  const deleteData = async (id: any) => {
+    try {
+      showLoader();
+      const res = await deleteRecipe(id)
+        if (res.status === 200) {
+          Toast('Success', 'success', res.data.message)
+          fetchData();
+        } else handleErrorResponse(res)
+    } finally {
+      closeModal();
+      hideLoader();
+    }
   }
 
   useEffect(() => {
@@ -91,6 +98,9 @@ const AdminRecipe = () => {
   useEffect(() => {
     setPage(1)
   }, [debouncedSearch])
+
+  const openModal = (): void => setIsModalOpen(true);
+  const closeModal = (): void => setIsModalOpen(false);
 
   return (
     <div className="admin-dashboard">
@@ -117,6 +127,15 @@ const AdminRecipe = () => {
           onNextPage={handleNextPage}
           onPrevPage={handlePrevPage}
         />
+      <AdminModal isOpen={isModalOpen} onClose={closeModal}>
+        <div className='bg-white h-fit w-full p-5 flex flex-col gap-5'>
+          <div className='text-xl'>Delete item?</div>
+          <div className='flex justify-end gap-5'>
+            <AdminButton color='secondary' onClick={() => closeModal()}>Cancel</AdminButton>
+            <AdminButton color='destructive' onClick={() => deleteData(selectedId)}>Delete</AdminButton>
+          </div>
+        </div>
+      </AdminModal>
     </div>
   )
 }

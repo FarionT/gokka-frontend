@@ -7,32 +7,62 @@ import Shopee from '../../assets/Logo/Shopee.svg';
 import Blibli from '../../assets/Logo/Blibli.svg';
 import Lazada from '../../assets/Logo/Lazada.svg';
 import Tokopedia from '../../assets/Logo/Tokopedia.svg';
-import Gokka from '../../assets/Logo/Gokka.svg';
+import Gokka from '../../assets/Logo/Gokka.png';
 import Whatsapp from '../../assets/Logo/Whatsapp.svg';
 import Email from '../../assets/Logo/Email.svg';
+import { useLoader } from '../../utils/userLoader';
+import { useErrorHandler } from '../../utils/getAuth';
+import { useEffect, useState } from 'react';
+import { getCompanyData } from '../../services/company.services';
 
 const Footer = () => {
+  const { showLoader, hideLoader } = useLoader();
+  const handleErrorResponse = useErrorHandler();
+  const [address, setAddress] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [email, setEmail] = useState('');
+  const [description, setDescription] = useState('');
+  const fetchData = async () => {
+    try {
+      showLoader();
+      const res = await getCompanyData()
+      if (res.status === 200) {
+        const data = res.data.data;
+        setAddress(data.address);
+        setPhoneNumber(data.phone_number);
+        setEmail(data.email);
+        setDescription(data.description);
+      } else handleErrorResponse(res)
+    } finally {
+      hideLoader()
+    }
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+    
   return (
     <div className='footer text-sm xl:text-base relative bottom-0'>
       <div className="py-10 md:py-12 max-w-[1200px] mx-6 xl:mx-auto">
         <img src={Gokka} className='w-32 md:w-48' />
         <div className='flex flex-col md:flex-row md:gap-11 justify-between'>
           <div className="max-w-lg">
-            <div className='pt-6'>Gokka adalah brand sirup dari PT. GTK International Indonesia, didirikan pada 2021 oleh Inawati. Berbasis di Tangerang, Gokka menawarkan 54 varian sirup dan 43 varian bubuk, dipasarkan khusus untuk anak muda di Pulau Jawa melalui e-commerce seperti Shopee, Tokopedia, Blibli, dan Lazada.</div>
+            <div className='pt-6'>{description}</div>
             <div>
               <div className='font-semibold pt-6'>Alamat</div>
-              <div>Jl. Merapi No.2 Blok E, Poris Gaga, Kec. Batuceper, Kota Tangerang, Banten 15122</div>
+              <div>{address}</div>
             </div>
             <div>
               <div className='font-semibold pt-6 pb-3'>No. Kontak/Email</div>
               <div className='flex flex-col gap-5'>
                 <div className='flex items-center gap-4'>
                   <img src={Whatsapp} className='w-9' />
-                  <div>0877-7522-3936</div>
+                  <div>{phoneNumber}</div>
                 </div>
                 <div className='flex items-center gap-4'>
                   <img src={Email} className='w-9' />
-                  <div>gokkaindonesia@gmail.com</div>
+                  <div>{email}</div>
                 </div>
               </div>
             </div>

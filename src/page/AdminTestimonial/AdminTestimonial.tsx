@@ -1,55 +1,51 @@
 import { useNavigate } from 'react-router';
 import { AdminButton, AdminModal, Breadcrumb, InputField, Table, Toast } from '../../ui-kit';
 import type { Column } from '../../ui-kit/Table/Table';
-import './AdminPromo.scss';
+import './AdminTestimonial.scss';
 
 // Importing Images
 import { useEffect, useState } from 'react';
 import { useDebounce } from '../../utils/useDebounce';
 import { useLoader } from '../../utils/userLoader';
-import { deletePromo, getAllPromos } from '../../services/promo.services';
 import { useErrorHandler } from '../../utils/getAuth';
+import { deleteTestimonial, getAllTestimonials } from '../../services/testimonial.services';
+import { DateFormatter } from '../../utils/dataHelper';
 
-const AdminPromo = () => {
+const AdminTestimonial = () => {
   const { showLoader, hideLoader } = useLoader();
   const handleErrorResponse = useErrorHandler();
   const [page, setPage] = useState(1);
   const row = 10;
   const [search, setSearch] = useState('');
-  const [selectedId, setSelectedId] = useState('');
   const [totalItem, setTotalItem] = useState(0);
   const [data, setData] = useState<any>([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedId, setSelectedId] = useState<any>('');
+  const [isModalOpen, setIsModalOpen] = useState<any>(false);
 
   const navigate = useNavigate();
   const debouncedSearch = useDebounce(search, 500);
-  const faqColumns: Column<any>[] = [
+  const testimonialColumns: Column<any>[] = [
     { 
-      header: 'Product', 
-      accessor: 'product_name' 
+      header: 'Name', 
+      accessor: 'name' 
     },
     { 
       header: 'Product Variant', 
-      accessor: 'product_variant_name' 
+      accessor: 'item_name',
+      // render: (props: any) => (
+      //   <div>{props.product_name + ' ' + props.product_variant_name}</div>
+      // ) 
     },
     { 
-      header: 'Price', 
-      accessor: 'price' 
+      header: 'Star', 
+      accessor: 'star' 
     },
     { 
-      header: 'Discount (%)', 
-      accessor: 'discount' 
-    },
-    { 
-      header: 'Final Price', 
-      accessor: 'final_price',
-      render: (props: any) => {
-        return (
-          <div>
-            {Math.round(props.price * (100 - props.discount) / 100)}
-          </div>
-        )
-      } 
+      header: 'Date', 
+      accessor: 'date' ,
+      render: (props: any) => (
+        <div>{DateFormatter(props.date)}</div>
+      )
     },
     { 
       header: 'Action', 
@@ -57,8 +53,8 @@ const AdminPromo = () => {
       render: (props: any) => {
         return (
           <div className='flex gap-4'>
-            <AdminButton onClick={() => navigate(`/admin/v1/promos/detail?id=${props.id}`)}>Edit</AdminButton>
-            <AdminButton color='destructive' onClick={() => {setSelectedId(props.id); openModal()}}>Delete</AdminButton>
+            <AdminButton onClick={() => navigate(`/admin/v1/testimonials/detail?id=${props.id}`)}>Edit</AdminButton>
+            <AdminButton color='destructive' onClick={() => { setSelectedId(props.id); openModal(); }}>Delete</AdminButton>
           </div>
         )
       }
@@ -85,7 +81,7 @@ const AdminPromo = () => {
         row: row,
         search: debouncedSearch
       }
-      const res = await getAllPromos(params)
+      const res = await getAllTestimonials(params)
       if (res.status === 200) {
         const totalData = res.data.data;
         setTotalItem(totalData.count);
@@ -99,7 +95,7 @@ const AdminPromo = () => {
   const deleteData = async (id: any) => {
     try {
       showLoader()
-      const res = await deletePromo(id)
+      const res = await deleteTestimonial(id)
       if (res.status === 200) {
         Toast('Success', 'success', res.data.message)
         fetchData();
@@ -118,13 +114,14 @@ const AdminPromo = () => {
     setPage(1)
   }, [debouncedSearch])
 
+  
   const openModal = (): void => setIsModalOpen(true);
   const closeModal = (): void => setIsModalOpen(false);
 
   return (
     <div className="admin-promo">
       <Breadcrumb items={breadcrumbData} />
-      <div className='text-5xl font-normal py-8'>Promo</div>
+      <div className='text-5xl font-normal py-8'>Testimonial</div>
       <div className='flex justify-between items-end mb-5'>
         <InputField 
           label='Search' 
@@ -134,11 +131,11 @@ const AdminPromo = () => {
           onChange={(e: any) => setSearch(e)}    
           className='w-64'      
         />
-        <AdminButton className='' onClick={() => navigate('/admin/v1/promos/detail')}>Create</AdminButton>
+        <AdminButton className='' onClick={() => navigate('/admin/v1/testimonials/detail')}>Create</AdminButton>
       </div>
       <Table
           data={data}
-          columns={faqColumns}
+          columns={testimonialColumns}
           usePagination={true}
           totalItems={totalItem}
           rows={row}
@@ -159,4 +156,4 @@ const AdminPromo = () => {
   )
 }
 
-export default AdminPromo;
+export default AdminTestimonial;

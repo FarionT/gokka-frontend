@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router';
 import { deleteFAQ, getAllFAQ } from '../../services/faq.services';
-import { AdminButton, Breadcrumb, InputField, Table } from '../../ui-kit';
+import { AdminButton, AdminModal, Breadcrumb, InputField, Table } from '../../ui-kit';
 import type { Column } from '../../ui-kit/Table/Table';
 import './AdminFAQ.scss';
 
@@ -16,6 +16,8 @@ const AdminFAQ = () => {
   const [search, setSearch] = useState('');
   const [totalItem, setTotalItem] = useState(0);
   const [data, setData] = useState<any>([]);
+  const [selectedId, setSelectedId] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const navigate = useNavigate();
   const debouncedSearch = useDebounce(search, 500);
@@ -35,7 +37,7 @@ const AdminFAQ = () => {
         return (
           <div className='flex gap-4'>
             <AdminButton onClick={() => navigate(`/admin/v1/faq/detail?id=${props.id}`)}>Edit</AdminButton>
-            <AdminButton color='destructive' onClick={() => deleteData(props.id)}>Delete</AdminButton>
+            <AdminButton color='destructive' onClick={() => { setSelectedId(props.id); openModal(); }}>Delete</AdminButton>
           </div>
         )
       }
@@ -94,6 +96,10 @@ const AdminFAQ = () => {
     setPage(1)
   }, [debouncedSearch])
 
+  
+  const openModal = (): void => setIsModalOpen(true);
+  const closeModal = (): void => setIsModalOpen(false);
+
   return (
     <div className="admin-dashboard">
       <Breadcrumb items={breadcrumbData} />
@@ -119,6 +125,15 @@ const AdminFAQ = () => {
           onNextPage={handleNextPage}
           onPrevPage={handlePrevPage}
         />
+      <AdminModal isOpen={isModalOpen} onClose={closeModal}>
+        <div className='bg-white h-fit w-full p-5 flex flex-col gap-5'>
+          <div className='text-xl'>Delete item?</div>
+          <div className='flex justify-end gap-5'>
+            <AdminButton color='secondary' onClick={() => closeModal()}>Cancel</AdminButton>
+            <AdminButton color='destructive' onClick={() => deleteData(selectedId)}>Delete</AdminButton>
+          </div>
+        </div>
+      </AdminModal>
     </div>
   )
 }

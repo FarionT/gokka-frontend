@@ -24,17 +24,15 @@ const TestimoniBeranda = ({
         <img src={image} className="h-full w-full object-cover object-[0%_65%] rounded-t-2xl" />
         <div className='bg-[#332D1E] opacity-60 z-1 h-full w-full absolute top-0'></div>
         <div className='flex py-2 gap-1 absolute justify-center w-full bottom-2 z-2'>
-          <img src={Bintang} className='w-8 md:w-10' />
-          <img src={Bintang} className='w-8 md:w-10' />
-          <img src={Bintang} className='w-8 md:w-10' />
-          <img src={Bintang} className='w-8 md:w-10' />
-          <img src={Bintang} className='w-8 md:w-10' />
+          {star ? Array.from({ length: star }).map((_: any, i: any) => (
+            <img src={Bintang} className='w-8 md:w-10' key={i} />
+          )) : <></>}
         </div>
       </div>
       <div className='testimoni-beranda-text text-center p-6 rounded-b-2xl'>
         <div className='font-bold'>Produk: {product}</div>
         <div className='font-normal' >{user}</div>
-        <div className='font-normal'>"{review}"</div>
+        <div className='font-normal line-clamp-1'>{review}</div>
       </div>
       {star ? <></> : <></>}
       {/* <img src={Bintang} /> */}

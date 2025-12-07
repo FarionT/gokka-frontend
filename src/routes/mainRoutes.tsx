@@ -1,5 +1,8 @@
 import { Route, Routes } from 'react-router';
 import { 
+  AdminCompany,
+  AdminContent,
+  AdminContentBeranda,
   AdminDashboard,
   AdminFAQ,
   AdminFAQDetail,
@@ -9,6 +12,8 @@ import {
   AdminPromoDetail,
   AdminRecipe,
   AdminRecipeDetail,
+  AdminTestimonial,
+  AdminTestimonialDetail,
   Beranda, 
   ChangePassword, 
   FAQ, 
@@ -48,6 +53,11 @@ const MainRoutes = () => {
         <Route element={<AdminRecipeDetail />} path='/admin/v1/recipes/detail' />
         <Route element={<AdminPromo />} path='/admin/v1/promos' />
         <Route element={<AdminPromoDetail />} path='/admin/v1/promos/detail' />
+        <Route element={<AdminTestimonial />} path='/admin/v1/testimonials' />
+        <Route element={<AdminTestimonialDetail />} path='/admin/v1/testimonials/detail' />
+        <Route element={<AdminCompany />} path='/admin/v1/company' />
+        <Route element={<AdminContent />} path='/admin/v1/contents' />
+        <Route element={<AdminContentBeranda />} path='/admin/v1/contents/beranda' />
       </Route>
       <Route element={<CustomRoutes />}>
         <Route element={<Login />} path='/admin/v1/login' />

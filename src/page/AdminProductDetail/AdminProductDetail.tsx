@@ -3,6 +3,7 @@ import { AdminButton, Breadcrumb, InputField, Toast } from '../../ui-kit';
 import './AdminProductDetail.scss';
 
 // Importing Images
+import Jam from '../../assets/Logo/Jam.svg';
 import { useEffect, useState } from 'react';
 import { createProduct, getProductById, getProductCategory, updateProduct } from '../../services/product.services';
 import { useLoader } from '../../utils/userLoader';
@@ -246,7 +247,7 @@ const AdminProductDetail = () => {
             onChange={handleFileChange} // Pass the state setter function
             className="mb-6"
           />
-          <img src={mainImage ? URL.createObjectURL(mainImage!) : ''} className='w-64 border-1' />
+          {mainImage && <img src={mainImage ? URL.createObjectURL(mainImage!) : Jam} className='w-64 border-1' />}
         </div>
       </div>
       <div className='flex justify-between items-center mb-5'>

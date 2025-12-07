@@ -6,7 +6,7 @@ import NoHalal from "../../assets/Logo/NoHalal.png";
 import NoPIRT from "../../assets/Logo/NoPIRT.svg";
 
 // import image
-import Owner from "../../assets/Image/BrandOwner.jpg";
+// import Owner from "../../assets/Image/BrandOwner.jpg";
 import { Timeline } from "../../components";
 
 // import data
@@ -46,7 +46,7 @@ const TentangKami = () => {
           Sejarah Kami
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <img src={Owner} className="rounded-4xl mb-8 md:mb-12" />
+          <img src={RightNumbering} className="rounded-4xl mb-8 md:mb-12" />
           <div>
             <div className="gradient-gold font-bold text-2xl md:text-4xl w-fit mx-auto pb-8">
               Berdiri Sejak 2021

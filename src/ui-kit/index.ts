@@ -9,11 +9,13 @@ import { Sidebar } from './Sidebar';
 import { Tab, Tabs } from "./Tab";
 import { Table } from "./Table";
 import { TabKatalog, TabsKatalog } from "./TabKatalog";
+import { AdminModal } from './AdminModal';
 
 export {
     Accordion,
     Accordions,
     AdminButton,
+    AdminModal,
     Breadcrumb,
     Button,
     InputField,

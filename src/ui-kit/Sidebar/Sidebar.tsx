@@ -33,10 +33,23 @@ const menuItems: MenuItem[] = [
     { 
         name: 'Promos', 
         href: '/admin/v1/promos', 
-        // Changed to: Restaurant Menu or Food Icon (better for recipes/food)
-        iconPath: 'M20 5v14H4V5h16zm0-2H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-8 4h3c.55 0 1 .45 1 1v4c0 .55-.45 1-1 1h-3c-.55 0-1-.45-1-1V8c0-.55.45-1 1-1zm-6 0h3c.55 0 1 .45 1 1v4c0 .55-.45 1-1 1H6c-.55 0-1-.45-1-1V8c0-.55.45-1 1-1z' 
-        // Alternate recipe icon (e.g., local_dining/restaurant_menu): 'M16 6V2H8v4H2v15h20V6h-6zm-6-2h4v2h-4V4zm-4 8h4c0 .55-.45 1-1 1h-3c-.55 0-1-.45-1-1zm6 0h4c0 .55-.45 1-1 1h-3c-.55 0-1-.45-1-1z'
+        iconPath: 'M16 6V2H8v4H2v15h20V6h-6zm-6-2h4v2h-4V4zm-4 8h4c0 .55-.45 1-1 1h-3c-.55 0-1-.45-1-1zm6 0h4c0 .55-.45 1-1 1h-3c-.55 0-1-.45-1-1z' 
     },
+    { 
+        name: 'Testimonials', 
+        href: '/admin/v1/testimonials', 
+        iconPath: 'M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM8 14h2v2H8v-2zm4 0h2v2h-2v-2zm4 0h2v2h-2v-2z' 
+    },
+    {
+        name: 'Company',
+        href: '/admin/v1/company',
+        iconPath: 'M3 21V7l9-5 9 5v14h-6v-6h-6v6H3zm8-8h2V9h-2v4zm-4 0h2V9H7v4zm8 0h2V9h-2v4z'
+    },
+    {
+        name: 'Content',
+        href: '/admin/v1/contents',
+        iconPath: 'M6 2h9l5 5v13c0 1.1-.9 2-2 2H6c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2zm7 7h5l-5-5v5zm-7 4h10v2H6v-2zm0-4h6v2H6V9zm0 8h10v2H6v-2z'
+    }
 ];
 interface AdminSidebarProps {
     isExpanded: boolean;

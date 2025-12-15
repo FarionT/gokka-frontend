@@ -249,7 +249,7 @@ const Beranda = () => {
           <span className='font-bold gradient-gold'>Sirup</span>
         </div>
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-16 text-white px-8 xl:px-0'>
-          <img src={pemilikData ? pemilikData.beranda_pemilik_path : RightNumbering} className='w-full rounded-3xl grayscale'/>
+          <img src={pemilikData ? pemilikData.beranda_pemilik_path : RightNumbering} className='w-full rounded-3xl'/>
           <div className='flex flex-col gap-16'>
             <div className='flex justify-between'>
               {tentangLogo.map((item, index) => (

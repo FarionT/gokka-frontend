@@ -11,8 +11,9 @@ import TahanLama from '../../assets/Logo/TahanLama.svg';
 import TerjaminHalal from '../../assets/Logo/TerjaminHalal.svg';
 import VariatifRasa from '../../assets/Logo/VariatifRasa.svg';
 import Rame from '../../assets/Image/Rame.svg';
-import Model from '../../assets/Image/Banner1.png';
-import ModelTwo from '../../assets/Image/Model2.png';
+// import Model from '../../assets/Image/Banner1.png';
+// import ModelTwo from '../../assets/Image/Model2.png';
+// import ModelThree from '../../assets/Image/Model3.jpeg';
 import KatalogBackground from '../../assets/Image/ProdukKatalog/KatalogBackground.jpg';
 import WingRight from '../../assets/Image/WingRight.svg';
 import Right from '../../assets/Logo/Right.svg';
@@ -149,16 +150,28 @@ const Beranda = () => {
           slidesPerView={1}
           className='xl:mx-auto mx-6 h-full'
         >
-          <SwiperSlide className='overflow-hidden'>
+          {pemilikData && pemilikData.beranda_banner ? pemilikData.beranda_banner.map((item: any) => (
+            <SwiperSlide className='overflow-hidden'>
             <div className='relative w-full h-full'>
-              <img src={Model} className='relative beranda-banner-image aspect-square object-cover object-top h-full w-full mx-auto' />
+              <img src={item} className='relative beranda-banner-image aspect-square object-cover h-full w-full mx-auto' />
             </div>
           </SwiperSlide>
-          <SwiperSlide className='overflow-hidden aspect-square'>
-            <div className='relative w-full h-full'>
-              <img src={ModelTwo} className='relative beranda-banner-image aspect-square object-cover object-top h-full w-full mx-auto' />
-            </div>
-          </SwiperSlide>
+          )) 
+          : 
+            <>
+              {/* <SwiperSlide className='overflow-hidden'>
+                <div className='relative w-full h-full'>
+                  <img src={ModelThree} className='relative beranda-banner-image aspect-square object-cover h-full w-full mx-auto' />
+                </div>
+              </SwiperSlide>
+              <SwiperSlide className='overflow-hidden aspect-square'>
+                <div className='relative w-full h-full'>
+                  <img src={ModelThree} className='relative beranda-banner-image aspect-square object-cover h-full w-full mx-auto' />
+                </div>
+              </SwiperSlide> */}
+            </>
+          }
+          
         </Swiper>
         <img src={KatalogBackground} className='absolute top-0 w-full h-full pattern rotate-180 object-cover' />
         <div className='flex flex-col items-center gap-2 beranda-banner-text relative z-4'>

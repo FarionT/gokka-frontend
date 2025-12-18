@@ -15,6 +15,7 @@ const AdminContentBeranda = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [mainImage, setMainImage] = useState<File | null>(null);
+  const [banners, setBanners] = useState<any>([])
 
   const navigate = useNavigate();
   const fetchData = async () => {
@@ -31,6 +32,22 @@ const AdminContentBeranda = () => {
         setTitle(data.beranda_pemilik_title);
         setDescription(data.beranda_pemilik_description)
         setMainImage(mainFile);
+        const childrenFilePromises = data.beranda_banner.map(
+          async (item: any) => {
+            if (item) {
+              const response = await fetch(item);
+              const blob = await response.blob();
+              const file =  new File([blob], item.split('?')[0], {
+                type: blob.type,
+              });
+              return file
+            } else {
+              return;
+            }
+          }
+        );
+        const actualChildrenFiles = await Promise.all(childrenFilePromises);
+        setBanners(actualChildrenFiles.filter(Boolean));
       } else handleErrorResponse(res)
     } finally {
       hideLoader()
@@ -53,6 +70,9 @@ const AdminContentBeranda = () => {
     if (mainImage) {
       formData.append('main', mainImage);
     }
+    banners.map((banner: any) => {
+      formData.append('banner', banner);
+    })
     showLoader()
     const res = await updateBerandaData(formData);
     if (res.status === 200) {
@@ -70,12 +90,22 @@ const AdminContentBeranda = () => {
     // Optionally, you might handle error states if it's not a file/null
   };
 
+  const handleDataVariantChange = (index: number, value: any) => {
+    setBanners((prevVariants: any) => {
+      const updatedVariants = [...prevVariants];
+      updatedVariants[index] = value
+      return updatedVariants;
+    });
+  }
+
   const isDisabled = () => {
     const titleFilled = title !== '';
     const descriptionFilled = description !== '';
     const mainImageFilled = mainImage;
+    const bannerFilled = banners.length > 0;
+    const bannerHasNull = banners.filter((item: any) => item === null).length == 0;
 
-    if(titleFilled && descriptionFilled && mainImageFilled) {
+    if(titleFilled && descriptionFilled && mainImageFilled && bannerFilled && bannerHasNull) {
       return false;
     } else return true;
   }
@@ -84,36 +114,71 @@ const AdminContentBeranda = () => {
     <div className="admin-faq-detail">
       <Breadcrumb items={breadcrumbData} />
       <div className='text-5xl font-normal py-8'>Beranda Data</div>
-      <div className='pb-5 gap-5 flex flex-col'>
-        <div className='flex gap-10'>
-          <InputField 
-            label='Title'
-            placeholder='Title'
-            className='w-72'
-            type='text'
-            value={title}
-            onChange={(e: any) => setTitle(e)}       
-          />
-          <InputField 
-            label='Description'
-            placeholder='Description'
-            type='textarea'
-            className='w-108'
-            value={description}
-            onChange={(e: any) => {
-              setDescription(e);
-            }}       
-          />
+      <div className='pt-3 pb-10'>
+        <div className='flex justify-between items-center mb-5'>
+          <div className='text-2xl font-normal'>Banner</div>
+          <div>
+            <AdminButton onClick={() => {
+              const newBanner = null;
+              setBanners([...banners, newBanner]);
+            }}>Add Banner</AdminButton>
+          </div>
         </div>
-        <div>
-          <InputField
-            label="Main Picture"
-            type="file" // Set the type to 'file'
-            value={mainImage} // Pass the state value
-            onChange={handleFileChange} // Pass the state setter function
-            className="mb-6"
-          />
-          {mainImage && (<img src={mainImage ? URL.createObjectURL(mainImage!) : Jam} className='w-64 border-1' />)}
+        <div className='flex flex-col gap-5'>
+          {banners.length > 0 ? banners.map((banner: any, index: any) => (
+            <div key={index} className='border border-slate-300 rounded-md p-5 flex gap-5 justify-between items-start'>
+              <div className='flex gap-5'>
+                <InputField
+                  label="Variant Picture"
+                  type="file" // Set the type to 'file'
+                  fileType='image'
+                  value={banner} // Pass the state value
+                  onChange={(e: any) => {
+                    handleDataVariantChange(index, e)
+                  }} // Pass the state setter function
+                  className="mb-6"
+                />
+                <img src={banner ? URL.createObjectURL(banner) : banner} className='w-64 h-32 object-contain border-1' />
+              </div>
+              <AdminButton className='self-start' color='destructive' onClick={() => setBanners((prev: any) => prev.filter((_: any, i: any) => i !== index))}>Delete</AdminButton>
+            </div>
+          )) : <div>No banners added yet.</div>}
+        </div>
+      </div>
+      <hr/>
+      <div className='py-3'>
+        <div className='text-2xl font-normal py-3'>Tentang Kami</div>
+        <div className='pb-5 gap-5 flex flex-col'>
+          <div className='flex gap-10'>
+            <InputField 
+              label='Title'
+              placeholder='Title'
+              className='w-72'
+              type='text'
+              value={title}
+              onChange={(e: any) => setTitle(e)}       
+            />
+            <InputField 
+              label='Description'
+              placeholder='Description'
+              type='textarea'
+              className='w-108'
+              value={description}
+              onChange={(e: any) => {
+                setDescription(e);
+              }}       
+            />
+          </div>
+          <div>
+            <InputField
+              label="Main Picture"
+              type="file" // Set the type to 'file'
+              value={mainImage} // Pass the state value
+              onChange={handleFileChange} // Pass the state setter function
+              className="mb-6"
+            />
+            {mainImage && (<img src={mainImage ? URL.createObjectURL(mainImage!) : Jam} className='w-64 border-1' />)}
+          </div>
         </div>
       </div>
       <div className='flex justify-end gap-5 mt-5'>

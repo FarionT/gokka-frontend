@@ -35,12 +35,15 @@ const AdminContentBeranda = () => {
         const childrenFilePromises = data.beranda_banner.map(
           async (item: any) => {
             if (item) {
-              const response = await fetch(item);
+              const response = await fetch(item.path);
               const blob = await response.blob();
-              const file =  new File([blob], item.split('?')[0], {
+              const file =  new File([blob], item.file_name, {
                 type: blob.type,
               });
-              return file
+              return {
+                file,
+                position: item.position
+              }
             } else {
               return;
             }
@@ -59,8 +62,8 @@ const AdminContentBeranda = () => {
   }, []);
 
   const breadcrumbData = [
-    { label: 'Recipe', href: '/admin/v1/recipes' },
-    { label: 'Detail', href: '/about' },
+    { label: 'Content', href: '/admin/v1/contents' },
+    { label: 'Beranda', href: '/admin/v1/contents/beranda' },
   ];
 
   const handleSubmit = async () => {
@@ -71,7 +74,8 @@ const AdminContentBeranda = () => {
       formData.append('main', mainImage);
     }
     banners.map((banner: any) => {
-      formData.append('banner', banner);
+      formData.append('banner', banner.file);
+      formData.append('banner_position', banner.position)
     })
     showLoader()
     const res = await updateBerandaData(formData);
@@ -90,10 +94,13 @@ const AdminContentBeranda = () => {
     // Optionally, you might handle error states if it's not a file/null
   };
 
-  const handleDataVariantChange = (index: number, value: any) => {
+  const handleDataVariantChange = (index: number, field: string, value: any) => {
     setBanners((prevVariants: any) => {
       const updatedVariants = [...prevVariants];
-      updatedVariants[index] = value
+      updatedVariants[index] = {
+        ...updatedVariants[index],
+        [field]: value
+      };
       return updatedVariants;
     });
   }
@@ -102,13 +109,19 @@ const AdminContentBeranda = () => {
     const titleFilled = title !== '';
     const descriptionFilled = description !== '';
     const mainImageFilled = mainImage;
-    const bannerFilled = banners.length > 0;
     const bannerHasNull = banners.filter((item: any) => item === null).length == 0;
+    const bannerFilled = banners.every((step: any) => step.position !== '' && (step.file instanceof File || typeof(step.file) === 'string'));
 
     if(titleFilled && descriptionFilled && mainImageFilled && bannerFilled && bannerHasNull) {
       return false;
     } else return true;
   }
+
+  const positionOption = [
+    { label: 'Top', value: 'top' },
+    { label: 'Center', value: 'center' },
+    { label: 'Bottom', value: 'bottom' },
+  ]
 
   return (
     <div className="admin-faq-detail">
@@ -119,7 +132,10 @@ const AdminContentBeranda = () => {
           <div className='text-2xl font-normal'>Banner</div>
           <div>
             <AdminButton onClick={() => {
-              const newBanner = null;
+              const newBanner = {
+                position: '',
+                file: null
+              };
               setBanners([...banners, newBanner]);
             }}>Add Banner</AdminButton>
           </div>
@@ -132,13 +148,24 @@ const AdminContentBeranda = () => {
                   label="Variant Picture"
                   type="file" // Set the type to 'file'
                   fileType='image'
-                  value={banner} // Pass the state value
+                  value={banner.file} // Pass the state value
                   onChange={(e: any) => {
-                    handleDataVariantChange(index, e)
+                    handleDataVariantChange(index, 'file', e)
                   }} // Pass the state setter function
                   className="mb-6"
                 />
-                <img src={banner ? URL.createObjectURL(banner) : banner} className='w-64 h-32 object-contain border-1' />
+                <img src={banner.file ? URL.createObjectURL(banner.file) : banner.file} className='w-64 h-32 object-contain border-1' />
+                <InputField
+                  label="Position"
+                  placeholder='Select a Position'
+                  type="dropdown" 
+                  options={positionOption}
+                  value={banner.position} // Pass the state value
+                  onChange={(e: any) => {
+                    handleDataVariantChange(index, 'position', e)
+                  }} // Pass the state setter function
+                  className="mb-6"
+                />
               </div>
               <AdminButton className='self-start' color='destructive' onClick={() => setBanners((prev: any) => prev.filter((_: any, i: any) => i !== index))}>Delete</AdminButton>
             </div>

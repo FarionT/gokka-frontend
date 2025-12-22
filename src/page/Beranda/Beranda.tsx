@@ -153,7 +153,7 @@ const Beranda = () => {
           {pemilikData && pemilikData.beranda_banner ? pemilikData.beranda_banner.map((item: any) => (
             <SwiperSlide className='overflow-hidden'>
             <div className='relative w-full h-full'>
-              <img src={item} className='relative beranda-banner-image aspect-square object-cover h-full w-full mx-auto' />
+              <img src={item.path} className={`relative beranda-banner-image aspect-square object-cover object-${item.position} h-full w-full mx-auto`} />
             </div>
           </SwiperSlide>
           )) 

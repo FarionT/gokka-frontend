@@ -7,8 +7,8 @@ import './AdminPromo.scss';
 import { useEffect, useState } from 'react';
 import { useDebounce } from '../../utils/useDebounce';
 import { useLoader } from '../../utils/userLoader';
-import { deletePromo, getAllPromos } from '../../services/promo.services';
-import { useErrorHandler } from '../../utils/getAuth';
+import { deletePromo, getAllPromosForAdmin } from '../../services/promo.services';
+import { checkPermission, useErrorHandler } from '../../utils/getAuth';
 
 const AdminPromo = () => {
   const { showLoader, hideLoader } = useLoader();
@@ -20,6 +20,11 @@ const AdminPromo = () => {
   const [totalItem, setTotalItem] = useState(0);
   const [data, setData] = useState<any>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+    
+  const permissionRead = checkPermission('promo', 'read');
+  const permissionCreate = checkPermission('promo', 'create');
+  const permissionUpdate = checkPermission('promo', 'update');
+  const permissionDelete = checkPermission('promo', 'delete');
 
   const navigate = useNavigate();
   const debouncedSearch = useDebounce(search, 500);
@@ -57,8 +62,8 @@ const AdminPromo = () => {
       render: (props: any) => {
         return (
           <div className='flex gap-4'>
-            <AdminButton onClick={() => navigate(`/admin/v1/promos/detail?id=${props.id}`)}>Edit</AdminButton>
-            <AdminButton color='destructive' onClick={() => {setSelectedId(props.id); openModal()}}>Delete</AdminButton>
+            {permissionUpdate ? <AdminButton onClick={() => navigate(`/admin/v1/promos/detail?id=${props.id}`)}>Edit</AdminButton> : <></>}
+            {permissionDelete ? <AdminButton color='destructive' onClick={() => {setSelectedId(props.id); openModal()}}>Delete</AdminButton> : <></>}
           </div>
         )
       }
@@ -85,7 +90,7 @@ const AdminPromo = () => {
         row: row,
         search: debouncedSearch
       }
-      const res = await getAllPromos(params)
+      const res = await getAllPromosForAdmin(params)
       if (res.status === 200) {
         const totalData = res.data.data;
         setTotalItem(totalData.count);
@@ -111,7 +116,11 @@ const AdminPromo = () => {
   }
 
   useEffect(() => {
-    fetchData();
+    if (permissionRead) {
+      fetchData();
+    } else {
+      navigate('/admin/v1/dashboard')
+    }
   }, [page, debouncedSearch])
 
   useEffect(() => {
@@ -134,7 +143,7 @@ const AdminPromo = () => {
           onChange={(e: any) => setSearch(e)}    
           className='w-64'      
         />
-        <AdminButton className='' onClick={() => navigate('/admin/v1/promos/detail')}>Create</AdminButton>
+        {permissionCreate ? <AdminButton className='' onClick={() => navigate('/admin/v1/promos/detail')}>Create</AdminButton> : <></>}
       </div>
       <Table
           data={data}

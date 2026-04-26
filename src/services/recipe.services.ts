@@ -1,6 +1,10 @@
 import { deleteAPI, getAPI, postFileAPI, putFileAPI } from './axios';
 
-export const getAllRecipes = (params: any) => {
+export const getAllRecipes = () => {
+  return getAPI(`recipes?`, {});
+};
+
+export const getAllRecipesForAdmin = (params: any) => {
   const queryParams = new URLSearchParams();
   queryParams.append("pagination", String(params.pagination));
   queryParams.append("page", String(params.page));
@@ -17,7 +21,7 @@ export const getAllRecipes = (params: any) => {
   if (params.role_id && params.role_id !== "") {
     queryParams.append("role_id", String(params.role_id));
   }
-  return getAPI(`recipes?${queryParams}`, {});
+  return getAPI(`recipes/list?${queryParams}`, {});
 };
 
 export const getRecipeById = (id: string) => {

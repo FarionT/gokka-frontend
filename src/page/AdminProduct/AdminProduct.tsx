@@ -6,9 +6,9 @@ import './AdminProduct.scss';
 // Importing Images
 import { useEffect, useState } from 'react';
 import { useDebounce } from '../../utils/useDebounce';
-import { deleteProduct, getAllProducts, getProductCategory } from '../../services/product.services';
+import { deleteProduct, getAllProductsForAdmin, getProductCategory } from '../../services/product.services';
 import { useLoader } from '../../utils/userLoader';
-import { useErrorHandler } from '../../utils/getAuth';
+import { checkPermission, useErrorHandler } from '../../utils/getAuth';
 
 const AdminFAQ = () => {
   const { showLoader, hideLoader } = useLoader();
@@ -24,6 +24,12 @@ const AdminFAQ = () => {
   const [productCategories, setProductCategories] = useState<any>([])
   const [productSubcategories, setProductSubcategories] = useState<any>([])
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  
+  const permissionRead = checkPermission('product', 'read');
+  const permissionCreate = checkPermission('product', 'create');
+  const permissionUpdate = checkPermission('product', 'update');
+  const permissionDelete = checkPermission('product', 'delete');
 
   const navigate = useNavigate();
   const debouncedSearch = useDebounce(search, 500);
@@ -46,8 +52,8 @@ const AdminFAQ = () => {
       render: (props: any) => {
         return (
           <div className='flex gap-4'>
-            <AdminButton onClick={() => navigate(`/admin/v1/products/detail?id=${props.id}`)}>Edit</AdminButton>
-            <AdminButton color='destructive' onClick={() => { setSelectedId(props.id); openModal(); }}>Delete</AdminButton>
+            {permissionUpdate ? <AdminButton onClick={() => navigate(`/admin/v1/products/detail?id=${props.id}`)}>Edit</AdminButton> : <></>}
+            {permissionDelete ? <AdminButton color='destructive' onClick={() => { setSelectedId(props.id); openModal(); }}>Delete</AdminButton> : <></>}
           </div>
         )
       }
@@ -76,9 +82,10 @@ const AdminFAQ = () => {
         category: categoryId,
         subcategory: subcategoryId
       }
-      const res = await getAllProducts(params)
+      const res = await getAllProductsForAdmin(params)
       if (res.status === 200) {
         const totalData = res.data.data;
+        console.log(totalData)
         setTotalItem(totalData.count);
         setData(totalData.rows)
       } else handleErrorResponse(res)
@@ -101,7 +108,11 @@ const AdminFAQ = () => {
   }
 
   useEffect(() => {
-    fetchData();
+    if (permissionRead) {
+      fetchData();
+    } else {
+      navigate('/admin/v1/dashboard')
+    }
   }, [page, debouncedSearch, categoryId, subcategoryId])
 
   useEffect(() => {
@@ -173,7 +184,7 @@ const AdminFAQ = () => {
             className='w-64'      
           />
         </div>
-        <AdminButton className='' onClick={() => navigate('/admin/v1/products/detail')}>Create</AdminButton>
+        {permissionCreate ? <AdminButton className='' onClick={() => navigate('/admin/v1/products/detail')}>Create</AdminButton> : <></>}
       </div>
       <Table
           data={data}

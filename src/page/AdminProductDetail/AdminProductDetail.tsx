@@ -7,7 +7,7 @@ import Jam from '../../assets/Logo/Jam.svg';
 import { useEffect, useState } from 'react';
 import { createProduct, getProductById, getProductCategory, updateProduct } from '../../services/product.services';
 import { useLoader } from '../../utils/userLoader';
-import { useErrorHandler } from '../../utils/getAuth';
+import { checkPermission, useErrorHandler } from '../../utils/getAuth';
 
 const AdminProductDetail = () => {
   const { showLoader, hideLoader } = useLoader();
@@ -26,6 +26,8 @@ const AdminProductDetail = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams()
   const id = searchParams.get('id')
+
+  const permissionRead = checkPermission('product', 'read');
 
   const fetchData = async () => {
     if (!id) return
@@ -69,8 +71,12 @@ const AdminProductDetail = () => {
   }
 
   useEffect(() => {
-    if (!id) return
-    fetchData();
+    if (permissionRead) {
+      if (!id) return
+      fetchData();
+    } else {
+      navigate('/admin/v1/dashboard')
+    }
   }, [id]);
 
   const getProductCategoryFunc = async () => {

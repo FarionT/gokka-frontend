@@ -6,9 +6,9 @@ import './AdminRecipe.scss';
 // Importing Images
 import { useEffect, useState } from 'react';
 import { useDebounce } from '../../utils/useDebounce';
-import { deleteRecipe, getAllRecipes } from '../../services/recipe.services';
+import { deleteRecipe, getAllRecipesForAdmin } from '../../services/recipe.services';
 import { useLoader } from '../../utils/userLoader';
-import { useErrorHandler } from '../../utils/getAuth';
+import { checkPermission, useErrorHandler } from '../../utils/getAuth';
 
 const AdminRecipe = () => {
   const { showLoader, hideLoader } = useLoader();
@@ -20,6 +20,11 @@ const AdminRecipe = () => {
   const [data, setData] = useState<any>([]);
   const [selectedId, setSelectedId] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const permissionRead = checkPermission('recipe', 'read');
+  const permissionCreate = checkPermission('recipe', 'create');
+  const permissionUpdate = checkPermission('recipe', 'update');
+  const permissionDelete = checkPermission('recipe', 'delete');
 
   const navigate = useNavigate();
   const debouncedSearch = useDebounce(search, 500);
@@ -38,8 +43,8 @@ const AdminRecipe = () => {
       render: (props: any) => {
         return (
           <div className='flex gap-4'>
-            <AdminButton onClick={() => navigate(`/admin/v1/recipes/detail?id=${props.id}`)}>Edit</AdminButton>
-            <AdminButton color='destructive' onClick={() => { setSelectedId(props.id); openModal(); }}>Delete</AdminButton>
+            {permissionUpdate ? <AdminButton onClick={() => navigate(`/admin/v1/recipes/detail?id=${props.id}`)}>Edit</AdminButton> : <></>}
+            {permissionDelete ? <AdminButton color='destructive' onClick={() => { setSelectedId(props.id); openModal(); }}>Delete</AdminButton> : <></>}
           </div>
         )
       }
@@ -66,7 +71,7 @@ const AdminRecipe = () => {
     }
     try {
       showLoader();
-      const res = await getAllRecipes(params)
+      const res = await getAllRecipesForAdmin(params)
       if (res.status === 200) {
         const totalData = res.data.data;
         setTotalItem(totalData.count);
@@ -92,7 +97,11 @@ const AdminRecipe = () => {
   }
 
   useEffect(() => {
-    fetchData();
+    if (permissionRead) {
+      fetchData();
+    } else {
+      navigate('/admin/v1/dashboard')
+    }
   }, [page, debouncedSearch])
 
   useEffect(() => {
@@ -115,7 +124,7 @@ const AdminRecipe = () => {
           onChange={(e: any) => setSearch(e)}    
           className='w-64'      
         />
-        <AdminButton className='' onClick={() => navigate('/admin/v1/recipes/detail')}>Create</AdminButton>
+        {permissionCreate ? <AdminButton className='' onClick={() => navigate('/admin/v1/recipes/detail')}>Create</AdminButton> : <></>}
       </div>
       <Table
           data={data}

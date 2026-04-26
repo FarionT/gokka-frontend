@@ -6,7 +6,7 @@ import './AdminPromoDetail.scss';
 import { useEffect, useState } from 'react';
 import { getProductByCategory, getProductById, getProductCategory } from '../../services/product.services';
 import { useLoader } from '../../utils/userLoader';
-import { useErrorHandler } from '../../utils/getAuth';
+import { checkPermission, useErrorHandler } from '../../utils/getAuth';
 import { createPromo, getPromoById, updatePromo } from '../../services/promo.services';
 
 const AdminPromoDetail = () => {
@@ -28,6 +28,8 @@ const AdminPromoDetail = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams()
   const id = searchParams.get('id')
+
+  const permissionRead = checkPermission('promo', 'read');
 
   const fetchData = async () => {
     if (!id) return
@@ -52,8 +54,12 @@ const AdminPromoDetail = () => {
   }
 
   useEffect(() => {
-    if (!id) return
-    fetchData();
+    if (permissionRead) {
+      if (!id) return
+      fetchData();
+    } else {
+      navigate('/admin/v1/dashboard')
+    }
   }, [id]);
 
   // useEffect(() => {

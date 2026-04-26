@@ -7,7 +7,7 @@ import './AdminTestimonial.scss';
 import { useEffect, useState } from 'react';
 import { useDebounce } from '../../utils/useDebounce';
 import { useLoader } from '../../utils/userLoader';
-import { useErrorHandler } from '../../utils/getAuth';
+import { checkPermission, useErrorHandler } from '../../utils/getAuth';
 import { deleteTestimonial, getAllTestimonials } from '../../services/testimonial.services';
 import { DateFormatter } from '../../utils/dataHelper';
 
@@ -21,6 +21,11 @@ const AdminTestimonial = () => {
   const [data, setData] = useState<any>([]);
   const [selectedId, setSelectedId] = useState<any>('');
   const [isModalOpen, setIsModalOpen] = useState<any>(false);
+
+  const permissionRead = checkPermission('testimonial', 'read');
+  const permissionCreate = checkPermission('testimonial', 'create');
+  const permissionUpdate = checkPermission('testimonial', 'update');
+  const permissionDelete = checkPermission('testimonial', 'delete');
 
   const navigate = useNavigate();
   const debouncedSearch = useDebounce(search, 500);
@@ -53,8 +58,8 @@ const AdminTestimonial = () => {
       render: (props: any) => {
         return (
           <div className='flex gap-4'>
-            <AdminButton onClick={() => navigate(`/admin/v1/testimonials/detail?id=${props.id}`)}>Edit</AdminButton>
-            <AdminButton color='destructive' onClick={() => { setSelectedId(props.id); openModal(); }}>Delete</AdminButton>
+            {permissionUpdate ? <AdminButton onClick={() => navigate(`/admin/v1/testimonials/detail?id=${props.id}`)}>Edit</AdminButton> : <></>}
+            {permissionDelete ? <AdminButton color='destructive' onClick={() => { setSelectedId(props.id); openModal(); }}>Delete</AdminButton> : <></>}
           </div>
         )
       }
@@ -107,7 +112,11 @@ const AdminTestimonial = () => {
   }
 
   useEffect(() => {
-    fetchData();
+    if (permissionRead) {
+      fetchData();
+    } else {
+      navigate('/admin/v1/dashboard');
+    }
   }, [page, debouncedSearch])
 
   useEffect(() => {
@@ -131,7 +140,7 @@ const AdminTestimonial = () => {
           onChange={(e: any) => setSearch(e)}    
           className='w-64'      
         />
-        <AdminButton className='' onClick={() => navigate('/admin/v1/testimonials/detail')}>Create</AdminButton>
+        {permissionCreate ? <AdminButton className='' onClick={() => navigate('/admin/v1/testimonials/detail')}>Create</AdminButton> : <></>}
       </div>
       <Table
           data={data}

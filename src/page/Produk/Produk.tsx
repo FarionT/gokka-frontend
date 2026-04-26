@@ -101,7 +101,7 @@ const Produk = () => {
       const res = await getAllProducts(params);
       if (res.status === 200) {
         const datas = res.data.data;
-        setProductData(datas.rows)
+        setProductData(datas)
       } else handleErrorResponse(res)
     } finally {
       hideLoader();

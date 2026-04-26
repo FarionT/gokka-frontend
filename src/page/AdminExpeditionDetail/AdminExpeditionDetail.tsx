@@ -1,33 +1,32 @@
 import { useNavigate, useSearchParams } from 'react-router';
-import { createFAQ, getFAQById, updateFAQ } from '../../services/faq.services';
 import { AdminButton, Breadcrumb, InputField, Toast } from '../../ui-kit';
-import './AdminFAQDetail.scss';
+import './AdminExpeditionDetail.scss';
 
 // Importing Images
 import { useEffect, useState } from 'react';
 import { useLoader } from '../../utils/userLoader';
 import { checkPermission, useErrorHandler } from '../../utils/getAuth';
+import { createExpedition, getExpeditionById, updateExpedition } from '../../services/expedition.services';
 
-const AdminFAQDetail = () => {
+const AdminExpeditionDetail = () => {
   const handleErrorResponse = useErrorHandler();
   const { showLoader, hideLoader } = useLoader();
-  const [question, setQuestion] = useState('');
-  const [answer, setAnswer] = useState('');
-  const permissionRead = checkPermission('faq', 'read');
+  const [name, setName] = useState('');
 
   const navigate = useNavigate();
   const [searchParams] = useSearchParams()
   const id = searchParams.get('id')
 
+  const permissionRead = checkPermission('expedition', 'read');
+
   const fetchData = async () => {
     if (!id) return
     try {
       showLoader()
-      const res = await getFAQById(id)
+      const res = await getExpeditionById(id)
       if (res.status === 200) {
         const data = res.data.data;
-        setQuestion(data.question);
-        setAnswer(data.answer);
+        setName(data.name);
       }
     } finally {
       hideLoader()
@@ -36,36 +35,35 @@ const AdminFAQDetail = () => {
 
   useEffect(() => {
     if (permissionRead) {
-      navigate('/admin/v1/faq')
-    } else {
       if (!id) return
       fetchData();
+    } else {
+      navigate('/admin/v1/dashboard')
     }
   }, [id]);
 
   const breadcrumbData = [
-    { label: 'FAQ', href: '/admin/v1/faq' },
-    { label: 'Detail', href: '/about' },
+    { label: 'Expedition', href: '/admin/v1/expedition' },
+    { label: 'Detail', href: '/' },
   ];
 
   const handleSubmit = async () => {
     const data = {
-      question,
-      answer
+      name,
     }
     try {
       showLoader()
       if (id) {
-        const res = await updateFAQ(id, data)
+        const res = await updateExpedition(id, data)
         if (res.status === 200) {
-          navigate('/admin/v1/faq')
-          Toast('Success', 'success', res.message)
+          Toast('Success', 'success', res.data.message)
+          navigate('/admin/v1/expeditions')
         } else handleErrorResponse(res)
       } else {
-        const res = await createFAQ(data)
+        const res = await createExpedition(data)
         if (res.status === 201) {
-          navigate('/admin/v1/faq')
-          Toast('Success', 'success', res.message)
+          Toast('Success', 'success', res.data.message)
+          navigate('/admin/v1/expeditions')
         } else handleErrorResponse(res)
       }
     } finally {
@@ -76,31 +74,24 @@ const AdminFAQDetail = () => {
   return (
     <div className="admin-faq-detail">
       <Breadcrumb items={breadcrumbData} />
-      <div className='text-5xl font-normal py-8'>{id ? 'Update FAQ' : 'Create FAQ'}</div>
+      <div className='text-5xl font-normal py-8'>{id ? 'Update Expedition' : 'Create Expedition'}</div>
       <div className='pb-5 gap-5 flex flex-col'>
         <InputField 
-          label='Question'
-          placeholder='Question'
-          type='textarea'
+          label='Name'
+          placeholder='Name'
+          type='text'
           rows={4}
-          value={question}
-          onChange={(e: any) => setQuestion(e)}       
-        />
-        <InputField 
-          label='Answer'
-          placeholder='Answer'
-          type='textarea'
-          rows={10}
-          value={answer}
-          onChange={(e: any) => setAnswer(e)}       
+          value={name}
+          className='w-64'
+          onChange={(e: any) => setName(e)}       
         />
       </div>
       <div className='flex justify-end gap-5'>
         <AdminButton color='secondary' onClick={() => navigate('/admin/v1/faq')}>Back</AdminButton>
-        <AdminButton disabled={question === '' && answer === ''} onClick={handleSubmit}>Save</AdminButton>
+        <AdminButton disabled={name === ''} onClick={handleSubmit}>Save</AdminButton>
       </div>
     </div>
   )
 }
 
-export default AdminFAQDetail;
+export default AdminExpeditionDetail;

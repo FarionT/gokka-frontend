@@ -11,7 +11,7 @@ import { Button } from '../../ui-kit';
 import { useEffect, useState } from 'react';
 import { useLoader } from '../../utils/userLoader';
 import { useErrorHandler } from '../../utils/getAuth';
-import { getAllRecipes } from '../../services/recipe.services';
+import { getAllRecipesForAdmin } from '../../services/recipe.services';
 import { useNavigate } from 'react-router';
 
 const Resep = () => {
@@ -25,10 +25,10 @@ const Resep = () => {
       const params = {
         pagination: false
       }
-      const res = await getAllRecipes(params);
+      const res = await getAllRecipesForAdmin(params);
       if (res.status === 200) {
         const datas = res.data.data;
-        setData(datas.rows)
+        setData(datas)
       } else handleErrorResponse(res)
     } finally {
       hideLoader();

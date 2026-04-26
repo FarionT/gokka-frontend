@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import { createRecipe, getRecipeById, updateRecipe } from '../../services/recipe.services';
 import { getProductByCategory, getProductCategory } from '../../services/product.services';
 import { useLoader } from '../../utils/userLoader';
-import { useErrorHandler } from '../../utils/getAuth';
+import { checkPermission, useErrorHandler } from '../../utils/getAuth';
 
 const AdminRecipeDetail = () => {
   const { showLoader, hideLoader } = useLoader();
@@ -29,6 +29,8 @@ const AdminRecipeDetail = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams()
   const id = searchParams.get('id')
+
+  const permissionRead = checkPermission('recipe', 'read');
 
   const fetchData = async () => {
     if (!id) return
@@ -74,8 +76,12 @@ const AdminRecipeDetail = () => {
   }
 
   useEffect(() => {
-    if (!id) return
-    fetchData();
+    if (permissionRead) {
+      if (!id) return
+      fetchData();
+    } else {
+      navigate('/admin/v1/dashboard');
+    }
   }, [id]);
 
   // useEffect(() => {

@@ -2,6 +2,8 @@ import { AdminCompany } from "./AdminCompany";
 import { AdminContent } from "./AdminContent";
 import { AdminContentBeranda } from "./AdminContentBeranda";
 import { AdminDashboard } from "./AdminDashboard";
+import { AdminExpedition } from "./AdminExpedition";
+import { AdminExpeditionDetail } from "./AdminExpeditionDetail";
 import { AdminFAQ } from "./AdminFAQ";
 import { AdminFAQDetail } from "./AdminFAQDetail";
 import { AdminProduct } from "./AdminProduct";
@@ -28,6 +30,8 @@ export {
     AdminContent,
     AdminContentBeranda,
     AdminDashboard,
+    AdminExpedition,
+    AdminExpeditionDetail,
     AdminFAQ,
     AdminFAQDetail,
     AdminProduct,

@@ -74,3 +74,24 @@ export const useErrorHandler = () => {
   };
   return handleErrorResponse;
 };
+
+export const checkPermission = (module: string, action: string) => {
+  const tempState = localStorage.getItem("gokka_login");
+  const loginState = tempState ? JSON.parse(tempState) : "";
+  const permissionAccess = loginState.user ? loginState.user.permissions : [];
+  if (!permissionAccess) return false;
+  const permission = permissionAccess.find(
+    (perm: any) => perm.module_name === module.toLowerCase()
+  );
+  if (!permission) return false;
+
+  const permissionMap: any = {
+    create: permission.create,
+    update: permission.update,
+    delete: permission.delete,
+    read: permission.read,
+    approval: permission.approval,
+  };
+
+  return permissionMap[action.toLowerCase()] || false;
+};

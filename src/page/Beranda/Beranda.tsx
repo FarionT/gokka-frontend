@@ -52,7 +52,7 @@ const Beranda = () => {
       const res = await getAllPromos(params)
       if (res.status === 200) {
         const totalData = res.data.data;
-        setPromos(totalData.rows)
+        setPromos(totalData)
       } else handleErrorResponse(res)
     } finally {
       hideLoader()
@@ -62,13 +62,10 @@ const Beranda = () => {
   const fetchRecipeData = async () => {
     try {
       showLoader();
-      const params = {
-        pagination: false
-      }
-      const res = await getAllRecipes(params);
+      const res = await getAllRecipes();
       if (res.status === 200) {
         const datas = res.data.data;
-        setRecipes(datas.rows)
+        setRecipes(datas)
       } else handleErrorResponse(res)
     } finally {
       hideLoader();

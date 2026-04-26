@@ -1,10 +1,6 @@
 import { deleteAPI, getAPI, postAPI, putAPI } from './axios';
 
-export const getAllFAQ = () => {
-  return getAPI(`faq`, {});
-};
-
-export const getAllAdminFAQ = (params: any) => {
+export const getAllExpedition = (params: any) => {
   const queryParams = new URLSearchParams();
   queryParams.append("pagination", String(params.pagination));
   queryParams.append("page", String(params.page));
@@ -21,21 +17,21 @@ export const getAllAdminFAQ = (params: any) => {
   if (params.role_id && params.role_id !== "") {
     queryParams.append("role_id", String(params.role_id));
   }
-  return getAPI(`faq/list?${queryParams}`, {});
+  return getAPI(`expeditions?${queryParams}`, {});
 };
 
-export const getFAQById = (id: string) => {
-  return getAPI(`faq/${id}`, {});
+export const getExpeditionById = (id: string) => {
+  return getAPI(`expeditions/${id}`, {});
 };
 
-export const createFAQ = (data: any) => {
-  return postAPI("faq", data);
+export const createExpedition = (data: any) => {
+  return postAPI("expeditions", data);
 };
 
-export const updateFAQ = (id: string, data: any) => {
-  return putAPI(`faq/${id}`, data);
+export const updateExpedition = (id: string, data: any) => {
+  return putAPI(`expeditions/${id}`, data);
 };
 
-export const deleteFAQ = (id: string) => {
-  return deleteAPI(`faq/${id}`, {});
+export const deleteExpedition = (id: string) => {
+  return deleteAPI(`expeditions/${id}`, {});
 };

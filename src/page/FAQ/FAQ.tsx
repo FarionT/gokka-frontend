@@ -12,13 +12,10 @@ const FAQ = () => {
   const fetchData = async () => {
     try {
       showLoader();
-      const params = {
-        pagination: false
-      }
-      const res = await getAllFAQ(params);
+      const res = await getAllFAQ();
       if (res.status === 200) {
         const datas = res.data.data;
-        setData(datas.rows)
+        setData(datas)
       } else handleErrorResponse(res)
     } finally {
       hideLoader();

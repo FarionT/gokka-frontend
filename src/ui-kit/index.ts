@@ -10,6 +10,7 @@ import { Tab, Tabs } from "./Tab";
 import { Table } from "./Table";
 import { TabKatalog, TabsKatalog } from "./TabKatalog";
 import { AdminModal } from './AdminModal';
+import { DropdownFilter } from './DropdownFilter';
 
 export {
     Accordion,
@@ -18,6 +19,7 @@ export {
     AdminModal,
     Breadcrumb,
     Button,
+    DropdownFilter,
     InputField,
     Modal,
     Sidebar,

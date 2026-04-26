@@ -5,7 +5,7 @@ import './AdminCompany.scss';
 // Importing Images
 import { useEffect, useState } from 'react';
 import { useLoader } from '../../utils/userLoader';
-import { useErrorHandler } from '../../utils/getAuth';
+import { checkPermission, useErrorHandler } from '../../utils/getAuth';
 import { getCompanyData, updateCompanyData } from '../../services/company.services';
 
 const AdminCompany = () => {
@@ -16,6 +16,7 @@ const AdminCompany = () => {
   const [email, setEmail] = useState('');
   const [description, setDescription] = useState('');
   const navigate = useNavigate();
+  const permissionUpdate = checkPermission('company', 'update');
 
   const fetchData = async () => {
     try {
@@ -80,7 +81,8 @@ const AdminCompany = () => {
             className='w-72'
             type='textarea'
             value={address}
-            onChange={(e: any) => setAddress(e)}       
+            onChange={(e: any) => setAddress(e)}
+            disabled={!permissionUpdate}       
           />
           <InputField 
             label='Phone Number'
@@ -90,7 +92,8 @@ const AdminCompany = () => {
             value={phoneNumber}
             onChange={(e: any) => {
               setPhoneNumber(e);
-            }}        
+            }}       
+            disabled={!permissionUpdate}  
           />
           <InputField 
             label='Email'
@@ -100,7 +103,8 @@ const AdminCompany = () => {
             value={email}
             onChange={(e: any) => {
               setEmail(e);
-            }}       
+            }}     
+            disabled={!permissionUpdate}   
           />     
         </div>
         <div className='flex gap-10'>
@@ -112,13 +116,14 @@ const AdminCompany = () => {
             value={description}
             onChange={(e: any) => {
               setDescription(e);
-            }}       
+            }}    
+            disabled={!permissionUpdate}    
           />
         </div>
       </div>
       <div className='flex justify-end gap-5 mt-5'>
         {/* <AdminButton color='secondary' onClick={() => navigate('/admin/v1/recipes')}>Back</AdminButton> */}
-        <AdminButton disabled={isDisabled()} onClick={handleSubmit}>Save</AdminButton>
+        {permissionUpdate ? <AdminButton disabled={isDisabled()} onClick={handleSubmit}>Save</AdminButton> : <></>}
       </div>
     </div>
   )

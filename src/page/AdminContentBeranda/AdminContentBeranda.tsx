@@ -6,7 +6,7 @@ import './AdminContentBeranda.scss';
 import Jam from '../../assets/Logo/Jam.svg';
 import { useEffect, useState } from 'react';
 import { useLoader } from '../../utils/userLoader';
-import { useErrorHandler } from '../../utils/getAuth';
+import { checkPermission, useErrorHandler } from '../../utils/getAuth';
 import { getBerandaData, updateBerandaData } from '../../services/content.services';
 
 const AdminContentBeranda = () => {
@@ -16,6 +16,8 @@ const AdminContentBeranda = () => {
   const [description, setDescription] = useState('');
   const [mainImage, setMainImage] = useState<File | null>(null);
   const [banners, setBanners] = useState<any>([])
+
+  const permissionUpdate = checkPermission('content', 'update');
 
   const navigate = useNavigate();
   const fetchData = async () => {
@@ -58,7 +60,11 @@ const AdminContentBeranda = () => {
   }
 
   useEffect(() => {
-    fetchData();
+    if (permissionUpdate) {
+      fetchData();
+    } else {
+      navigate('/admin/v1/dashboard')
+    }
   }, []);
 
   const breadcrumbData = [

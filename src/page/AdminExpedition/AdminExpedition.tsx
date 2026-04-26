@@ -1,16 +1,17 @@
 import { useNavigate } from 'react-router';
-import { deleteFAQ, getAllAdminFAQ } from '../../services/faq.services';
+import { deleteFAQ } from '../../services/faq.services';
 import { AdminButton, AdminModal, Breadcrumb, InputField, Table } from '../../ui-kit';
 import type { Column } from '../../ui-kit/Table/Table';
-import './AdminFAQ.scss';
+import './AdminExpedition.scss';
 
 // Importing Images
 import { useEffect, useState } from 'react';
 import { useDebounce } from '../../utils/useDebounce';
 import { useLoader } from '../../utils/userLoader';
+import { getAllExpedition } from '../../services/expedition.services';
 import { checkPermission } from '../../utils/getAuth';
 
-const AdminFAQ = () => {
+const AdminExpedition = () => {
   const { showLoader, hideLoader } = useLoader();
   const [page, setPage] = useState(1);
   const row = 10;
@@ -20,21 +21,17 @@ const AdminFAQ = () => {
   const [selectedId, setSelectedId] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   
-  const permissionRead = checkPermission('faq', 'read');
-  const permissionCreate = checkPermission('faq', 'create');
-  const permissionUpdate = checkPermission('faq', 'update');
-  const permissionDelete = checkPermission('faq', 'delete');
+  const permissionRead = checkPermission('expedition', 'read');
+  const permissionCreate = checkPermission('expedition', 'create');
+  const permissionUpdate = checkPermission('expedition', 'update');
+  const permissionDelete = checkPermission('expedition', 'delete');
 
   const navigate = useNavigate();
   const debouncedSearch = useDebounce(search, 500);
   const faqColumns: Column<any>[] = [
     { 
-      header: 'Question', 
-      accessor: 'question' 
-    },
-    { 
-      header: 'Answer', 
-      accessor: 'answer' 
+      header: 'Name', 
+      accessor: 'name' 
     },
     { 
       header: 'Action', 
@@ -42,7 +39,7 @@ const AdminFAQ = () => {
       render: (props: any) => {
         return (
           <div className='flex gap-4'>
-            {permissionUpdate ? <AdminButton onClick={() => navigate(`/admin/v1/faq/detail?id=${props.id}`)}>Edit</AdminButton> : <></>}
+            {permissionUpdate ? <AdminButton onClick={() => navigate(`/admin/v1/expeditions/detail?id=${props.id}`)}>Edit</AdminButton> : <></>}
             {permissionDelete ? <AdminButton color='destructive' onClick={() => { setSelectedId(props.id); openModal(); }}>Delete</AdminButton> : <></>}
           </div>
         )
@@ -51,7 +48,7 @@ const AdminFAQ = () => {
   ];
 
   const breadcrumbData = [
-    { label: 'FAQ', href: '/admin/v1/faq' },
+    { label: 'Expedition', href: '/admin/v1/expeditions' },
   ];
 
   const handleNextPage = () => {
@@ -70,7 +67,7 @@ const AdminFAQ = () => {
     }
     try {
       showLoader()
-      const res = await getAllAdminFAQ(params)
+      const res = await getAllExpedition(params)
       if (res.status === 200) {
         const totalData = res.data.data;
         setTotalItem(totalData.count);
@@ -95,10 +92,10 @@ const AdminFAQ = () => {
   }
 
   useEffect(() => {
-    if (!permissionRead) {
-      navigate('/admin/v1/dashboard')
-    } else {
+    if (permissionRead) {
       fetchData();
+    } else {
+      navigate('/admin/v1/dashboard')
     }
   }, [page, debouncedSearch])
 
@@ -113,7 +110,7 @@ const AdminFAQ = () => {
   return (
     <div className="admin-dashboard">
       <Breadcrumb items={breadcrumbData} />
-      <div className='text-5xl font-normal py-8'>FAQ</div>
+      <div className='text-5xl font-normal py-8'>Expedition</div>
       <div className='flex justify-between items-end mb-5'>
         <InputField 
           label='Search' 
@@ -123,7 +120,7 @@ const AdminFAQ = () => {
           onChange={(e: any) => setSearch(e)}    
           className='w-64'      
         />
-        {permissionCreate ? <AdminButton className='' onClick={() => navigate('/admin/v1/faq/detail')}>Create</AdminButton> : <></>}
+        {permissionCreate ? <AdminButton className='' onClick={() => navigate('/admin/v1/expeditions/detail')}>Create</AdminButton> : <></>}
       </div>
       <Table
           data={data}
@@ -148,4 +145,4 @@ const AdminFAQ = () => {
   )
 }
 
-export default AdminFAQ;
+export default AdminExpedition;

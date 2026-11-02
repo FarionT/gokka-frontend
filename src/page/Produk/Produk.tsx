@@ -90,24 +90,6 @@ const Produk = () => {
   //   // setSelectedProduct(currentProduct ?? { name: "", image: "", color: "" });
   // }, [selectedProductId]);
 
-  const fetchProductData = async() => {
-    try {
-      showLoader()
-      const params = {
-        pagination: false,
-        category: categoryId,
-        subcategory: subcategoryId
-      }
-      const res = await getAllProducts(params);
-      if (res.status === 200) {
-        const datas = res.data.data;
-        setProductData(datas)
-      } else handleErrorResponse(res)
-    } finally {
-      hideLoader();
-    }
-  }
-
   const fetchProductCategoryData = async () => {
     try {
       showLoader()
@@ -136,35 +118,65 @@ const Produk = () => {
     }
   }
 
-  const fetchProductDetailData = async () => {
-    try {
-      showLoader()
-      const res = await getProductById(selectedProductId);
-      if (res.status === 200) {
-        const datas = res.data.data;
-        setProductDetail(datas);
-      } else handleErrorResponse(res)
-    } finally {
-      hideLoader()
-    }
-  }
-
   useEffect(() => {
-    // fetchProductData();
     fetchProductCategoryData();
   }, [])
 
+  // One request per tab change. Before, separate effects for category and subcategory sent
+  // several requests at once, and whichever answered last won, so a tab could show products
+  // from another category. `ignore` now drops answers for a tab the user already left.
   useEffect(() => {
+    if (!categoryId) return;
+    let ignore = false;
+
+    const fetchProductData = async () => {
+      try {
+        showLoader()
+        const params = {
+          pagination: false,
+          category: categoryId,
+          subcategory: subcategoryId
+        }
+        const res = await getAllProducts(params);
+        if (ignore) return;
+        if (res.status === 200) {
+          setProductData(res.data.data)
+        } else handleErrorResponse(res)
+      } finally {
+        if (!ignore) hideLoader();
+      }
+    }
+
     fetchProductData();
-    // setCategoryId('')
-  }, [categoryId])
-  
-  useEffect(() => {
-    fetchProductData();
-  }, [subcategoryId])
+    return () => {
+      ignore = true;
+      hideLoader();
+    };
+  }, [categoryId, subcategoryId])
 
   useEffect(() => {
+    // No product is selected on first render; skip the request for an empty id.
+    if (!selectedProductId) return;
+    let ignore = false;
+
+    const fetchProductDetailData = async () => {
+      try {
+        showLoader()
+        const res = await getProductById(selectedProductId);
+        if (ignore) return;
+        if (res.status === 200) {
+          setProductDetail(res.data.data);
+        } else handleErrorResponse(res)
+      } finally {
+        if (!ignore) hideLoader();
+      }
+    }
+
     fetchProductDetailData();
+    return () => {
+      ignore = true;
+      hideLoader();
+    };
   }, [selectedProductId])
 
   const openModal = (): void => setIsModalOpen(true);
@@ -187,12 +199,14 @@ const Produk = () => {
               {category.product_subcategories.map((subcategory: any) => (
                 <TabKatalog title={subcategory.path} key={subcategory.id} name={subcategory.name} >
                   <div className="flex flex-wrap gap-4 md:gap-8 max-w-[1200px] mx-auto justify-center">
-                    {productData.length > 0 ? productData.map((product: any) => (
+                    {productData.length > 0 ? productData.map((product: any, index: number) => (
                       <ProdukKatalog
                         key={product.id}
                         name={product.name}
                         color={product.color}
                         image={product.path}
+                        thumbnail={product.thumb_url}
+                        priority={index < 5}
                         onClick={() => {
                           openModal();
                           setSelectedProductId(product.id);

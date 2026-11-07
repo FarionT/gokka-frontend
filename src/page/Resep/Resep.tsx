@@ -1,7 +1,7 @@
 import './Resep.scss';
 
 // import image
-import WingRight from '../../assets/Image/WingRight.svg';
+import WingRight from '../../assets/Image/WingRight.webp';
 
 // import logo 
 import Jam from '../../assets/Logo/Jam.svg';

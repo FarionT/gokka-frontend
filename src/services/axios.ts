@@ -60,9 +60,11 @@ const apiRequest = async (
       headers: isFileUpload
         ? { "Content-Type": "multipart/form-data" }
         : undefined,
+      // Values are URL-encoded so a search like "teh & susu" does not break the query string.
       paramsSerializer: (params) =>
         Object.entries(params || {})
-          .map(([key, value]) => `${key}=${value}`)
+          .filter(([, value]) => value !== undefined && value !== null)
+          .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(String(value))}`)
           .join("&"),
     };
     const response = await axiosInstance(config);

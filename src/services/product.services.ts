@@ -51,7 +51,9 @@ export const getProductCategory = () => {
 };
 
 export const getProductByCategory = (category: string, subcategory: string) => {
-  return getAPI(`products?pagination=false&category=${category}&subcategory=${subcategory}`, {})
+  // URLSearchParams encodes the values (names can contain spaces or "&").
+  const queryParams = new URLSearchParams({ pagination: "false", category, subcategory });
+  return getAPI(`products?${queryParams}`, {});
 }
 
 export const getProductById = (id: string) => {

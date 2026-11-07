@@ -1,33 +1,17 @@
+import { lazy } from 'react';
 import { Route, Routes } from 'react-router';
-import { 
-  // AdminCompany,
-  // AdminContent,
-  // AdminContentBeranda,
-  // AdminDashboard,
-  // AdminExpedition,
-  // AdminExpeditionDetail,
-  // AdminFAQ,
-  // AdminFAQDetail,
-  // AdminProduct,
-  // AdminProductDetail,
-  // AdminPromo,
-  // AdminPromoDetail,
-  // AdminRecipe,
-  // AdminRecipeDetail,
-  // AdminTestimonial,
-  // AdminTestimonialDetail,
-  Beranda, 
-  // ChangePassword, 
-  FAQ, 
-  // Login, 
-  Produk, 
-  Resep, 
-  ResepDetail, 
-  ResepStep, 
-  TentangKami, 
-  Testimoni
-} from '../page';
 import PublicRoutes from './publicRoutes';
+
+// Each page is loaded only when it is visited, so the first visit does not download
+// every page's code and images at once.
+const Beranda = lazy(() => import('../page/Beranda').then((m) => ({ default: m.Beranda })));
+const FAQ = lazy(() => import('../page/FAQ').then((m) => ({ default: m.FAQ })));
+const Produk = lazy(() => import('../page/Produk').then((m) => ({ default: m.Produk })));
+const Resep = lazy(() => import('../page/Resep').then((m) => ({ default: m.Resep })));
+const ResepDetail = lazy(() => import('../page/ResepDetail').then((m) => ({ default: m.ResepDetail })));
+const ResepStep = lazy(() => import('../page/ResepStep').then((m) => ({ default: m.ResepStep })));
+const TentangKami = lazy(() => import('../page/TentangKami').then((m) => ({ default: m.TentangKami })));
+const Testimoni = lazy(() => import('../page/Testimoni').then((m) => ({ default: m.Testimoni })));
 // import PrivateRoutes from './privateRoutes';
 // import CustomRoutes from './customRoutes';
 
